@@ -16,6 +16,11 @@ public class Buttons : MonoSingleton<Buttons>
     [SerializeField] private Button _settingButton;
     [SerializeField] private GameObject _settingGame;
 
+    [SerializeField] private Button goLeftButton;
+    [SerializeField] private Button goRightButton;
+    [SerializeField] private GameObject leftSideObject;
+    [SerializeField] private GameObject rightSideObject;
+
     [SerializeField] private Button _rewardButton;
     public GameObject mainChestGame, chestChoseGame, openChestGame;
     [SerializeField] private Button _chest1Button, _chest2Button, _chest3Button;
@@ -58,6 +63,8 @@ public class Buttons : MonoSingleton<Buttons>
         _vibrationButton.onClick.AddListener(VibrationButton);
         _settingButton.onClick.AddListener(SettingButton);
         _settingBackButton.onClick.AddListener(SettingBackButton);
+        goLeftButton.onClick.AddListener(GoLeftSide);
+        goRightButton.onClick.AddListener(GoRightSide);
         /*_rewardButton.onClick.AddListener(RewardOpen);
         _chest1Button.onClick.AddListener(OpenChest);
         _chest2Button.onClick.AddListener(OpenChest);
@@ -116,6 +123,27 @@ public class Buttons : MonoSingleton<Buttons>
             GameManager.Instance.SetVibration();
         }
     }
+
+    private void GoLeftSide()
+    {
+        if (!MoveCamera.Instance.move)
+        {
+            StartCoroutine(MoveCamera.Instance.DoMoveCamera(rightSideObject));
+            goLeftButton.gameObject.SetActive(false);
+            goRightButton.gameObject.SetActive(true);
+        }
+    }
+
+    private void GoRightSide()
+    {
+        if (!MoveCamera.Instance.move)
+        {
+            StartCoroutine(MoveCamera.Instance.DoMoveCamera(leftSideObject));
+            goLeftButton.gameObject.SetActive(true);
+            goRightButton.gameObject.SetActive(false);
+        }
+    }
+
 
     private void OpenChest()
     {
