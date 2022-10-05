@@ -12,14 +12,11 @@ public class MoveCamera : MonoSingleton<MoveCamera>
     {
         if (!move)
         {
-            Debug.Log("HG1");
             move = true;
-            this.transform.DOMove(moveObject.transform.position, _moveTime);
-            //Camera.main.transform.DORotateQuaternion(moveObject.transform.rotation, _moveTime);
-            Debug.Log("HG2");
+            this.transform.DOMove(moveObject.transform.position, _moveTime).SetEase(Ease.InOutSine);
+            this.transform.DORotateQuaternion(moveObject.transform.rotation, _moveTime).SetEase(Ease.InOutSine);
             yield return new WaitForSeconds(_moveTime);
             move = false;
-            Debug.Log("HG3");
         }
     }
 }

@@ -28,6 +28,9 @@ public class Buttons : MonoSingleton<Buttons>
     [SerializeField] private Text _chestMoney;
     [SerializeField] private Button _rewardLastButton;
 
+    [SerializeField] private Button runnerAddedButton, runnerSpeedButton, moneyUpperButton, bobinCountButton, mergeButton;
+    
+
 
     private void Start()
     {

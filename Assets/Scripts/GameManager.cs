@@ -8,11 +8,20 @@ public class GameManager : MonoSingleton<GameManager>
 
 
     public int money;
+    public int resarchPoint;
     public int vibration;
     public int sound;
 
     private void Start()
     {
+        if (PlayerPrefs.HasKey("resarchPoint"))
+        {
+            money = PlayerPrefs.GetInt("resarchPoint");
+        }
+        else
+        {
+            PlayerPrefs.SetInt("resarchPoint", 0);
+        }
 
         if (PlayerPrefs.HasKey("money"))
         {
@@ -42,6 +51,10 @@ public class GameManager : MonoSingleton<GameManager>
         }
     }
 
+    public void SetResarchPoint()
+    {
+        PlayerPrefs.SetInt("resarchPoint", resarchPoint);
+    }
 
     public void SetMoney()
     {
