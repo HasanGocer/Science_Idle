@@ -29,7 +29,8 @@ public class Buttons : MonoSingleton<Buttons>
     [SerializeField] private Button _rewardLastButton;
 
     [SerializeField] private Button runnerAddedButton, runnerSpeedButton, moneyUpperButton, bobinCountButton, mergeButton;
-    
+    [SerializeField] private GameObject _runnerPos;
+
 
 
     private void Start()
@@ -68,6 +69,12 @@ public class Buttons : MonoSingleton<Buttons>
         _settingBackButton.onClick.AddListener(SettingBackButton);
         goLeftButton.onClick.AddListener(GoLeftSide);
         goRightButton.onClick.AddListener(GoRightSide);
+        runnerAddedButton.onClick.AddListener(AddedRunner);
+        runnerSpeedButton.onClick.AddListener(RunnerSpeed);
+        bobinCountButton.onClick.AddListener(BobinCount);
+        runnerAddedButton.onClick.AddListener(AddedMoney);
+        mergeButton.onClick.AddListener(Merge);
+
         /*_rewardButton.onClick.AddListener(RewardOpen);
         _chest1Button.onClick.AddListener(OpenChest);
         _chest2Button.onClick.AddListener(OpenChest);
@@ -147,6 +154,65 @@ public class Buttons : MonoSingleton<Buttons>
         }
     }
 
+    private void AddedRunner()
+    {
+        if (GameManager.Instance.money >= ItemData.Instance.fieldPrice.runnerCount)
+        {
+            GameManager.Instance.money -= ItemData.Instance.fieldPrice.runnerCount;
+            ItemData.Instance.factor.runnerCount++;
+            GameObject obj = ObjectPool.Instance.GetPooledObject(0);
+            obj.transform.position = _runnerPos.transform.position;
+            GameManager.Instance.SetMoney();
+            GameManager.Instance.SetRunnerCount();
+        }
+    }
+
+    private void RunnerSpeed()
+    {
+        if (GameManager.Instance.money >= ItemData.Instance.fieldPrice.runnerSpeed)
+        {
+            GameManager.Instance.money -= (int)ItemData.Instance.fieldPrice.runnerSpeed;
+            ItemData.Instance.factor.runnerSpeed++;
+            GameManager.Instance.SetRunnerSpeed();
+            GameManager.Instance.SetMoney();
+        }
+    }
+
+    private void BobinCount()
+    {
+        if (GameManager.Instance.money >= ItemData.Instance.fieldPrice.bobinCount)
+        {
+            GameManager.Instance.money -= (int)ItemData.Instance.fieldPrice.bobinCount;
+            ItemData.Instance.factor.bobinCount++;
+            //bobin aktifleþtir
+            GameManager.Instance.SetBobinCount();
+            GameManager.Instance.SetMoney();
+        }
+    }
+
+    private void AddedMoney()
+    {
+        if (GameManager.Instance.money >= ItemData.Instance.fieldPrice.addedMoney)
+        {
+            GameManager.Instance.money -= (int)ItemData.Instance.fieldPrice.addedMoney;
+            ItemData.Instance.factor.addedMoney++;
+            //texti deðiþtir
+            GameManager.Instance.SetAddedMoney();
+            GameManager.Instance.SetMoney();
+        }
+    }
+
+    private void Merge()
+    {
+        if (GameManager.Instance.money >= ItemData.Instance.fieldPrice.merge)
+        {
+            GameManager.Instance.money -= (int)ItemData.Instance.fieldPrice.merge;
+            ItemData.Instance.factor.merge++;
+            //merge aktifleþtir
+            GameManager.Instance.SetMerge();
+            GameManager.Instance.SetMoney();
+        }
+    }
 
     private void OpenChest()
     {

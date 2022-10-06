@@ -9,7 +9,7 @@ public class TouchBobin : MonoBehaviour
     {
         if (other.CompareTag("Ball"))
         {
-            GameManager.Instance.money += (int)(BobinStatManager.Instance.addedMoney + (GameStatManager.Instance.addedMoney * GameStatManager.Instance.addedMoneyFactor));
+            GameManager.Instance.money += (int)ItemData.Instance.field.addedMoney;
             Buttons.Instance.moneyText.text = GameManager.Instance.money.ToString();
         }
     }

@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class MyDoPath : MonoBehaviour
+public class MyDoPath : MonoSingleton<MyDoPath>
 {
-    List<Vector3> HG = new List<Vector3>();
-    private void Start()
+    public List<float> length = new List<float>();
+    public DOTweenPath pat;
+    public List<GameObject> Balls = new List<GameObject>();
+    private void Awake()
     {
-        GetComponent<DOTweenPath>().wps = HG;
+        pat = Balls[0].GetComponent<DOTweenPath>();
     }
 }
