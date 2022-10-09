@@ -7,8 +7,8 @@ public class ItemData : MonoSingleton<ItemData>
     [System.Serializable]
     public class Field
     {
-        public int runnerCount, bobinCount, merge;
-        public float runnerSpeed, addedMoney;
+        public int runnerCount, bobinCount, tableCount, merge;
+        public float runnerSpeed, addedMoney, addedResearchPoint, barSpeed;
     }
 
     public Field field;
@@ -23,15 +23,47 @@ public class ItemData : MonoSingleton<ItemData>
     {
         field.runnerSpeed = standart.runnerSpeed - (factor.runnerSpeed * constant.runnerSpeed);
         fieldPrice.runnerSpeed = fieldPrice.runnerSpeed * factor.runnerSpeed;
-        MyDoPath.Instance.pat.duration = ItemData.Instance.field.runnerSpeed * MyDoPath.Instance.length[0];
-        field.addedMoney = standart.addedMoney + (factor.addedMoney * constant.addedMoney);
-        fieldPrice.addedMoney = fieldPrice.addedMoney * factor.addedMoney;
+
         field.runnerCount = standart.runnerCount + (factor.runnerCount * constant.runnerCount);
         fieldPrice.runnerCount = fieldPrice.runnerCount * factor.runnerCount;
+        RunnerManager.Instance.StartRunner();
         field.bobinCount = standart.bobinCount + (factor.bobinCount * constant.bobinCount);
         fieldPrice.bobinCount = fieldPrice.bobinCount * factor.bobinCount;
+        BobinManager.Instance.StartBobinPlacement();
+        field.tableCount = standart.tableCount + (factor.tableCount * constant.tableCount);
+        fieldPrice.tableCount = fieldPrice.tableCount * factor.tableCount;
+        TableBuy.Instance.TablePlacement();
         field.merge = standart.merge + (factor.merge * constant.merge);
         fieldPrice.merge = fieldPrice.merge * factor.merge;
+
+
+        field.addedMoney = standart.addedMoney + (factor.addedMoney * constant.addedMoney);
+        fieldPrice.addedMoney = fieldPrice.addedMoney * factor.addedMoney;
+        field.addedResearchPoint = standart.addedResearchPoint + (factor.addedResearchPoint * constant.addedResearchPoint);
+        fieldPrice.addedResearchPoint = fieldPrice.addedResearchPoint * factor.addedResearchPoint;
+        field.barSpeed = standart.barSpeed - (factor.barSpeed * constant.barSpeed);
+        fieldPrice.barSpeed = fieldPrice.barSpeed * factor.barSpeed;
+
+        if (field.runnerCount > max.runnerCount)
+        {
+            field.runnerCount = max.runnerCount;
+        }
+
+        if (field.bobinCount > max.bobinCount)
+        {
+            field.bobinCount = max.bobinCount;
+        }
+
+        if (field.tableCount > max.tableCount)
+        {
+            field.tableCount = max.tableCount;
+        }
+
+        if (field.merge > max.merge)
+        {
+            field.merge = max.merge;
+        }
+
 
         if (field.runnerSpeed < max.runnerSpeed)
         {
@@ -43,15 +75,50 @@ public class ItemData : MonoSingleton<ItemData>
             field.addedMoney = max.addedMoney;
         }
 
+        if (field.addedResearchPoint > max.addedResearchPoint)
+        {
+            field.addedResearchPoint = max.addedResearchPoint;
+        }
+
+        if (field.barSpeed < max.barSpeed)
+        {
+            field.barSpeed = max.barSpeed;
+        }
+    }
+
+    public void RunnerCount()
+    {
+        field.runnerCount = standart.runnerCount + (factor.runnerCount * constant.runnerCount);
+
         if (field.runnerCount > max.runnerCount)
         {
             field.runnerCount = max.runnerCount;
         }
+    }
+
+    public void BobinCount()
+    {
+        field.bobinCount = standart.bobinCount + (factor.bobinCount * constant.bobinCount);
 
         if (field.bobinCount > max.bobinCount)
         {
             field.bobinCount = max.bobinCount;
         }
+    }
+
+    public void TableCount()
+    {
+        field.tableCount = standart.tableCount + (factor.tableCount * constant.tableCount);
+
+        if (field.tableCount > max.tableCount)
+        {
+            field.tableCount = max.tableCount;
+        }
+    }
+
+    public void Merge()
+    {
+        field.merge = standart.merge + (factor.merge * constant.merge);
 
         if (field.merge > max.merge)
         {
@@ -79,33 +146,23 @@ public class ItemData : MonoSingleton<ItemData>
         }
     }
 
-    public void RunnerCount()
+    public void AddedResearchPoint()
     {
-        field.runnerCount = standart.runnerCount + (factor.runnerCount * constant.runnerCount);
+        field.addedResearchPoint = standart.addedResearchPoint + (factor.addedResearchPoint * constant.addedResearchPoint);
 
-        if (field.runnerCount > max.runnerCount)
+        if (field.addedResearchPoint > max.addedResearchPoint)
         {
-            field.runnerCount = max.runnerCount;
+            field.addedResearchPoint = max.addedResearchPoint;
         }
     }
 
-    public void BobinCount()
+    public void BarSpeed()
     {
-        field.bobinCount = standart.bobinCount + (factor.bobinCount * constant.bobinCount);
+        field.barSpeed = standart.barSpeed - (factor.barSpeed * constant.barSpeed);
 
-        if (field.bobinCount > max.bobinCount)
+        if (field.barSpeed < max.barSpeed)
         {
-            field.bobinCount = max.bobinCount;
-        }
-    }
-
-    public void Merge()
-    {
-        field.merge = standart.merge + (factor.merge * constant.merge);
-
-        if (field.merge > max.merge)
-        {
-            field.merge = max.merge;
+            field.barSpeed = max.barSpeed;
         }
     }
 }

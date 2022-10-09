@@ -9,6 +9,7 @@ public class Buttons : MonoSingleton<Buttons>
 {
     [SerializeField] private GameObject _GlobalGame;
     public Text moneyText;
+    public Text ResearchPointText;
 
     [SerializeField] private Sprite _red, _green;
     [SerializeField] private Button _settingBackButton;
@@ -30,6 +31,11 @@ public class Buttons : MonoSingleton<Buttons>
 
     [SerializeField] private Button runnerAddedButton, runnerSpeedButton, moneyUpperButton, bobinCountButton, mergeButton;
     [SerializeField] private GameObject _runnerPos;
+    [SerializeField] private GameObject _leftGame;
+
+    [SerializeField] private GameObject _rightGame;
+    [SerializeField] private Button tableAddedButton, barSpeedButton, researchUpperButton, StartBarButton;
+
 
 
 
@@ -72,8 +78,12 @@ public class Buttons : MonoSingleton<Buttons>
         runnerAddedButton.onClick.AddListener(AddedRunner);
         runnerSpeedButton.onClick.AddListener(RunnerSpeed);
         bobinCountButton.onClick.AddListener(BobinCount);
-        runnerAddedButton.onClick.AddListener(AddedMoney);
+        runnerAddedButton.onClick.AddListener(AddedResearchPoint);
         mergeButton.onClick.AddListener(Merge);
+        tableAddedButton.onClick.AddListener(AddedTable);
+        //barSpeedButton.onClick.AddListener(BarSpeedUpdate);
+        researchUpperButton.onClick.AddListener(UpperResearchPoint);
+        StartBarButton.onClick.AddListener(StartBar);
 
         /*_rewardButton.onClick.AddListener(RewardOpen);
         _chest1Button.onClick.AddListener(OpenChest);
@@ -86,6 +96,7 @@ public class Buttons : MonoSingleton<Buttons>
     private void TextStart()
     {
         moneyText.text = GameManager.Instance.money.ToString();
+        ResearchPointText.text = GameManager.Instance.researchPoint.ToString();
     }
 
     private void SettingButton()
@@ -141,6 +152,8 @@ public class Buttons : MonoSingleton<Buttons>
             StartCoroutine(MoveCamera.Instance.DoMoveCamera(rightSideObject));
             goLeftButton.gameObject.SetActive(false);
             goRightButton.gameObject.SetActive(true);
+            _leftGame.SetActive(true);
+            _rightGame.SetActive(false);
         }
     }
 
@@ -151,17 +164,18 @@ public class Buttons : MonoSingleton<Buttons>
             StartCoroutine(MoveCamera.Instance.DoMoveCamera(leftSideObject));
             goLeftButton.gameObject.SetActive(true);
             goRightButton.gameObject.SetActive(false);
+            _leftGame.SetActive(false);
+            _rightGame.SetActive(true);
         }
     }
 
     private void AddedRunner()
     {
-        if (GameManager.Instance.money >= ItemData.Instance.fieldPrice.runnerCount)
+        if (GameManager.Instance.money >= ItemData.Instance.fieldPrice.runnerCount && ItemData.Instance.factor.runnerCount <= ItemData.Instance.maxFactor.runnerCount)
         {
             GameManager.Instance.money -= ItemData.Instance.fieldPrice.runnerCount;
+            moneyText.text = GameManager.Instance.money.ToString();
             ItemData.Instance.factor.runnerCount++;
-            GameObject obj = ObjectPool.Instance.GetPooledObject(0);
-            obj.transform.position = _runnerPos.transform.position;
             GameManager.Instance.SetMoney();
             GameManager.Instance.SetRunnerCount();
         }
@@ -169,9 +183,10 @@ public class Buttons : MonoSingleton<Buttons>
 
     private void RunnerSpeed()
     {
-        if (GameManager.Instance.money >= ItemData.Instance.fieldPrice.runnerSpeed)
+        if (GameManager.Instance.money >= ItemData.Instance.fieldPrice.runnerSpeed && ItemData.Instance.factor.runnerSpeed <= ItemData.Instance.maxFactor.runnerSpeed)
         {
             GameManager.Instance.money -= (int)ItemData.Instance.fieldPrice.runnerSpeed;
+            moneyText.text = GameManager.Instance.money.ToString();
             ItemData.Instance.factor.runnerSpeed++;
             GameManager.Instance.SetRunnerSpeed();
             GameManager.Instance.SetMoney();
@@ -180,38 +195,96 @@ public class Buttons : MonoSingleton<Buttons>
 
     private void BobinCount()
     {
-        if (GameManager.Instance.money >= ItemData.Instance.fieldPrice.bobinCount)
+        if (GameManager.Instance.money >= ItemData.Instance.fieldPrice.bobinCount && ItemData.Instance.factor.bobinCount <= ItemData.Instance.maxFactor.bobinCount)
         {
+            Debug.Log("HG");
             GameManager.Instance.money -= (int)ItemData.Instance.fieldPrice.bobinCount;
+            moneyText.text = GameManager.Instance.money.ToString();
             ItemData.Instance.factor.bobinCount++;
-            //bobin aktifleþtir
+            BobinManager.Instance.bobins[ItemData.Instance.factor.bobinCount].SetActive(true);
             GameManager.Instance.SetBobinCount();
             GameManager.Instance.SetMoney();
         }
     }
 
-    private void AddedMoney()
+    private void AddedResearchPoint()
     {
-        if (GameManager.Instance.money >= ItemData.Instance.fieldPrice.addedMoney)
+        if (GameManager.Instance.money >= ItemData.Instance.fieldPrice.addedResearchPoint && ItemData.Instance.factor.addedResearchPoint <= ItemData.Instance.maxFactor.addedResearchPoint)
         {
-            GameManager.Instance.money -= (int)ItemData.Instance.fieldPrice.addedMoney;
-            ItemData.Instance.factor.addedMoney++;
+            GameManager.Instance.researchPoint -= (int)ItemData.Instance.fieldPrice.addedResearchPoint;
+            ResearchPointText.text = GameManager.Instance.researchPoint.ToString();
+            ItemData.Instance.factor.addedResearchPoint++;
             //texti deðiþtir
-            GameManager.Instance.SetAddedMoney();
-            GameManager.Instance.SetMoney();
+            GameManager.Instance.SetResearchPoint();
+            GameManager.Instance.SetAddedResearchPoint();
         }
     }
 
     private void Merge()
     {
-        if (GameManager.Instance.money >= ItemData.Instance.fieldPrice.merge)
+        if (GameManager.Instance.money >= ItemData.Instance.fieldPrice.merge && ItemData.Instance.factor.merge <= ItemData.Instance.maxFactor.merge)
         {
             GameManager.Instance.money -= (int)ItemData.Instance.fieldPrice.merge;
+            moneyText.text = GameManager.Instance.money.ToString();
             ItemData.Instance.factor.merge++;
             //merge aktifleþtir
             GameManager.Instance.SetMerge();
             GameManager.Instance.SetMoney();
         }
+    }
+
+    private void AddedTable()
+    {
+        if (GameManager.Instance.researchPoint >= ItemData.Instance.fieldPrice.tableCount && ItemData.Instance.factor.tableCount < ItemData.Instance.maxFactor.tableCount)
+        {
+            GameManager.Instance.researchPoint -= (int)ItemData.Instance.fieldPrice.tableCount;
+            ResearchPointText.text = GameManager.Instance.researchPoint.ToString();
+            TableBuy.Instance.TableBuyWithButton();
+            GameManager.Instance.SetTableCount();
+            GameManager.Instance.SetResearchPoint();
+        }
+    }
+
+    /*private void BarSpeedUpdate()
+    {
+        if (GameManager.Instance.researchPoint >= ItemData.Instance.fieldPrice.barSpeed && ItemData.Instance.factor.barSpeed <= ItemData.Instance.maxFactor.barSpeed && ItemData.Instance.field.barSpeed > ItemData.Instance.max.barSpeed)
+        {
+            GameManager.Instance.researchPoint -= (int)ItemData.Instance.fieldPrice.barSpeed;
+            GameManager.Instance.SetResearchPoint();
+            ItemData.Instance.factor.barSpeed++;
+            ItemData.Instance.BarSpeed();
+            GameManager.Instance.SetBarSpeed();
+        }
+    }*/
+
+    private void UpperResearchPoint()
+    {
+        if (GameManager.Instance.researchPoint >= ItemData.Instance.fieldPrice.addedResearchPoint && ItemData.Instance.factor.addedResearchPoint <= ItemData.Instance.maxFactor.addedResearchPoint && ItemData.Instance.field.addedResearchPoint < ItemData.Instance.max.addedResearchPoint)
+        {
+            GameManager.Instance.researchPoint -= (int)ItemData.Instance.fieldPrice.addedResearchPoint;
+            ResearchPointText.text = GameManager.Instance.researchPoint.ToString();
+            GameManager.Instance.SetResearchPoint();
+
+            ItemData.Instance.factor.addedResearchPoint++;
+            ItemData.Instance.AddedResearchPoint();
+            GameManager.Instance.SetResearchPoint();
+        }
+    }
+
+    private void StartBar()
+    {
+        if (GameManager.Instance.researchPoint >= TableBuy.Instance.barPrice)
+        {
+            for (int i = 0; i < TableBuy.Instance.ActiveTablesBool.Count; i++)
+            {
+                if (!TableBuy.Instance.ActiveTablesBool[i])
+                {
+                    StartCoroutine(TableBuy.Instance.ActiveTables[i].GetComponent<TableWork>().StartBar(i));
+                    TableBuy.Instance.ActiveTablesBool[i] = true;
+                }
+            }
+        }
+
     }
 
     private void OpenChest()
