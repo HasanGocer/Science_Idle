@@ -205,7 +205,7 @@ public class Buttons : MonoSingleton<Buttons>
             GameManager.Instance.SetRunnerSpeed();
             ItemData.Instance.RunnerSpeed();
             runnerSpeedText.text = ItemData.Instance.fieldPrice.runnerSpeed.ToString();
-            RunnerManager.Instance.SpeedUp();
+            StartCoroutine(RunnerManager.Instance.SpeedUp());
         }
     }
 
@@ -299,16 +299,21 @@ public class Buttons : MonoSingleton<Buttons>
     {
         if (GameManager.Instance.researchPoint >= TableBuy.Instance.barPrice)
         {
-            for (int i = 0; i < TableBuy.Instance.ActiveTablesBool.Count; i++)
+            StartCoroutine(StartBarAyEnum());
+        }
+    }
+
+    IEnumerator StartBarAyEnum()
+    {
+        for (int i = 0; i < TableBuy.Instance.ActiveTablesBool.Count; i++)
+        {
+            if (!TableBuy.Instance.ActiveTablesBool[i])
             {
-                if (!TableBuy.Instance.ActiveTablesBool[i])
-                {
-                    StartCoroutine(TableBuy.Instance.ActiveTables[i].GetComponent<TableWork>().StartBar(i));
-                    TableBuy.Instance.ActiveTablesBool[i] = true;
-                }
+                StartCoroutine(TableBuy.Instance.ActiveTables[i].GetComponent<TableWork>().StartBar(i));
+                TableBuy.Instance.ActiveTablesBool[i] = true;
+                yield return new WaitForSeconds(0.1f);
             }
         }
-
     }
 
     private void OpenChest()
