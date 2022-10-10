@@ -26,7 +26,7 @@ public class ItemData : MonoSingleton<ItemData>
 
         field.runnerCount = standart.runnerCount + (factor.runnerCount * constant.runnerCount);
         fieldPrice.runnerCount = fieldPrice.runnerCount * factor.runnerCount;
-        RunnerManager.Instance.StartRunner();
+        StartCoroutine(RunnerManager.Instance.StartRunner());
         field.bobinCount = standart.bobinCount + (factor.bobinCount * constant.bobinCount);
         fieldPrice.bobinCount = fieldPrice.bobinCount * factor.bobinCount;
         BobinManager.Instance.StartBobinPlacement();

@@ -22,6 +22,8 @@ public class GameManager : MonoSingleton<GameManager>
         {
             PlayerPrefs.SetInt("researchPoint", 1000);
         }
+        Buttons.Instance.ResearchPointText.text = researchPoint.ToString();
+
 
         if (PlayerPrefs.HasKey("money"))
         {
@@ -31,6 +33,7 @@ public class GameManager : MonoSingleton<GameManager>
         {
             PlayerPrefs.SetInt("money", 1000);
         }
+        Buttons.Instance.moneyText.text = money.ToString();
 
         if (PlayerPrefs.HasKey("vibration"))
         {

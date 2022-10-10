@@ -21,10 +21,9 @@ public class TableBuy : MonoSingleton<TableBuy>
 
     public void TableBuyWithButton()
     {
-        ActiveTables.Add(PasiveTables[ItemData.Instance.field.tableCount]);
+        ActiveTables.Add(PasiveTables[ItemData.Instance.field.tableCount - 1]);
         ActiveTablesBool.Add(false);
-        ActiveTables[ItemData.Instance.field.tableCount].SetActive(true);
-        ItemData.Instance.field.tableCount++;
+        ActiveTables[ItemData.Instance.field.tableCount - 1].SetActive(true);
         GameManager.Instance.SetTableCount();
     }
 }

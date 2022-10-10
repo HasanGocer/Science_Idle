@@ -23,7 +23,6 @@ public class MyDoPath : MonoSingleton<MyDoPath>
         {
             Ball[i1].length = 0;
             Ball[i1].BallsV3 = new Vector3[Ball[i1].BallsGO.Count + 1];
-            Debug.Log(Ball[i1].BallsV3.Length);
             for (int i2 = 0; i2 < Ball[i1].BallsGO.Count - 1; i2++)
             {
                 Ball[i1].length += Vector3.Distance(Ball[i1].BallsGO[i2].transform.position, Ball[i1].BallsGO[i2 + 1].transform.position);
@@ -58,10 +57,8 @@ public class MyDoPath : MonoSingleton<MyDoPath>
 
     public void StartNewRunner(GameObject obj)
     {
-        Debug.Log(Ball[obj.GetComponent<PathSelection>().pathSelection].length);
         runnerTime = Ball[obj.GetComponent<PathSelection>().pathSelection].length * ItemData.Instance.field.runnerSpeed;
 
         obj.transform.DOPath(Ball[obj.GetComponent<PathSelection>().pathSelection].BallsV3, runnerTime, PathType.CatmullRom, PathMode.Full3D, 20, Color.black).SetEase(Ease.Linear).SetLoops(1000);
-        Debug.Log("H!");
     }
 }
