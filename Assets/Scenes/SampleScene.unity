@@ -8267,14 +8267,14 @@ MonoBehaviour:
     addedResearchPoint: 1
     barSpeed: 3
   factor:
-    runnerCount: 0
-    bobinCount: 0
-    tableCount: 0
-    merge: 0
-    runnerSpeed: 0
-    addedMoney: 0
-    addedResearchPoint: 0
-    barSpeed: 0
+    runnerCount: 1
+    bobinCount: 1
+    tableCount: 1
+    merge: 1
+    runnerSpeed: 1
+    addedMoney: 1
+    addedResearchPoint: 1
+    barSpeed: 1
   constant:
     runnerCount: 1
     bobinCount: 1
