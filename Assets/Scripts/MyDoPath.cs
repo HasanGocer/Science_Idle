@@ -14,11 +14,12 @@ public class MyDoPath : MonoSingleton<MyDoPath>
     }
     public Balls[] Ball;
 
-    [SerializeField] private int Ways;
+    private int Ways;
     public float runnerTime;
 
     private void Awake()
     {
+        Ways = Ball.Length;
         for (int i1 = 0; i1 < Ways; i1++)
         {
             Ball[i1].length = 0;

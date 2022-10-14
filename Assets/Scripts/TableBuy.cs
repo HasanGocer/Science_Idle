@@ -11,7 +11,6 @@ public class TableBuy : MonoSingleton<TableBuy>
 
     public void TablePlacement()
     {
-        Debug.Log(ItemData.Instance.field.tableCount);
         for (int i = 0; i < ItemData.Instance.field.tableCount; i++)
         {
             ActiveTables.Add(PasiveTables[i]);

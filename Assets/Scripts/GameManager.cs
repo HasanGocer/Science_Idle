@@ -89,15 +89,6 @@ public class GameManager : MonoSingleton<GameManager>
             PlayerPrefs.SetFloat("addedMoney", ItemData.Instance.factor.addedMoney);
         }
 
-        if (PlayerPrefs.HasKey("merge"))
-        {
-            ItemData.Instance.factor.merge = PlayerPrefs.GetInt("merge");
-        }
-        else
-        {
-            PlayerPrefs.SetInt("merge", ItemData.Instance.factor.merge);
-        }
-
         if (PlayerPrefs.HasKey("tableCount"))
         {
             ItemData.Instance.field.tableCount = PlayerPrefs.GetInt("tableCount");
@@ -169,14 +160,6 @@ public class GameManager : MonoSingleton<GameManager>
         ItemData.Instance.fieldPrice.addedResearchPoint = ItemData.Instance.fieldPrice.addedResearchPoint / (ItemData.Instance.factor.addedResearchPoint - 1);
         ItemData.Instance.fieldPrice.addedResearchPoint = ItemData.Instance.fieldPrice.addedResearchPoint * ItemData.Instance.factor.addedResearchPoint;
 
-    }
-
-    public void SetMerge()
-    {
-        PlayerPrefs.SetInt("merge", ItemData.Instance.factor.merge);
-        ItemData.Instance.field.merge = ItemData.Instance.standart.merge + (ItemData.Instance.factor.merge * ItemData.Instance.constant.merge);
-        ItemData.Instance.fieldPrice.merge = ItemData.Instance.fieldPrice.merge / (ItemData.Instance.factor.merge - 1);
-        ItemData.Instance.fieldPrice.merge = ItemData.Instance.fieldPrice.merge * ItemData.Instance.factor.merge;
     }
 
     public void SetTableCount()

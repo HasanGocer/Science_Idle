@@ -22,13 +22,6 @@ public class Buttons : MonoSingleton<Buttons>
     [SerializeField] private GameObject leftSideObject;
     [SerializeField] private GameObject rightSideObject;
 
-    [SerializeField] private Button _rewardButton;
-    public GameObject mainChestGame, chestChoseGame, openChestGame;
-    [SerializeField] private Button _chest1Button, _chest2Button, _chest3Button;
-    [SerializeField] private Image _chestImage1, _chestImage2;
-    [SerializeField] private Text _chestMoney;
-    [SerializeField] private Button _rewardLastButton;
-
     [SerializeField] private Button runnerAddedButton, runnerSpeedButton, researchUpperButton, bobinCountButton, mergeButton;
     [SerializeField] private Text runnerAddedText, runnerSpeedText, researchUpperText, bobinCountText, mergeText;
     [SerializeField] private GameObject _runnerPos;
@@ -81,11 +74,11 @@ public class Buttons : MonoSingleton<Buttons>
         runnerSpeedButton.onClick.AddListener(RunnerSpeed);
         researchUpperButton.onClick.AddListener(ResearchUpper);
         bobinCountButton.onClick.AddListener(BobinCount);
-        mergeButton.onClick.AddListener(Merge);
         tableAddedButton.onClick.AddListener(AddedTable);
-        //barSpeedButton.onClick.AddListener(BarSpeedUpdate);
         moneyUpperButton.onClick.AddListener(MoneyUpper);
         StartBarButton.onClick.AddListener(StartBar);
+
+        //barSpeedButton.onClick.AddListener(BarSpeedUpdate);
 
         /*_rewardButton.onClick.AddListener(RewardOpen);
         _chest1Button.onClick.AddListener(OpenChest);
@@ -101,7 +94,6 @@ public class Buttons : MonoSingleton<Buttons>
         ResearchPointText.text = GameManager.Instance.researchPoint.ToString();
         researchUpperText.text = ItemData.Instance.fieldPrice.addedResearchPoint.ToString();
         tableAddedText.text = ItemData.Instance.fieldPrice.tableCount.ToString();
-        mergeText.text = ItemData.Instance.fieldPrice.merge.ToString();
         moneyUpperText.text = ItemData.Instance.fieldPrice.addedMoney.ToString();
         bobinCountText.text = ItemData.Instance.fieldPrice.bobinCount.ToString();
         runnerSpeedText.text = ItemData.Instance.fieldPrice.runnerSpeed.ToString();
@@ -239,21 +231,6 @@ public class Buttons : MonoSingleton<Buttons>
         }
     }
 
-    private void Merge()
-    {
-        if (GameManager.Instance.money >= ItemData.Instance.fieldPrice.merge && ItemData.Instance.factor.merge <= ItemData.Instance.maxFactor.merge)
-        {
-            GameManager.Instance.money -= (int)ItemData.Instance.fieldPrice.merge;
-            moneyText.text = GameManager.Instance.money.ToString();
-            ItemData.Instance.factor.merge++;
-            //merge aktifleþtir
-            GameManager.Instance.SetMerge();
-            ItemData.Instance.Merge();
-            GameManager.Instance.SetMoney();
-            mergeText.text = ItemData.Instance.fieldPrice.merge.ToString();
-        }
-    }
-
     private void AddedTable()
     {
         if (GameManager.Instance.researchPoint >= ItemData.Instance.fieldPrice.tableCount && ItemData.Instance.factor.tableCount < ItemData.Instance.maxFactor.tableCount - 1)
@@ -314,44 +291,5 @@ public class Buttons : MonoSingleton<Buttons>
                 yield return new WaitForSeconds(0.1f);
             }
         }
-    }
-
-    private void OpenChest()
-    {
-        int count = Random.Range(0, 10);
-
-        if (count % 2 == 0)
-        {
-            chestChoseGame.SetActive(false);
-            openChestGame.SetActive(true);
-            _chestImage1.gameObject.SetActive(true);
-            count = Random.Range(50, 100);
-            _chestMoney.text = "+ " + count;
-            GameManager.Instance.money += count;
-            GameManager.Instance.SetMoney();
-        }
-        else
-        {
-            chestChoseGame.SetActive(false);
-            openChestGame.SetActive(true);
-            _chestImage2.gameObject.SetActive(true);
-            count = Random.Range(30, 60);
-            _chestMoney.text = "+ " + count;
-            GameManager.Instance.money += count;
-            GameManager.Instance.SetMoney();
-        }
-    }
-
-    private void RewardOpen()
-    {
-        mainChestGame.SetActive(true);
-        chestChoseGame.SetActive(true);
-    }
-
-    private void RewardLastButton()
-    {
-        mainChestGame.SetActive(false);
-        openChestGame.SetActive(false);
-        chestChoseGame.SetActive(true);
     }
 }

@@ -7,7 +7,7 @@ public class ItemData : MonoSingleton<ItemData>
     [System.Serializable]
     public class Field
     {
-        public int runnerCount, bobinCount, tableCount, merge;
+        public int runnerCount, bobinCount, tableCount;
         public float runnerSpeed, addedMoney, addedResearchPoint, barSpeed;
     }
 
@@ -33,8 +33,6 @@ public class ItemData : MonoSingleton<ItemData>
         field.tableCount = standart.tableCount + (factor.tableCount * constant.tableCount);
         fieldPrice.tableCount = fieldPrice.tableCount * factor.tableCount;
         TableBuy.Instance.TablePlacement();
-        field.merge = standart.merge + (factor.merge * constant.merge);
-        fieldPrice.merge = fieldPrice.merge * factor.merge;
 
 
         field.addedMoney = standart.addedMoney + (factor.addedMoney * constant.addedMoney);
@@ -58,12 +56,6 @@ public class ItemData : MonoSingleton<ItemData>
         {
             field.tableCount = max.tableCount;
         }
-
-        if (field.merge > max.merge)
-        {
-            field.merge = max.merge;
-        }
-
 
         if (field.runnerSpeed < max.runnerSpeed)
         {
@@ -113,16 +105,6 @@ public class ItemData : MonoSingleton<ItemData>
         if (field.tableCount > max.tableCount)
         {
             field.tableCount = max.tableCount;
-        }
-    }
-
-    public void Merge()
-    {
-        field.merge = standart.merge + (factor.merge * constant.merge);
-
-        if (field.merge > max.merge)
-        {
-            field.merge = max.merge;
         }
     }
 

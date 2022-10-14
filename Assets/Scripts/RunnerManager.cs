@@ -34,8 +34,7 @@ public class RunnerManager : MonoSingleton<RunnerManager>
 
     public IEnumerator SpeedUp()
     {
-        //Debug.Log("HG1");
-        //DOTween.PauseAll();
+        DOTween.PauseAll();
         for (int i = 0; i < ItemData.Instance.field.runnerCount; i++)
         {
             Runner[i].transform.DOTogglePause();
