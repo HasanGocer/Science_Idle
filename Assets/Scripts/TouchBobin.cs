@@ -9,9 +9,10 @@ public class TouchBobin : MonoBehaviour
     {
         if (other.CompareTag("Ball"))
         {
-            GameManager.Instance.researchPoint += (int)ItemData.Instance.field.addedResearchPoint;
+            GameManager.Instance.researchPoint += (int)((ItemData.Instance.field.addedMoney * GetComponentInParent<BobinManager>().PlaneCount));
             GameManager.Instance.SetResearchPoint();
             Buttons.Instance.ResearchPointText.text = GameManager.Instance.researchPoint.ToString();
+            StartCoroutine(PointText.Instance.CallPointResearchText(transform.gameObject));
         }
     }
 }

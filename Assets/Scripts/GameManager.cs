@@ -12,7 +12,7 @@ public class GameManager : MonoSingleton<GameManager>
     public int vibration;
     public int sound;
 
-    private void Start()
+    private void Awake()
     {
         if (PlayerPrefs.HasKey("researchPoint"))
         {
@@ -97,6 +97,28 @@ public class GameManager : MonoSingleton<GameManager>
         {
             PlayerPrefs.SetInt("tableCount", ItemData.Instance.field.tableCount);
         }
+
+        if (PlayerPrefs.HasKey("moneyPlane"))
+        {
+            MyDoPath.Instance.Ways = PlayerPrefs.GetInt("moneyPlane");
+        }
+        else
+        {
+            PlayerPrefs.SetInt("moneyPlane", MyDoPath.Instance.Ways);
+        }
+
+        if (PlayerPrefs.HasKey("researchPlane"))
+        {
+            BuyPlane.Instance.researchPlaneCount = PlayerPrefs.GetInt("researchPlane");
+        }
+        else
+        {
+            PlayerPrefs.SetInt("researchPlane", BuyPlane.Instance.researchPlaneCount);
+        }
+
+
+        MyDoPath.Instance.PlanePlacement();
+
     }
 
     public void SetResearchPoint()
@@ -173,5 +195,15 @@ public class GameManager : MonoSingleton<GameManager>
     public void SetBarSpeed()
     {
         PlayerPrefs.SetFloat("i", ItemData.Instance.field.barSpeed);
+    }
+
+    public void SetMoneyPlane()
+    {
+        PlayerPrefs.SetInt("moneyPlane", MyDoPath.Instance.Ways);
+    }
+
+    public void SetResearchPlane()
+    {
+        PlayerPrefs.SetInt("researchPlane", BuyPlane.Instance.researchPlaneCount);
     }
 }

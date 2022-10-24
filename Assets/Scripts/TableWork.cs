@@ -48,6 +48,7 @@ public class TableWork : MonoBehaviour
             {
                 barImage.fillAmount = 0;
                 _bar = false;
+                StartCoroutine(PointText.Instance.CallPointMoneyText(transform.gameObject));
                 break;
             }
         }

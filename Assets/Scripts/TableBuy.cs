@@ -21,9 +21,21 @@ public class TableBuy : MonoSingleton<TableBuy>
 
     public void TableBuyWithButton()
     {
-        ActiveTables.Add(PasiveTables[ItemData.Instance.field.tableCount - 1]);
-        ActiveTablesBool.Add(false);
-        ActiveTables[ItemData.Instance.field.tableCount - 1].SetActive(true);
-        GameManager.Instance.SetTableCount();
+        if (ItemData.Instance.maxFactor.tableCount >= ItemData.Instance.factor.tableCount)
+        {
+            ActiveTables.Add(PasiveTables[ItemData.Instance.field.tableCount - 1]);
+            ActiveTablesBool.Add(false);
+            ActiveTables[ItemData.Instance.field.tableCount - 1].SetActive(true);
+            GameManager.Instance.SetTableCount();
+            if (ItemData.Instance.maxFactor.tableCount == ItemData.Instance.factor.tableCount)
+            {
+                ItemData.Instance.factor.tableCount++;
+                GameManager.Instance.SetTableCount();
+                ItemData.Instance.TableCount();
+                Buttons.Instance.tableAddedText.text = ItemData.Instance.fieldPrice.tableCount.ToString();
+                BuyPlane.Instance.tableCountMaxBool = true;
+            }
+        }
+
     }
 }

@@ -23,13 +23,13 @@ public class Buttons : MonoSingleton<Buttons>
     [SerializeField] private GameObject rightSideObject;
 
     [SerializeField] private Button runnerAddedButton, runnerSpeedButton, researchUpperButton, bobinCountButton, mergeButton;
-    [SerializeField] private Text runnerAddedText, runnerSpeedText, researchUpperText, bobinCountText, mergeText;
+    public Text runnerAddedText, runnerSpeedText, researchUpperText, bobinCountText, mergeText;
     [SerializeField] private GameObject _runnerPos;
     [SerializeField] private GameObject _leftGame;
 
     [SerializeField] private GameObject _rightGame;
     [SerializeField] private Button tableAddedButton, barSpeedButton, moneyUpperButton, StartBarButton;
-    [SerializeField] private Text tableAddedText, barSpeedText, moneyUpperText, StartBarText;
+    public Text tableAddedText, barSpeedText, moneyUpperText, StartBarText;
 
 
 
@@ -178,10 +178,6 @@ public class Buttons : MonoSingleton<Buttons>
             GameManager.Instance.money -= ItemData.Instance.fieldPrice.runnerCount;
             GameManager.Instance.SetMoney();
             moneyText.text = GameManager.Instance.money.ToString();
-            ItemData.Instance.factor.runnerCount++;
-            GameManager.Instance.SetRunnerCount();
-            ItemData.Instance.RunnerCount();
-            runnerAddedText.text = ItemData.Instance.fieldPrice.runnerCount.ToString();
             RunnerManager.Instance.NewStartRunner();
         }
     }
@@ -193,10 +189,6 @@ public class Buttons : MonoSingleton<Buttons>
             GameManager.Instance.money -= (int)ItemData.Instance.fieldPrice.runnerSpeed;
             GameManager.Instance.SetMoney();
             moneyText.text = GameManager.Instance.money.ToString();
-            ItemData.Instance.factor.runnerSpeed++;
-            GameManager.Instance.SetRunnerSpeed();
-            ItemData.Instance.RunnerSpeed();
-            runnerSpeedText.text = ItemData.Instance.fieldPrice.runnerSpeed.ToString();
             StartCoroutine(RunnerManager.Instance.SpeedUp());
         }
     }
@@ -208,11 +200,8 @@ public class Buttons : MonoSingleton<Buttons>
             GameManager.Instance.money -= (int)ItemData.Instance.fieldPrice.bobinCount;
             GameManager.Instance.SetMoney();
             moneyText.text = GameManager.Instance.money.ToString();
-            ItemData.Instance.factor.bobinCount++;
-            GameManager.Instance.SetBobinCount();
-            ItemData.Instance.BobinCount();
-            BobinManager.Instance.bobins[ItemData.Instance.factor.bobinCount].SetActive(true);
-            bobinCountText.text = ItemData.Instance.fieldPrice.bobinCount.ToString();
+
+            BuyPlane.Instance.MoneyPlanes[BuyPlane.Instance.MoneyPlanes.Count - 1].GetComponent<BobinManager>().BobinBuy();
         }
     }
 
@@ -223,11 +212,6 @@ public class Buttons : MonoSingleton<Buttons>
             GameManager.Instance.researchPoint -= (int)ItemData.Instance.fieldPrice.addedResearchPoint;
             GameManager.Instance.SetResearchPoint();
             ResearchPointText.text = GameManager.Instance.researchPoint.ToString();
-            ItemData.Instance.factor.addedResearchPoint++;
-            //texti deðiþtir
-            GameManager.Instance.SetAddedResearchPoint();
-            ItemData.Instance.AddedResearchPoint();
-            moneyUpperText.text = ItemData.Instance.fieldPrice.addedMoney.ToString();
         }
     }
 
@@ -238,9 +222,7 @@ public class Buttons : MonoSingleton<Buttons>
             GameManager.Instance.researchPoint -= (int)ItemData.Instance.fieldPrice.tableCount;
             GameManager.Instance.SetResearchPoint();
             ResearchPointText.text = GameManager.Instance.researchPoint.ToString();
-            ItemData.Instance.factor.tableCount++;
-            GameManager.Instance.SetTableCount();
-            tableAddedText.text = ItemData.Instance.fieldPrice.tableCount.ToString();
+            
             TableBuy.Instance.TableBuyWithButton();
         }
     }
@@ -265,10 +247,10 @@ public class Buttons : MonoSingleton<Buttons>
             GameManager.Instance.SetMoney();
             moneyText.text = GameManager.Instance.money.ToString();
 
-            ItemData.Instance.factor.addedMoney++;
+            /*ItemData.Instance.factor.addedMoney++;
             GameManager.Instance.SetAddedMoney();
             ItemData.Instance.AddedMoney();
-            researchUpperText.text = ItemData.Instance.fieldPrice.addedResearchPoint.ToString();
+            researchUpperText.text = ItemData.Instance.fieldPrice.addedResearchPoint.ToString();*/
         }
     }
 
