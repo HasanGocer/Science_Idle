@@ -25,15 +25,15 @@ public class MyDoPath : MonoSingleton<MyDoPath>
         {
             BallTower[i1].length = 0;
             BallTower[i1].BallsV3 = new Vector3[Ball.BallsGO.Count + 1];
-            Debug.Log("2");
             for (int i2 = 0; i2 < Ball.BallsGO.Count - 1; i2++)
             {
-                Debug.Log("1");
                 BallTower[i1].length += Vector3.Distance(Ball.BallsGO[i2].transform.position, Ball.BallsGO[i2 + 1].transform.position);
                 BallTower[i1].BallsV3[i2] = new Vector3(Ball.BallsGO[i2].transform.position.x, Ball.BallsGO[i2].transform.position.y + BuyPlane.Instance.moneyPlaneDistance * ItemData.Instance.field.moneyPlane, Ball.BallsGO[i2].transform.position.z);
                 if (i2 == Ball.BallsGO.Count - 2)
-                    Debug.Log("3");
-                BallTower[i1].BallsV3[i2 + 1] = new Vector3(Ball.BallsGO[i2 + 1].transform.position.x, Ball.BallsGO[i2 + 1].transform.position.y + BuyPlane.Instance.moneyPlaneDistance * ItemData.Instance.field.moneyPlane, Ball.BallsGO[i2 + 1].transform.position.z);
+                {
+                    BallTower[i1].BallsV3[i2 + 1] = new Vector3(Ball.BallsGO[i2 + 1].transform.position.x, Ball.BallsGO[i2 + 1].transform.position.y + BuyPlane.Instance.moneyPlaneDistance * ItemData.Instance.field.moneyPlane, Ball.BallsGO[i2 + 1].transform.position.z);
+                    BallTower[i1].BallsV3[i2 + 2] = new Vector3(RunnerManager.Instance._runnerPos.transform.position.x, RunnerManager.Instance._runnerPos.transform.position.y + BuyPlane.Instance.moneyPlaneDistance * ItemData.Instance.field.moneyPlane, RunnerManager.Instance._runnerPos.transform.position.z);
+                }
             }
             //BallTower[i1].length += Vector3.Distance(Ball.BallsGO[Ball.BallsV3.Length - 2].transform.position, RunnerManager.Instance._runnerPos.transform.position);
             //BallTower[i1].BallsV3[Ball.BallsV3.Length - 1] = RunnerManager.Instance._runnerPos.transform.position;

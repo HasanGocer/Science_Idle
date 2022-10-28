@@ -31,12 +31,19 @@ public class BuyPlane : MonoSingleton<BuyPlane>
             }
             else
             {
+                Debug.Log("1");
                 GameObject obj = ObjectPool.Instance.GetPooledObject(OPMoneyPlaneCount);
+                Debug.Log("2");
                 obj.transform.position = new Vector3(moneyPlaneTempaltePosition.transform.position.x, (moneyPlaneDistance * i1) + moneyPlaneTempaltePosition.transform.position.y, moneyPlaneTempaltePosition.transform.position.z);
+                Debug.Log("3");
                 obj.GetComponent<MeshRenderer>().material = MoneyMaterials[i1];
+                Debug.Log("4");
                 obj.GetComponent<BobinManager>().bobinCount = ItemData.Instance.field.bobinCount % MyDoPath.Instance.runnerCount;
+                Debug.Log("5");
                 obj.GetComponent<BobinManager>().BobinPlacement();
+                Debug.Log("6");
                 MoneyPlanes.Add(obj);
+                Debug.Log("7");
             }
         }
 
