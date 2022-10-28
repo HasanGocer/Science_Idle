@@ -100,25 +100,24 @@ public class GameManager : MonoSingleton<GameManager>
 
         if (PlayerPrefs.HasKey("moneyPlane"))
         {
-            MyDoPath.Instance.Ways = PlayerPrefs.GetInt("moneyPlane");
+            ItemData.Instance.field.moneyPlane = PlayerPrefs.GetInt("moneyPlane");
         }
         else
         {
-            PlayerPrefs.SetInt("moneyPlane", MyDoPath.Instance.Ways);
+            PlayerPrefs.SetInt("moneyPlane", ItemData.Instance.field.moneyPlane);
         }
 
         if (PlayerPrefs.HasKey("researchPlane"))
         {
-            BuyPlane.Instance.researchPlaneCount = PlayerPrefs.GetInt("researchPlane");
+            ItemData.Instance.field.researchPlane = PlayerPrefs.GetInt("researchPlane");
         }
         else
         {
-            PlayerPrefs.SetInt("researchPlane", BuyPlane.Instance.researchPlaneCount);
+            PlayerPrefs.SetInt("researchPlane", ItemData.Instance.field.researchPlane);
         }
 
 
-        MyDoPath.Instance.PlanePlacement();
-
+        ItemData.Instance.ItemPlacement();
     }
 
     public void SetResearchPoint()
@@ -199,11 +198,17 @@ public class GameManager : MonoSingleton<GameManager>
 
     public void SetMoneyPlane()
     {
-        PlayerPrefs.SetInt("moneyPlane", MyDoPath.Instance.Ways);
+        PlayerPrefs.SetInt("moneyPlane", ItemData.Instance.field.moneyPlane);
+        ItemData.Instance.field.moneyPlane = ItemData.Instance.standart.moneyPlane + (ItemData.Instance.factor.moneyPlane * ItemData.Instance.constant.moneyPlane);
+        ItemData.Instance.fieldPrice.moneyPlane = ItemData.Instance.fieldPrice.moneyPlane / (ItemData.Instance.factor.moneyPlane - 1);
+        ItemData.Instance.fieldPrice.moneyPlane = ItemData.Instance.fieldPrice.moneyPlane * ItemData.Instance.factor.moneyPlane;
     }
 
     public void SetResearchPlane()
     {
-        PlayerPrefs.SetInt("researchPlane", BuyPlane.Instance.researchPlaneCount);
+        PlayerPrefs.SetInt("researchPlane", ItemData.Instance.field.researchPlane);
+        ItemData.Instance.field.researchPlane = ItemData.Instance.standart.researchPlane + (ItemData.Instance.factor.researchPlane * ItemData.Instance.constant.researchPlane);
+        ItemData.Instance.fieldPrice.researchPlane = ItemData.Instance.fieldPrice.researchPlane / (ItemData.Instance.factor.researchPlane - 1);
+        ItemData.Instance.fieldPrice.researchPlane = ItemData.Instance.fieldPrice.researchPlane * ItemData.Instance.factor.researchPlane;
     }
 }

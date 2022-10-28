@@ -22,14 +22,14 @@ public class Buttons : MonoSingleton<Buttons>
     [SerializeField] private GameObject leftSideObject;
     [SerializeField] private GameObject rightSideObject;
 
-    [SerializeField] private Button runnerAddedButton, runnerSpeedButton, researchUpperButton, bobinCountButton, mergeButton;
-    public Text runnerAddedText, runnerSpeedText, researchUpperText, bobinCountText, mergeText;
+    public Button runnerAddedButton, runnerSpeedButton, researchUpperButton, bobinCountButton, mergeButton, moneyPlaneButton;
+    public Text runnerAddedText, runnerSpeedText, researchUpperText, bobinCountText, mergeText, moneyPlaneText;
     [SerializeField] private GameObject _runnerPos;
     [SerializeField] private GameObject _leftGame;
 
     [SerializeField] private GameObject _rightGame;
-    [SerializeField] private Button tableAddedButton, barSpeedButton, moneyUpperButton, StartBarButton;
-    public Text tableAddedText, barSpeedText, moneyUpperText, StartBarText;
+    public Button tableAddedButton, barSpeedButton, moneyUpperButton, StartBarButton, researchPlaneButton;
+    public Text tableAddedText, barSpeedText, moneyUpperText, StartBarText, researchPlaneText;
 
 
 
@@ -37,9 +37,9 @@ public class Buttons : MonoSingleton<Buttons>
     private void Start()
     {
         //GameStart.Instance.money += 9999;
-        TextStart();
 
-        ButtonStart();
+
+        
 
 
         if (GameManager.Instance.sound == 1)
@@ -62,7 +62,7 @@ public class Buttons : MonoSingleton<Buttons>
         }
     }
 
-    private void ButtonStart()
+    public void ButtonStart()
     {
         _soundButton.onClick.AddListener(SoundButton);
         _vibrationButton.onClick.AddListener(VibrationButton);
@@ -88,7 +88,7 @@ public class Buttons : MonoSingleton<Buttons>
 
     }
 
-    private void TextStart()
+    public void TextStart()
     {
         moneyText.text = GameManager.Instance.money.ToString();
         ResearchPointText.text = GameManager.Instance.researchPoint.ToString();
@@ -96,9 +96,14 @@ public class Buttons : MonoSingleton<Buttons>
         tableAddedText.text = ItemData.Instance.fieldPrice.tableCount.ToString();
         moneyUpperText.text = ItemData.Instance.fieldPrice.addedMoney.ToString();
         bobinCountText.text = ItemData.Instance.fieldPrice.bobinCount.ToString();
+        if (ItemData.Instance.field.bobinCount == ItemData.Instance.maxFactor.bobinCount)
+        {
+            bobinCountText.text = "Full";
+            Buttons.Instance.bobinCountButton.enabled = false;
+        }
         runnerSpeedText.text = ItemData.Instance.fieldPrice.runnerSpeed.ToString();
         runnerAddedText.text = ItemData.Instance.fieldPrice.runnerCount.ToString();
-        StartBarText.text = TableBuy.Instance.barPrice.ToString();
+        StartBarText.text = "2";
     }
 
     private void SettingButton()
@@ -200,7 +205,6 @@ public class Buttons : MonoSingleton<Buttons>
             GameManager.Instance.money -= (int)ItemData.Instance.fieldPrice.bobinCount;
             GameManager.Instance.SetMoney();
             moneyText.text = GameManager.Instance.money.ToString();
-
             BuyPlane.Instance.MoneyPlanes[BuyPlane.Instance.MoneyPlanes.Count - 1].GetComponent<BobinManager>().BobinBuy();
         }
     }
@@ -222,8 +226,8 @@ public class Buttons : MonoSingleton<Buttons>
             GameManager.Instance.researchPoint -= (int)ItemData.Instance.fieldPrice.tableCount;
             GameManager.Instance.SetResearchPoint();
             ResearchPointText.text = GameManager.Instance.researchPoint.ToString();
-            
-            TableBuy.Instance.TableBuyWithButton();
+
+            BuyPlane.Instance.ResearchPlanes[BuyPlane.Instance.ResearchPlanes.Count - 1].GetComponent<TableBuy>().TableBuyWithButton();
         }
     }
 
@@ -256,22 +260,40 @@ public class Buttons : MonoSingleton<Buttons>
 
     private void StartBar()
     {
-        if (GameManager.Instance.researchPoint >= TableBuy.Instance.barPrice)
+        if (GameManager.Instance.researchPoint >= 2)
         {
             StartCoroutine(StartBarAyEnum());
         }
     }
 
+    private void MoneyPlaneButton()
+    {
+        BuyPlane.Instance.AddNewMoneyPlane();
+    }
+
+    private void ResearchPlaneButton()
+    {
+        BuyPlane.Instance.AddNewResearchPlane();
+    }
+
     IEnumerator StartBarAyEnum()
     {
-        for (int i = 0; i < TableBuy.Instance.ActiveTablesBool.Count; i++)
+        for (int i1 = 0; i1 < BuyPlane.Instance.ResearchPlanes.Count; i1++)
         {
-            if (!TableBuy.Instance.ActiveTablesBool[i])
+            if (i1 != BuyPlane.Instance.ResearchPlanes.Count - 1)
             {
-                StartCoroutine(TableBuy.Instance.ActiveTables[i].GetComponent<TableWork>().StartBar(i));
-                TableBuy.Instance.ActiveTablesBool[i] = true;
-                yield return new WaitForSeconds(0.1f);
+                for (int i2 = 0; i2 < MyDoPath.Instance.runnerCount; i2++)
+                {
+                    TableBuy tableBuy = BuyPlane.Instance.ResearchPlanes[i1].GetComponent<TableBuy>();
+                    if (!tableBuy.ActiveTablesBool[i2])
+                    {
+                        StartCoroutine(tableBuy.ActiveTables[i2].GetComponent<TableWork>().StartBar(i2));
+                        tableBuy.ActiveTablesBool[i2] = true;
+                        yield return new WaitForSeconds(0.1f);
+                    }
+                }
             }
+
         }
     }
 }

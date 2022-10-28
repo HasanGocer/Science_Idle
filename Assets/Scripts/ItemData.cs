@@ -7,8 +7,14 @@ public class ItemData : MonoSingleton<ItemData>
     [System.Serializable]
     public class Field
     {
-        public int runnerCount, bobinCount, tableCount;
+        public int runnerCount, bobinCount, tableCount, moneyPlane, researchPlane;
         public float runnerSpeed, addedMoney, addedResearchPoint, barSpeed;
+    }
+
+    [System.Serializable]
+    public class FiledBool
+    {
+        public bool runnerCount, bobinCount, tableCount, moneyPlane, researchPlane, runnerSpeed, addedMoney, addedResearchPoint, barSpeed;
     }
 
     public Field field;
@@ -18,20 +24,36 @@ public class ItemData : MonoSingleton<ItemData>
     public Field maxFactor;
     public Field max;
     public Field fieldPrice;
+    public FiledBool maxBool;
 
-    private void Start()
+    public void ItemPlacement()
     {
         field.runnerSpeed = standart.runnerSpeed - (factor.runnerSpeed * constant.runnerSpeed);
         fieldPrice.runnerSpeed = fieldPrice.runnerSpeed * factor.runnerSpeed;
+        if (field.runnerSpeed > maxFactor.runnerSpeed)
+        {
+            maxFactor.runnerSpeed = ((field.runnerSpeed / MyDoPath.Instance.runnerCount) + 1) * MyDoPath.Instance.runnerCount;
+        }
 
         field.runnerCount = standart.runnerCount + (factor.runnerCount * constant.runnerCount);
         fieldPrice.runnerCount = fieldPrice.runnerCount * factor.runnerCount;
-        StartCoroutine(RunnerManager.Instance.StartRunner());
+        if (field.runnerCount > maxFactor.runnerCount)
+        {
+            maxFactor.runnerCount = ((field.runnerCount / MyDoPath.Instance.runnerCount) + 1) * MyDoPath.Instance.runnerCount;
+        }
         field.bobinCount = standart.bobinCount + (factor.bobinCount * constant.bobinCount);
         fieldPrice.bobinCount = fieldPrice.bobinCount * factor.bobinCount;
+        if (field.bobinCount > maxFactor.bobinCount)
+        {
+            maxFactor.bobinCount = ((field.bobinCount / MyDoPath.Instance.runnerCount) + 1) * MyDoPath.Instance.runnerCount;
+        }
         field.tableCount = standart.tableCount + (factor.tableCount * constant.tableCount);
         fieldPrice.tableCount = fieldPrice.tableCount * factor.tableCount;
-        TableBuy.Instance.TablePlacement();
+        if (field.tableCount > maxFactor.tableCount)
+        {
+            maxFactor.tableCount = ((field.tableCount / MyDoPath.Instance.runnerCount) + 1) * MyDoPath.Instance.runnerCount;
+        }
+
 
 
         field.addedMoney = standart.addedMoney + (factor.addedMoney * constant.addedMoney);
@@ -40,48 +62,68 @@ public class ItemData : MonoSingleton<ItemData>
         fieldPrice.addedResearchPoint = fieldPrice.addedResearchPoint * factor.addedResearchPoint;
         field.barSpeed = standart.barSpeed - (factor.barSpeed * constant.barSpeed);
         fieldPrice.barSpeed = fieldPrice.barSpeed * factor.barSpeed;
+        field.moneyPlane = standart.moneyPlane + (factor.moneyPlane * constant.moneyPlane);
+        fieldPrice.moneyPlane = fieldPrice.moneyPlane * factor.moneyPlane;
+        field.researchPlane = standart.researchPlane + (factor.researchPlane * constant.researchPlane);
+        fieldPrice.researchPlane = fieldPrice.researchPlane * factor.researchPlane;
 
-        if (field.runnerCount > max.runnerCount)
+        if (field.runnerCount > max.runnerCount && maxBool.runnerCount)
         {
             field.runnerCount = max.runnerCount;
         }
 
-        if (field.bobinCount > max.bobinCount)
+        if (field.bobinCount > max.bobinCount && maxBool.bobinCount)
         {
             field.bobinCount = max.bobinCount;
         }
 
-        if (field.tableCount > max.tableCount)
+        if (field.tableCount > max.tableCount && maxBool.tableCount)
         {
             field.tableCount = max.tableCount;
         }
 
-        if (field.runnerSpeed < max.runnerSpeed)
+        if (field.runnerSpeed < max.runnerSpeed && maxBool.runnerSpeed)
         {
             field.runnerSpeed = max.runnerSpeed;
         }
 
-        if (field.addedMoney > max.addedMoney)
+        if (field.addedMoney > max.addedMoney && maxBool.addedMoney)
         {
             field.addedMoney = max.addedMoney;
         }
 
-        if (field.addedResearchPoint > max.addedResearchPoint)
+        if (field.addedResearchPoint > max.addedResearchPoint && maxBool.addedResearchPoint)
         {
             field.addedResearchPoint = max.addedResearchPoint;
         }
 
-        if (field.barSpeed < max.barSpeed)
+        if (field.barSpeed < max.barSpeed && maxBool.barSpeed)
         {
             field.barSpeed = max.barSpeed;
         }
+
+        if (field.moneyPlane < max.moneyPlane && maxBool.moneyPlane)
+        {
+            field.moneyPlane = max.moneyPlane;
+        }
+
+        if (field.researchPlane < max.researchPlane && maxBool.researchPlane)
+        {
+            field.researchPlane = max.researchPlane;
+        }
+
+        MyDoPath.Instance.PlanePlacement();
+        BuyPlane.Instance.StartPlanePlacement();
+        StartCoroutine(RunnerManager.Instance.StartRunner());
+        Buttons.Instance.TextStart();
+        Buttons.Instance.ButtonStart();
     }
 
     public void RunnerCount()
     {
         field.runnerCount = standart.runnerCount + (factor.runnerCount * constant.runnerCount);
 
-        if (field.runnerCount > max.runnerCount)
+        if (field.runnerCount > max.runnerCount && maxBool.runnerCount)
         {
             field.runnerCount = max.runnerCount;
         }
@@ -91,7 +133,7 @@ public class ItemData : MonoSingleton<ItemData>
     {
         field.bobinCount = standart.bobinCount + (factor.bobinCount * constant.bobinCount);
 
-        if (field.bobinCount > max.bobinCount)
+        if (field.bobinCount > max.bobinCount && maxBool.bobinCount)
         {
             field.bobinCount = max.bobinCount;
         }
@@ -101,7 +143,7 @@ public class ItemData : MonoSingleton<ItemData>
     {
         field.tableCount = standart.tableCount + (factor.tableCount * constant.tableCount);
 
-        if (field.tableCount > max.tableCount)
+        if (field.tableCount > max.tableCount && maxBool.tableCount)
         {
             field.tableCount = max.tableCount;
         }
@@ -111,7 +153,7 @@ public class ItemData : MonoSingleton<ItemData>
     {
         field.runnerSpeed = standart.runnerSpeed - (factor.runnerSpeed * constant.runnerSpeed);
 
-        if (field.runnerSpeed < max.runnerSpeed)
+        if (field.runnerSpeed < max.runnerSpeed && maxBool.runnerSpeed)
         {
             field.runnerSpeed = max.runnerSpeed;
         }
@@ -121,7 +163,7 @@ public class ItemData : MonoSingleton<ItemData>
     {
         field.addedMoney = standart.addedMoney + (factor.addedMoney * constant.addedMoney);
 
-        if (field.addedMoney > max.addedMoney)
+        if (field.addedMoney > max.addedMoney && maxBool.addedMoney)
         {
             field.addedMoney = max.addedMoney;
         }
@@ -131,7 +173,7 @@ public class ItemData : MonoSingleton<ItemData>
     {
         field.addedResearchPoint = standart.addedResearchPoint + (factor.addedResearchPoint * constant.addedResearchPoint);
 
-        if (field.addedResearchPoint > max.addedResearchPoint)
+        if (field.addedResearchPoint > max.addedResearchPoint && maxBool.addedResearchPoint)
         {
             field.addedResearchPoint = max.addedResearchPoint;
         }
@@ -141,9 +183,29 @@ public class ItemData : MonoSingleton<ItemData>
     {
         field.barSpeed = standart.barSpeed - (factor.barSpeed * constant.barSpeed);
 
-        if (field.barSpeed < max.barSpeed)
+        if (field.barSpeed < max.barSpeed && maxBool.barSpeed)
         {
             field.barSpeed = max.barSpeed;
+        }
+    }
+
+    public void MoneyPlane()
+    {
+        field.moneyPlane = standart.moneyPlane + (factor.moneyPlane * constant.moneyPlane);
+
+        if (field.moneyPlane > max.moneyPlane && maxBool.moneyPlane)
+        {
+            field.moneyPlane = max.moneyPlane;
+        }
+    }
+
+    public void ResearchPlane()
+    {
+        field.researchPlane = standart.researchPlane + (factor.researchPlane * constant.researchPlane);
+
+        if (field.researchPlane > max.researchPlane && maxBool.researchPlane)
+        {
+            field.researchPlane = max.researchPlane;
         }
     }
 }

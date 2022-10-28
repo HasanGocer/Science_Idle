@@ -7,6 +7,7 @@ public class TableWork : MonoBehaviour
 {
     [SerializeField] private Image barImage;
     private bool _bar;
+    public int barPrice = 2;
 
     public IEnumerator StartBar(int i)
     {
@@ -15,7 +16,7 @@ public class TableWork : MonoBehaviour
             if (!_bar)
             {
                 _bar = true;
-                GameManager.Instance.researchPoint -= TableBuy.Instance.barPrice;
+                GameManager.Instance.researchPoint -= barPrice;
                 Buttons.Instance.ResearchPointText.text = GameManager.Instance.researchPoint.ToString();
                 GameManager.Instance.SetResearchPoint();
                 StartCoroutine(Bar());
@@ -23,9 +24,12 @@ public class TableWork : MonoBehaviour
                 GameManager.Instance.money += (int)ItemData.Instance.field.addedMoney;
                 GameManager.Instance.SetMoney();
                 Buttons.Instance.moneyText.text = GameManager.Instance.money.ToString();
-                if (GameManager.Instance.researchPoint < TableBuy.Instance.barPrice)
+                if (GameManager.Instance.researchPoint < barPrice)
                 {
-                    TableBuy.Instance.ActiveTablesBool[i] = false;
+                    for (int i1 = 0; i1 < BuyPlane.Instance.ResearchPlanes.Count; i1++)
+                    {
+                        BuyPlane.Instance.ResearchPlanes[i1].GetComponent<TableBuy>().ActiveTablesBool[i] = false;
+                    }
                     break;
                 }
             }

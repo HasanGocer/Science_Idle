@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class PathSelection : MonoBehaviour
 {
-    public int pathSelection;
+    //public int pathSelection;
 }

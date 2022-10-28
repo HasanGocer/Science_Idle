@@ -12,13 +12,12 @@ public class RunnerManager : MonoSingleton<RunnerManager>
 
     public IEnumerator StartRunner()
     {
-        for (int i1 = 0; i1 < ItemData.Instance.field.runnerCount / MyDoPath.Instance.runnerCount; i1++)
+        for (int i1 = 0; i1 < (int)((float)ItemData.Instance.field.runnerCount / (float)MyDoPath.Instance.runnerCount); i1++)
         {
             for (int i2 = 0; i2 < MyDoPath.Instance.runnerCount; i2++)
             {
                 GameObject obj = ObjectPool.Instance.GetPooledObject(_OPRunnerCount);
                 obj.transform.position = _runnerPos.transform.position;
-                obj.GetComponent<PathSelection>().pathSelection = i1;
                 Runner.Add(obj);
                 MyDoPath.Instance.StartNewRunner(obj, true);
                 yield return new WaitForSeconds(0.3f);
@@ -30,7 +29,6 @@ public class RunnerManager : MonoSingleton<RunnerManager>
             {
                 GameObject obj = ObjectPool.Instance.GetPooledObject(_OPRunnerCount);
                 obj.transform.position = _runnerPos.transform.position;
-                obj.GetComponent<PathSelection>().pathSelection = MyDoPath.Instance.Ways;
                 Runner.Add(obj);
                 MyDoPath.Instance.StartNewRunner(obj, false);
                 yield return new WaitForSeconds(0.3f);
@@ -45,7 +43,6 @@ public class RunnerManager : MonoSingleton<RunnerManager>
 
             GameObject obj = ObjectPool.Instance.GetPooledObject(_OPRunnerCount);
             obj.transform.position = _runnerPos.transform.position;
-            obj.GetComponent<PathSelection>().pathSelection = MyDoPath.Instance.Ways;
             ItemData.Instance.factor.runnerCount++;
             Runner.Add(obj);
             MyDoPath.Instance.StartNewRunner(obj, false);
@@ -57,6 +54,7 @@ public class RunnerManager : MonoSingleton<RunnerManager>
                 ItemData.Instance.RunnerCount();
                 Buttons.Instance.runnerAddedText.text = ItemData.Instance.fieldPrice.runnerCount.ToString();
                 BuyPlane.Instance.runnerCountMaxBool = true;
+                BuyPlane.Instance.NewMoneyPlaneButton();
             }
         }
 
@@ -72,7 +70,6 @@ public class RunnerManager : MonoSingleton<RunnerManager>
                 Runner[((ItemData.Instance.field.runnerCount / MyDoPath.Instance.runnerCount) * MyDoPath.Instance.runnerCount) + i].transform.DOPause();
                 GameObject obj = ObjectPool.Instance.GetPooledObject(_OPRunnerCount);
                 obj.transform.position = _runnerPos.transform.position;
-                obj.GetComponent<PathSelection>().pathSelection = MyDoPath.Instance.Ways;
                 Runner[((ItemData.Instance.field.runnerCount / MyDoPath.Instance.runnerCount) * MyDoPath.Instance.runnerCount) + i] = obj;
                 MyDoPath.Instance.StartNewRunner(obj, false);
                 yield return new WaitForSeconds(0.3f);
@@ -89,6 +86,7 @@ public class RunnerManager : MonoSingleton<RunnerManager>
             ItemData.Instance.RunnerSpeed();
             Buttons.Instance.runnerSpeedText.text = ItemData.Instance.fieldPrice.runnerSpeed.ToString();
             BuyPlane.Instance.runnerSpeedMaxBool = true;
+            BuyPlane.Instance.NewMoneyPlaneButton();
         }
     }
 }

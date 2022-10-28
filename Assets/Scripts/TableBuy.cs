@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TableBuy : MonoSingleton<TableBuy>
+public class TableBuy : MonoBehaviour
 {
     public List<GameObject> ActiveTables = new List<GameObject>();
     public List<GameObject> PasiveTables = new List<GameObject>();
@@ -34,6 +34,7 @@ public class TableBuy : MonoSingleton<TableBuy>
                 ItemData.Instance.TableCount();
                 Buttons.Instance.tableAddedText.text = ItemData.Instance.fieldPrice.tableCount.ToString();
                 BuyPlane.Instance.tableCountMaxBool = true;
+                BuyPlane.Instance.NewResearchPlaneButton();
             }
         }
 
