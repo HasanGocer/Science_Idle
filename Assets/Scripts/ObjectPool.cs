@@ -28,6 +28,7 @@ public class ObjectPool : MonoSingleton<ObjectPool>
                 pools[i1].pooledObjects.Enqueue(obj);
             }
         }
+        GameManager.Instance.AwakeOP();
     }
 
     public GameObject GetPooledObjectAdd(int objectType)
@@ -37,12 +38,14 @@ public class ObjectPool : MonoSingleton<ObjectPool>
         pools[objectType].pooledObjects.Enqueue(obj);
         return obj;
     }
+
     public GameObject GetPooledObject(int objectType)
     {
         GameObject obj = pools[objectType].pooledObjects.Dequeue();
         obj.SetActive(true);
         return obj;
     }
+
     public void AddObject(int objectType, GameObject Obj)
     {
         Obj.SetActive(false);

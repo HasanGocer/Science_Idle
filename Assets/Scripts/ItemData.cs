@@ -51,7 +51,7 @@ public class ItemData : MonoSingleton<ItemData>
         fieldPrice.tableCount = fieldPrice.tableCount * factor.tableCount;
         if (field.tableCount > maxFactor.tableCount)
         {
-            maxFactor.tableCount = ((field.tableCount / MyDoPath.Instance.runnerCount) + 1) * MyDoPath.Instance.runnerCount;
+            maxFactor.tableCount = ((field.tableCount / 6) + 1) * 6;
         }
 
 
@@ -112,17 +112,11 @@ public class ItemData : MonoSingleton<ItemData>
             field.researchPlane = max.researchPlane;
         }
 
-        Debug.Log("1");
         MyDoPath.Instance.PlanePlacement();
-        Debug.Log("2");
         BuyPlane.Instance.StartPlanePlacement();
-        Debug.Log("3");
         StartCoroutine(RunnerManager.Instance.StartRunner());
-        Debug.Log("4");
-        Buttons.Instance.TextStart();
-        Debug.Log("5");
         Buttons.Instance.ButtonStart();
-        Debug.Log("6");
+        Buttons.Instance.TextStart();
     }
 
     public void RunnerCount()

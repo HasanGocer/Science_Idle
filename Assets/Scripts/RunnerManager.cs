@@ -12,27 +12,42 @@ public class RunnerManager : MonoSingleton<RunnerManager>
 
     public IEnumerator StartRunner()
     {
-        for (int i1 = 0; i1 < (int)((float)ItemData.Instance.field.runnerCount / (float)MyDoPath.Instance.runnerCount); i1++)
+        for (int i1 = 0; i1 < ItemData.Instance.field.runnerCount / MyDoPath.Instance.runnerCount; i1++)
         {
             for (int i2 = 0; i2 < MyDoPath.Instance.runnerCount; i2++)
             {
                 GameObject obj = ObjectPool.Instance.GetPooledObject(_OPRunnerCount);
-                obj.transform.position = _runnerPos.transform.position;
+                obj.transform.position = new Vector3(_runnerPos.transform.position.x, _runnerPos.transform.position.y + (BuyPlane.Instance.moneyPlaneDistance * (i1)), _runnerPos.transform.position.z);
                 Runner.Add(obj);
-                MyDoPath.Instance.StartNewRunner(obj, true);
+                MyDoPath.Instance.StartNewRunner(obj, true, i1);
                 yield return new WaitForSeconds(0.3f);
             }
         }
+
+        int runnerLimit = 0;
         if (ItemData.Instance.field.runnerCount % MyDoPath.Instance.runnerCount != 0)
         {
-            for (int i = 0; i < ItemData.Instance.field.runnerCount % MyDoPath.Instance.runnerCount; i++)
+            runnerLimit = ItemData.Instance.field.runnerCount % MyDoPath.Instance.runnerCount;
+        }
+        else
+        {
+            runnerLimit = MyDoPath.Instance.runnerCount;
+        }
+
+        for (int i = 0; i < runnerLimit; i++)
+        {
+            GameObject obj = ObjectPool.Instance.GetPooledObject(_OPRunnerCount);
+            obj.transform.position = new Vector3(_runnerPos.transform.position.x, _runnerPos.transform.position.y + (BuyPlane.Instance.moneyPlaneDistance * (ItemData.Instance.field.moneyPlane - 1)), _runnerPos.transform.position.z);
+            Runner.Add(obj);
+            if (runnerLimit == MyDoPath.Instance.runnerCount)
             {
-                GameObject obj = ObjectPool.Instance.GetPooledObject(_OPRunnerCount);
-                obj.transform.position = _runnerPos.transform.position;
-                Runner.Add(obj);
-                MyDoPath.Instance.StartNewRunner(obj, false);
-                yield return new WaitForSeconds(0.3f);
+                MyDoPath.Instance.StartNewRunner(obj, true, (ItemData.Instance.field.runnerCount / MyDoPath.Instance.runnerCount) - 1);
             }
+            else
+            {
+                MyDoPath.Instance.StartNewRunner(obj, false, ItemData.Instance.field.runnerCount / MyDoPath.Instance.runnerCount);
+            }
+            yield return new WaitForSeconds(0.3f);
         }
     }
 
@@ -42,24 +57,33 @@ public class RunnerManager : MonoSingleton<RunnerManager>
         {
 
             GameObject obj = ObjectPool.Instance.GetPooledObject(_OPRunnerCount);
-            obj.transform.position = _runnerPos.transform.position;
+            obj.transform.position = new Vector3(_runnerPos.transform.position.x, _runnerPos.transform.position.y + (BuyPlane.Instance.moneyPlaneDistance * (ItemData.Instance.field.moneyPlane - 1)), _runnerPos.transform.position.z);
             ItemData.Instance.factor.runnerCount++;
+            GameManager.Instance.SetRunnerCount();
+            ItemData.Instance.RunnerCount();
+            Buttons.Instance.bobinCountText.text = ItemData.Instance.fieldPrice.bobinCount.ToString();
             Runner.Add(obj);
-            MyDoPath.Instance.StartNewRunner(obj, false);
+            if (ItemData.Instance.field.runnerCount % MyDoPath.Instance.runnerCount != 0)
+            {
+                MyDoPath.Instance.StartNewRunner(obj, false, ItemData.Instance.field.runnerCount / MyDoPath.Instance.runnerCount);
+            }
+            else
+            {
+                MyDoPath.Instance.StartNewRunner(obj, false, (ItemData.Instance.field.runnerCount / MyDoPath.Instance.runnerCount) - 1);
+            }
             if (ItemData.Instance.factor.runnerCount == ItemData.Instance.maxFactor.runnerCount)
             {
                 ItemData.Instance.maxFactor.runnerCount += MyDoPath.Instance.runnerCount;
-                //max runner text
-                GameManager.Instance.SetRunnerCount();
-                ItemData.Instance.RunnerCount();
-                Buttons.Instance.runnerAddedText.text = ItemData.Instance.fieldPrice.runnerCount.ToString();
+                Buttons.Instance.runnerAddedText.text = "Full";
+                Buttons.Instance.runnerAddedButton.enabled = false;
                 BuyPlane.Instance.runnerCountMaxBool = true;
                 BuyPlane.Instance.NewMoneyPlaneButton();
             }
         }
 
     }
-
+    //kullanýlmýyor
+    /*
     public IEnumerator SpeedUp()
     {
         if (ItemData.Instance.field.runnerCount % MyDoPath.Instance.runnerCount != 0)
@@ -71,7 +95,7 @@ public class RunnerManager : MonoSingleton<RunnerManager>
                 GameObject obj = ObjectPool.Instance.GetPooledObject(_OPRunnerCount);
                 obj.transform.position = _runnerPos.transform.position;
                 Runner[((ItemData.Instance.field.runnerCount / MyDoPath.Instance.runnerCount) * MyDoPath.Instance.runnerCount) + i] = obj;
-                MyDoPath.Instance.StartNewRunner(obj, false);
+                MyDoPath.Instance.StartNewRunner(obj, false, ItemData.Instance.field.runnerCount / MyDoPath.Instance.runnerCount);
                 yield return new WaitForSeconds(0.3f);
             }
             ItemData.Instance.factor.runnerSpeed++;
@@ -89,4 +113,5 @@ public class RunnerManager : MonoSingleton<RunnerManager>
             BuyPlane.Instance.NewMoneyPlaneButton();
         }
     }
+    */
 }
