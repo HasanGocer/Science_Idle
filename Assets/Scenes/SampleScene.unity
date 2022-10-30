@@ -661,6 +661,7 @@ GameObject:
   m_Component:
   - component: {fileID: 326707832}
   - component: {fileID: 326707833}
+  - component: {fileID: 326707834}
   m_Layer: 0
   m_Name: PlaneManager
   m_TagString: Untagged
@@ -727,6 +728,22 @@ MonoBehaviour:
   runnerCountMaxBool: 0
   BobinCountMaxBool: 0
   tableCountMaxBool: 0
+--- !u!114 &326707834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 326707831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a07ff1af40d26743b63c9c5083b806a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftSideObject: {fileID: 878463671}
+  rightSideObject: {fileID: 1509431231}
+  _leftGame: {fileID: 1351123862}
+  _rightGame: {fileID: 1375485836}
 --- !u!1 &335827637
 GameObject:
   m_ObjectHideFlags: 0
@@ -6622,19 +6639,12 @@ MonoBehaviour:
   _vibrationButton: {fileID: 5129495334709017560}
   _settingButton: {fileID: 5129495333162871263}
   _settingGame: {fileID: 2068628808733115453}
-  goLeftButton: {fileID: 898681733}
-  goRightButton: {fileID: 1293178409}
-  leftSideObject: {fileID: 1171400785}
-  rightSideObject: {fileID: 854070801}
   runnerAddedButton: {fileID: 291447659}
   bobinCountButton: {fileID: 1511261765}
   moneyPlaneButton: {fileID: 1071672972}
   runnerAddedText: {fileID: 779111529}
   bobinCountText: {fileID: 355840164}
   moneyPlaneText: {fileID: 731836185}
-  _runnerPos: {fileID: 1037769460}
-  _leftGame: {fileID: 1375485836}
-  _rightGame: {fileID: 1351123862}
   tableAddedButton: {fileID: 1024203491}
   StartBarButton: {fileID: 1800864299}
   researchPlaneButton: {fileID: 1325375140}

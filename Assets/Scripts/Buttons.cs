@@ -17,17 +17,9 @@ public class Buttons : MonoSingleton<Buttons>
     [SerializeField] private Button _settingButton;
     [SerializeField] private GameObject _settingGame;
 
-    [SerializeField] private Button goLeftButton;
-    [SerializeField] private Button goRightButton;
-    [SerializeField] private GameObject leftSideObject;
-    [SerializeField] private GameObject rightSideObject;
-
     public Button runnerAddedButton, bobinCountButton, moneyPlaneButton;
     public Text runnerAddedText, bobinCountText, moneyPlaneText;
-    [SerializeField] private GameObject _runnerPos;
-    [SerializeField] private GameObject _leftGame;
 
-    [SerializeField] private GameObject _rightGame;
     public Button tableAddedButton, StartBarButton, researchPlaneButton;
     public Text tableAddedText, StartBarText, researchPlaneText;
 
@@ -62,8 +54,6 @@ public class Buttons : MonoSingleton<Buttons>
         _vibrationButton.onClick.AddListener(VibrationButton);
         _settingButton.onClick.AddListener(SettingButton);
         _settingBackButton.onClick.AddListener(SettingBackButton);
-        goLeftButton.onClick.AddListener(GoLeftSide);
-        goRightButton.onClick.AddListener(GoRightSide);
         runnerAddedButton.onClick.AddListener(AddedRunner);
         bobinCountButton.onClick.AddListener(BobinCount);
         tableAddedButton.onClick.AddListener(AddedTable);
@@ -158,30 +148,6 @@ public class Buttons : MonoSingleton<Buttons>
             GameManager.Instance.vibration = 1;
             _vibrationButton.gameObject.GetComponent<Image>().sprite = _green;
             GameManager.Instance.SetVibration();
-        }
-    }
-
-    private void GoLeftSide()
-    {
-        if (!MoveCamera.Instance.move)
-        {
-            StartCoroutine(MoveCamera.Instance.DoMoveCamera(rightSideObject));
-            goLeftButton.gameObject.SetActive(false);
-            goRightButton.gameObject.SetActive(true);
-            _leftGame.SetActive(true);
-            _rightGame.SetActive(false);
-        }
-    }
-
-    private void GoRightSide()
-    {
-        if (!MoveCamera.Instance.move)
-        {
-            StartCoroutine(MoveCamera.Instance.DoMoveCamera(leftSideObject));
-            goLeftButton.gameObject.SetActive(true);
-            goRightButton.gameObject.SetActive(false);
-            _leftGame.SetActive(false);
-            _rightGame.SetActive(true);
         }
     }
 
