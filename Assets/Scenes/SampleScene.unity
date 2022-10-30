@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2138677392}
-  m_IndirectSpecularColor: {r: 0.15457457, g: 0.15929843, b: 0.25466532, a: 1}
+  m_IndirectSpecularColor: {r: 0.15457445, g: 0.15929838, b: 0.2546651, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3617,7 +3617,7 @@ MonoBehaviour:
   moneyTempatePos: {fileID: 0}
   ResearchTemplatePos: {fileID: 0}
   planeLimit: 7
-  _moveTime: 3
+  _moveTime: 2
   move: 0
 --- !u!1 &1697207310
 GameObject:

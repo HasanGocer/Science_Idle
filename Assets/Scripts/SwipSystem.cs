@@ -18,35 +18,46 @@ public class SwipSystem : MonoSingleton<SwipSystem>
     {
         if (Input.touchCount > 0)
         {
-            Debug.Log("HG");
             touch = Input.GetTouch(0);
             switch (touch.phase)
             {
                 case TouchPhase.Began:
-                    vec2Start = Camera.main.ScreenToWorldPoint(touch.position).x;
-                    break;
-
-                case TouchPhase.Moved:
+                    vec2Start = touch.position.x;
+                    Debug.Log("Began");
                     moved = true;
                     break;
 
+                case TouchPhase.Moved:
+
+                    Debug.Log("Moved");
+
+                    break;
+
                 case TouchPhase.Ended:
-                    vec2Finish = Camera.main.ScreenToWorldPoint(touch.position).x;
+                    Debug.Log("Ended");
+                    vec2Finish = touch.position.x;
                     SwipSystemFunc(vec2Start, vec2Finish, moved);
+                    moved = false;
                     break;
             }
-            moved = false;
+
         }
     }
 
     private void SwipSystemFunc(float start, float finish, bool moved)
     {
+        Debug.Log("1");
         if (moved)
-            if (finish - start > 0)
+        {
+            Debug.Log("2");
+            if (finish - start < 0)
             {
+                Debug.Log("3");
                 if (!MoveCamera.Instance.move)
                 {
-                    StartCoroutine(MoveCamera.Instance.DoMoveCamera(rightSideObject));
+                    Debug.Log("4");
+                    MoveCamera.Instance.ResearchCameraNewPos();
+                    Debug.Log("5");
                     _leftGame.SetActive(true);
                     _rightGame.SetActive(false);
                 }
@@ -55,10 +66,14 @@ public class SwipSystem : MonoSingleton<SwipSystem>
             {
                 if (!MoveCamera.Instance.move)
                 {
-                    StartCoroutine(MoveCamera.Instance.DoMoveCamera(leftSideObject));
+                    Debug.Log("6");
+                    MoveCamera.Instance.MoneyCameraNewPos();
+                    Debug.Log("7");
                     _leftGame.SetActive(false);
                     _rightGame.SetActive(true);
                 }
             }
+        }
+
     }
 }

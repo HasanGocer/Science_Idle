@@ -18,7 +18,6 @@ public class MoveCamera : MonoSingleton<MoveCamera>
         {
             move = true;
             this.transform.DOMove(moveObject.transform.position, _moveTime).SetEase(Ease.InOutSine);
-            this.transform.DORotateQuaternion(moveObject.transform.rotation, _moveTime).SetEase(Ease.InOutSine);
             yield return new WaitForSeconds(_moveTime);
             move = false;
         }
@@ -49,7 +48,7 @@ public class MoveCamera : MonoSingleton<MoveCamera>
 
     public void ResearchCameraNewPos()
     {
-        SwipSystem.Instance.leftSideObject.transform.position = new Vector3(ResearchTemplatePos.transform.position.x, ResearchTemplatePos.transform.position.y + camPosTemplate.y * ItemData.Instance.field.moneyPlane, ResearchTemplatePos.transform.position.z + camPosTemplate.z * ItemData.Instance.field.moneyPlane);
+        SwipSystem.Instance.leftSideObject.transform.position = new Vector3(SwipSystem.Instance.leftSideObject.transform.position.x, ResearchTemplatePos.transform.position.y + camPosTemplate.y * ItemData.Instance.field.moneyPlane, ResearchTemplatePos.transform.position.z + camPosTemplate.z * ItemData.Instance.field.moneyPlane);
         StartCoroutine(DoMoveCamera(SwipSystem.Instance.leftSideObject));
     }
 }
