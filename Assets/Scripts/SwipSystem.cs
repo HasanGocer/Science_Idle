@@ -18,6 +18,7 @@ public class SwipSystem : MonoBehaviour
     {
         if (Input.touchCount > 0)
         {
+            Debug.Log("HG");
             touch = Input.GetTouch(0);
             switch (touch.phase)
             {

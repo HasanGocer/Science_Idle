@@ -61,7 +61,7 @@ public class RunnerManager : MonoSingleton<RunnerManager>
             ItemData.Instance.factor.runnerCount++;
             GameManager.Instance.SetRunnerCount();
             ItemData.Instance.RunnerCount();
-            Buttons.Instance.bobinCountText.text = ItemData.Instance.fieldPrice.bobinCount.ToString();
+            Buttons.Instance.runnerAddedText.text = ItemData.Instance.fieldPrice.runnerCount.ToString();
             Runner.Add(obj);
             if (ItemData.Instance.field.runnerCount % MyDoPath.Instance.runnerCount != 0)
             {
