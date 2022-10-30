@@ -7,6 +7,7 @@ public class MoveCamera : MonoSingleton<MoveCamera>
 {
     public Vector3 camPosTemplate = new Vector3(0, 10, -20);
     public GameObject moneyTempatePos, ResearchTemplatePos;
+    [SerializeField] private int planeLimit;
 
     [SerializeField] private float _moveTime;
     public bool move;
@@ -29,8 +30,15 @@ public class MoveCamera : MonoSingleton<MoveCamera>
         ResearchTemplatePos = SwipSystem.Instance.leftSideObject;
         SwipSystem.Instance.rightSideObject.transform.position = new Vector3(moneyTempatePos.transform.position.x, moneyTempatePos.transform.position.y + camPosTemplate.y * ItemData.Instance.field.moneyPlane, moneyTempatePos.transform.position.z + camPosTemplate.z * ItemData.Instance.field.moneyPlane);
         SwipSystem.Instance.leftSideObject.transform.position = new Vector3(ResearchTemplatePos.transform.position.x, ResearchTemplatePos.transform.position.y + camPosTemplate.y * ItemData.Instance.field.moneyPlane, ResearchTemplatePos.transform.position.z + camPosTemplate.z * ItemData.Instance.field.moneyPlane);
-        transform.position = moneyTempatePos.transform.position;
-        transform.position = new Vector3(moneyTempatePos.transform.position.x, moneyTempatePos.transform.position.y + camPosTemplate.y * ItemData.Instance.field.moneyPlane, moneyTempatePos.transform.position.z + camPosTemplate.z * ItemData.Instance.field.moneyPlane);
+        if (planeLimit <= ItemData.Instance.field.moneyPlane)
+        {
+            transform.position = new Vector3(moneyTempatePos.transform.position.x, moneyTempatePos.transform.position.y + camPosTemplate.y * ItemData.Instance.field.moneyPlane, moneyTempatePos.transform.position.z + camPosTemplate.z * ItemData.Instance.field.moneyPlane);
+        }
+        else
+        {
+            transform.position = new Vector3(moneyTempatePos.transform.position.x, moneyTempatePos.transform.position.y + camPosTemplate.y * ItemData.Instance.field.moneyPlane, moneyTempatePos.transform.position.z + camPosTemplate.z * planeLimit);
+
+        }
     }
 
     public void MoneyCameraNewPos()

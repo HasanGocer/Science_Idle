@@ -20,7 +20,7 @@ public class GameManager : MonoSingleton<GameManager>
         }
         else
         {
-            PlayerPrefs.SetInt("researchPoint", 100000);
+            PlayerPrefs.SetInt("researchPoint", 100);
         }
         Buttons.Instance.ResearchPointText.text = researchPoint.ToString();
 
@@ -31,7 +31,7 @@ public class GameManager : MonoSingleton<GameManager>
         }
         else
         {
-            PlayerPrefs.SetInt("money", 100000);
+            PlayerPrefs.SetInt("money", 100);
         }
         Buttons.Instance.moneyText.text = money.ToString();
 

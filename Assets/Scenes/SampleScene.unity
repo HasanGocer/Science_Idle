@@ -820,8 +820,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a07ff1af40d26743b63c9c5083b806a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftSideObject: {fileID: 878463671}
-  rightSideObject: {fileID: 1509431231}
+  leftSideObject: {fileID: 1171400785}
+  rightSideObject: {fileID: 854070801}
   _leftGame: {fileID: 1351123862}
   _rightGame: {fileID: 1375485836}
 --- !u!1 &335827637
@@ -1695,13 +1695,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 854070801}
-  m_LocalRotation: {x: 0.5, y: -0, z: -0, w: 0.8660254}
-  m_LocalPosition: {x: 0, y: 150, z: -60}
+  m_LocalRotation: {x: 0.2588191, y: 0, z: 0, w: 0.9659258}
+  m_LocalPosition: {x: 0, y: 100, z: -80}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1183793994}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 30, y: 0, z: 0}
 --- !u!1 &878463671
 GameObject:
   m_ObjectHideFlags: 0
@@ -2414,13 +2414,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1171400785}
-  m_LocalRotation: {x: 0.5, y: -0, z: -0, w: 0.8660254}
-  m_LocalPosition: {x: -150, y: 150, z: -60}
+  m_LocalRotation: {x: 0.2588191, y: 0, z: 0, w: 0.9659258}
+  m_LocalPosition: {x: -150, y: 100, z: -80}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1183793994}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 30, y: 0, z: 0}
 --- !u!1 &1183793993
 GameObject:
   m_ObjectHideFlags: 0
@@ -3561,13 +3561,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1687258581}
-  m_LocalRotation: {x: 0.5, y: 0, z: 0, w: 0.8660254}
+  m_LocalRotation: {x: 0.2588191, y: 0, z: 0, w: 0.9659258}
   m_LocalPosition: {x: 0, y: 150, z: -60}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1316578846}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 60, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 30, y: 0, z: 0}
 --- !u!114 &1687258586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3613,6 +3613,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ee624ef7702f174aa57ed88651197af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  camPosTemplate: {x: 0, y: 10, z: -9}
+  moneyTempatePos: {fileID: 0}
+  ResearchTemplatePos: {fileID: 0}
+  planeLimit: 7
   _moveTime: 3
   move: 0
 --- !u!1 &1697207310
