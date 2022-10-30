@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SwipSystem : MonoBehaviour
+public class SwipSystem : MonoSingleton<SwipSystem>
 {
     Touch touch;
     float vec2Start, vec2Finish;
     bool moved;
 
-    [SerializeField] private GameObject leftSideObject;
-    [SerializeField] private GameObject rightSideObject;
+    public GameObject leftSideObject;
+    public GameObject rightSideObject;
 
     [SerializeField] private GameObject _leftGame;
     [SerializeField] private GameObject _rightGame;

@@ -66,6 +66,7 @@ public class BuyPlane : MonoSingleton<BuyPlane>
         obj.GetComponent<BobinManager>().bobinCount = 1;
         obj.GetComponent<BobinManager>().BobinBuy();
         RunnerManager.Instance.NewStartRunner();
+        MoveCamera.Instance.MoneyCameraNewPos();
         MoneyPlanes.Add(obj);
         Buttons.Instance.bobinCountText.text = ItemData.Instance.fieldPrice.bobinCount.ToString();
         Buttons.Instance.runnerAddedText.text = ItemData.Instance.fieldPrice.runnerCount.ToString();
@@ -86,6 +87,7 @@ public class BuyPlane : MonoSingleton<BuyPlane>
         obj.GetComponent<TableBuy>().TableBuyWithButton();
         ItemData.Instance.factor.researchPlane++;
         GameManager.Instance.SetResearchPlane();
+        MoveCamera.Instance.ResearchCameraNewPos();
         obj.GetComponent<TableBuy>().TableCount = 1;
         ResearchPlanes.Add(obj);
         Buttons.Instance.tableAddedText.text = ItemData.Instance.fieldPrice.tableCount.ToString();
