@@ -43,11 +43,11 @@ public class BuyPlane : MonoSingleton<BuyPlane>
             obj.GetComponent<MeshRenderer>().material = ResearchMaterials[i1];
             if (i1 != ItemData.Instance.field.researchPlane - 1)
             {
-                obj.GetComponent<TableBuy>().TableCount = MyDoPath.Instance.runnerCount;
+                obj.GetComponent<TableBuy>().TableCount = obj.GetComponent<TableBuy>().TableTemplateCount;
             }
             else
             {
-                obj.GetComponent<TableBuy>().TableCount = ItemData.Instance.field.bobinCount % MyDoPath.Instance.runnerCount;
+                obj.GetComponent<TableBuy>().TableCount = ItemData.Instance.field.tableCount % obj.GetComponent<TableBuy>().TableTemplateCount;
             }
             obj.GetComponent<TableBuy>().TablePlacement();
             obj.GetComponent<TableBuy>().PlaneCount = i1;

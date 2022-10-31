@@ -23,22 +23,13 @@ public class SwipSystem : MonoSingleton<SwipSystem>
             {
                 case TouchPhase.Began:
                     vec2Start = touch.position.x;
-<<<<<<< HEAD
                     break;
 
                 case TouchPhase.Moved:
                     moved = true;
 
-=======
                     Debug.Log("Began");
-                    
-                    break;
 
-                case TouchPhase.Moved:
-
-                    Debug.Log("Moved");
-                    moved = true;
->>>>>>> 38988c5c1f7f2aa7b4b34089e6eaf1cdc800a45f
                     break;
 
                 case TouchPhase.Ended:
