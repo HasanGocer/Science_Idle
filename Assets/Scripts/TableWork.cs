@@ -20,16 +20,12 @@ public class TableWork : MonoBehaviour
                 Buttons.Instance.ResearchPointText.text = GameManager.Instance.researchPoint.ToString();
                 GameManager.Instance.SetResearchPoint();
                 StartCoroutine(Bar());
-                yield return new WaitForSeconds(ItemData.Instance.field.barSpeed);
+                yield return new WaitForSeconds(0.1f);
                 GameManager.Instance.money += (int)ItemData.Instance.field.addedMoney;
                 GameManager.Instance.SetMoney();
                 Buttons.Instance.moneyText.text = GameManager.Instance.money.ToString();
                 if (GameManager.Instance.researchPoint < barPrice)
                 {
-                    for (int i1 = 0; i1 < BuyPlane.Instance.ResearchPlanes.Count; i1++)
-                    {
-                        BuyPlane.Instance.ResearchPlanes[i1].GetComponent<TableBuy>().ActiveTablesBool[i] = false;
-                    }
                     break;
                 }
             }

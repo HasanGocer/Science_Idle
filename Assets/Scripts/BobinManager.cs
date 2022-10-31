@@ -42,6 +42,8 @@ public class BobinManager : MonoBehaviour /* MonoSingleton<BobinManager>*/
         ItemData.Instance.factor.bobinCount++;
         GameManager.Instance.SetBobinCount();
         ItemData.Instance.BobinCount();
+        Buttons.Instance.bobinCountText.text = ItemData.Instance.fieldPrice.bobinCount.ToString();
+
         if (ItemData.Instance.field.bobinCount % MyDoPath.Instance.runnerCount == 0)
         {
             bobins[MyDoPath.Instance.runnerCount - 1].SetActive(true);

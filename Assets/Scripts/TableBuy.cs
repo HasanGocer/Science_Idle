@@ -29,6 +29,7 @@ public class TableBuy : MonoBehaviour
             ItemData.Instance.factor.tableCount++;
             ItemData.Instance.TableCount();
             GameManager.Instance.SetTableCount();
+            Buttons.Instance.tableAddedText.text = ItemData.Instance.fieldPrice.tableCount.ToString();
             if (ItemData.Instance.field.tableCount % TableTemplateCount != 0)
             {
                 ActiveTables.Add(PasiveTables[(ItemData.Instance.field.tableCount % TableTemplateCount) - 1]);
