@@ -217,40 +217,56 @@ public class Buttons : MonoSingleton<Buttons>
 
     IEnumerator StartBarAyEnum()
     {
+        Debug.Log("1");
         for (int i1 = 0; i1 < BuyPlane.Instance.ResearchPlanes.Count; i1++)
         {
+            Debug.Log("1");
             if (i1 != BuyPlane.Instance.ResearchPlanes.Count - 1)
             {
+                Debug.Log("1");
                 for (int i2 = 0; i2 < BuyPlane.Instance.ResearchPlanes[0].GetComponent<TableBuy>().TableTemplateCount; i2++)
                 {
+                    Debug.Log("2");
                     TableBuy tableBuy = BuyPlane.Instance.ResearchPlanes[i1].GetComponent<TableBuy>();
+                    Debug.Log("3");
                     if (!tableBuy.ActiveTablesBool[i2])
                     {
+                        Debug.Log("4");
                         StartCoroutine(tableBuy.ActiveTables[i2].GetComponent<TableWork>().StartBar(i2));
+                        Debug.Log("5");
                         tableBuy.ActiveTablesBool[i2] = true;
+                        Debug.Log("6");
                         yield return new WaitForSeconds(0.1f);
                     }
                 }
             }
             else
             {
+                Debug.Log("7");
                 int tableLimit;
                 if (ItemData.Instance.field.tableCount % BuyPlane.Instance.ResearchPlanes[0].GetComponent<TableBuy>().TableTemplateCount != 0)
                 {
+                    Debug.Log("8");
                     tableLimit = ItemData.Instance.field.tableCount % BuyPlane.Instance.ResearchPlanes[0].GetComponent<TableBuy>().TableTemplateCount;
                 }
                 else
                 {
+                    Debug.Log("9");
                     tableLimit = BuyPlane.Instance.ResearchPlanes[0].GetComponent<TableBuy>().TableTemplateCount;
                 }
 
                 for (int i2 = 0; i2 < tableLimit; i2++)
                 {
+                    Debug.Log("10");
                     TableBuy tableBuy = BuyPlane.Instance.ResearchPlanes[i1].GetComponent<TableBuy>();
+                    Debug.Log("11");
                     if (!tableBuy.ActiveTablesBool[i2])
                     {
+                        Debug.Log("12");
                         StartCoroutine(tableBuy.ActiveTables[i2].GetComponent<TableWork>().StartBar(i2));
+                        Debug.Log("13");
                         tableBuy.ActiveTablesBool[i2] = true;
+                        Debug.Log("14");
                         yield return new WaitForSeconds(0.1f);
                     }
                 }
