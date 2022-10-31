@@ -244,15 +244,15 @@ public class Buttons : MonoSingleton<Buttons>
             {
                 Debug.Log("7");
                 int tableLimit;
-                if (ItemData.Instance.field.tableCount % BuyPlane.Instance.ResearchPlanes[0].GetComponent<TableBuy>().TableTemplateCount != 0)
+                if (ItemData.Instance.field.tableCount % BuyPlane.Instance.ResearchPlanes[i1].GetComponent<TableBuy>().TableTemplateCount != 0)
                 {
                     Debug.Log("8");
-                    tableLimit = ItemData.Instance.field.tableCount % BuyPlane.Instance.ResearchPlanes[0].GetComponent<TableBuy>().TableTemplateCount;
+                    tableLimit = ItemData.Instance.field.tableCount % BuyPlane.Instance.ResearchPlanes[i1].GetComponent<TableBuy>().TableTemplateCount;
                 }
                 else
                 {
                     Debug.Log("9");
-                    tableLimit = BuyPlane.Instance.ResearchPlanes[0].GetComponent<TableBuy>().TableTemplateCount;
+                    tableLimit = BuyPlane.Instance.ResearchPlanes[i1].GetComponent<TableBuy>().TableTemplateCount;
                 }
 
                 for (int i2 = 0; i2 < tableLimit; i2++)
