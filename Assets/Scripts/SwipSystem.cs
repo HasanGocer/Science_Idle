@@ -23,11 +23,22 @@ public class SwipSystem : MonoSingleton<SwipSystem>
             {
                 case TouchPhase.Began:
                     vec2Start = touch.position.x;
+<<<<<<< HEAD
                     break;
 
                 case TouchPhase.Moved:
                     moved = true;
 
+=======
+                    Debug.Log("Began");
+                    
+                    break;
+
+                case TouchPhase.Moved:
+
+                    Debug.Log("Moved");
+                    moved = true;
+>>>>>>> 38988c5c1f7f2aa7b4b34089e6eaf1cdc800a45f
                     break;
 
                 case TouchPhase.Ended:
@@ -42,18 +53,13 @@ public class SwipSystem : MonoSingleton<SwipSystem>
 
     private void SwipSystemFunc(float start, float finish, bool moved)
     {
-        Debug.Log("1");
         if (moved)
         {
-            Debug.Log("2");
-            if (finish - start < 0)
+            if (finish - start > 0)
             {
-                Debug.Log("3");
                 if (!MoveCamera.Instance.move)
                 {
-                    Debug.Log("4");
                     MoveCamera.Instance.ResearchCameraNewPos();
-                    Debug.Log("5");
                     _leftGame.SetActive(true);
                     _rightGame.SetActive(false);
                 }
@@ -62,9 +68,7 @@ public class SwipSystem : MonoSingleton<SwipSystem>
             {
                 if (!MoveCamera.Instance.move)
                 {
-                    Debug.Log("6");
                     MoveCamera.Instance.MoneyCameraNewPos();
-                    Debug.Log("7");
                     _leftGame.SetActive(false);
                     _rightGame.SetActive(true);
                 }
