@@ -48,7 +48,7 @@ public class MoveCamera : MonoSingleton<MoveCamera>
 
     public void ResearchCameraNewPos()
     {
-        SwipSystem.Instance.leftSideObject.transform.position = new Vector3(SwipSystem.Instance.leftSideObject.transform.position.x, ResearchTemplatePos.transform.position.y + camPosTemplate.y * ItemData.Instance.field.moneyPlane, ResearchTemplatePos.transform.position.z + camPosTemplate.z * ItemData.Instance.field.moneyPlane);
+        SwipSystem.Instance.leftSideObject.transform.position = new Vector3(SwipSystem.Instance.leftSideObject.transform.position.x, ResearchTemplatePos.transform.position.y + camPosTemplate.y * ItemData.Instance.field.researchPlane, ResearchTemplatePos.transform.position.z + camPosTemplate.z * ItemData.Instance.field.researchPlane);
         StartCoroutine(DoMoveCamera(SwipSystem.Instance.leftSideObject));
     }
 }
