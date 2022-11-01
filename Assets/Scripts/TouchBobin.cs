@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class TouchBobin : MonoBehaviour
 {
-    private void OnCollisionEnter(Collision collision)
+
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.CompareTag("Ball"))
+        if (other.gameObject.CompareTag("Ball"))
         {
             GameManager.Instance.researchPoint += (int)((ItemData.Instance.field.addedMoney * GetComponentInParent<BobinManager>().bobinCount));
             GameManager.Instance.SetResearchPoint();
