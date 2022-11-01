@@ -37,17 +37,33 @@ public class MoveCamera : MonoSingleton<MoveCamera>
         {
             transform.position = new Vector3(moneyTempatePos.transform.position.x, moneyTempatePos.transform.position.y + camPosTemplate.y * ItemData.Instance.field.moneyPlane, moneyTempatePos.transform.position.z + camPosTemplate.z * planeLimit);
         }
+        SwipSystem.Instance.stayMoneyPlane = true;
     }
 
     public void MoneyCameraNewPos()
     {
-        SwipSystem.Instance.rightSideObject.transform.position = new Vector3(moneyTempatePos.transform.position.x, moneyTempatePos.transform.position.y + camPosTemplate.y * ItemData.Instance.field.moneyPlane, moneyTempatePos.transform.position.z + camPosTemplate.z * ItemData.Instance.field.moneyPlane);
+        if (planeLimit <= ItemData.Instance.field.moneyPlane)
+        {
+            SwipSystem.Instance.rightSideObject.transform.position = new Vector3(moneyTempatePos.transform.position.x, moneyTempatePos.transform.position.y + camPosTemplate.y * ItemData.Instance.field.moneyPlane, moneyTempatePos.transform.position.z + camPosTemplate.z * ItemData.Instance.field.moneyPlane);
+        }
+        else
+        {
+            SwipSystem.Instance.rightSideObject.transform.position = new Vector3(moneyTempatePos.transform.position.x, moneyTempatePos.transform.position.y + camPosTemplate.y * ItemData.Instance.field.moneyPlane, moneyTempatePos.transform.position.z + camPosTemplate.z * planeLimit);
+
+        }
         StartCoroutine(DoMoveCamera(SwipSystem.Instance.rightSideObject));
     }
 
     public void ResearchCameraNewPos()
     {
-        SwipSystem.Instance.leftSideObject.transform.position = new Vector3(ResearchTemplatePos.transform.position.x, ResearchTemplatePos.transform.position.y + camPosTemplate.y * ItemData.Instance.field.researchPlane, ResearchTemplatePos.transform.position.z + camPosTemplate.z * ItemData.Instance.field.researchPlane);
+        if (planeLimit <= ItemData.Instance.field.moneyPlane)
+        {
+            SwipSystem.Instance.leftSideObject.transform.position = new Vector3(ResearchTemplatePos.transform.position.x, ResearchTemplatePos.transform.position.y + camPosTemplate.y * ItemData.Instance.field.researchPlane, ResearchTemplatePos.transform.position.z + camPosTemplate.z * ItemData.Instance.field.researchPlane);
+        }
+        else
+        {
+            SwipSystem.Instance.leftSideObject.transform.position = new Vector3(ResearchTemplatePos.transform.position.x, ResearchTemplatePos.transform.position.y + camPosTemplate.y * ItemData.Instance.field.researchPlane, ResearchTemplatePos.transform.position.z + camPosTemplate.z * planeLimit);
+        }
         StartCoroutine(DoMoveCamera(SwipSystem.Instance.leftSideObject));
     }
 }

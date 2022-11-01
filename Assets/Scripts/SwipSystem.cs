@@ -7,6 +7,7 @@ public class SwipSystem : MonoSingleton<SwipSystem>
     Touch touch;
     float vec2Start, vec2Finish;
     bool moved;
+    public bool stayMoneyPlane, stayResearchPlane;
 
     public GameObject leftSideObject;
     public GameObject rightSideObject;
@@ -48,20 +49,24 @@ public class SwipSystem : MonoSingleton<SwipSystem>
         {
             if (finish - start > 0)
             {
-                if (!MoveCamera.Instance.move)
+                if (!MoveCamera.Instance.move && stayMoneyPlane)
                 {
                     MoveCamera.Instance.ResearchCameraNewPos();
                     _leftGame.SetActive(true);
                     _rightGame.SetActive(false);
+                    stayResearchPlane = true;
+                    stayMoneyPlane = false;
                 }
             }
             else
             {
-                if (!MoveCamera.Instance.move)
+                if (!MoveCamera.Instance.move && stayResearchPlane)
                 {
                     MoveCamera.Instance.MoneyCameraNewPos();
                     _leftGame.SetActive(false);
                     _rightGame.SetActive(true);
+                    stayResearchPlane = false;
+                    stayMoneyPlane = true;
                 }
             }
         }
