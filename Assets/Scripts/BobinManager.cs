@@ -52,6 +52,7 @@ public class BobinManager : MonoBehaviour /* MonoSingleton<BobinManager>*/
         {
             bobins[(ItemData.Instance.field.bobinCount % MyDoPath.Instance.runnerCount) - 1].SetActive(true);
         }
+
         if (ItemData.Instance.maxFactor.bobinCount == ItemData.Instance.factor.bobinCount)
         {
             ItemData.Instance.maxFactor.bobinCount += MyDoPath.Instance.runnerCount;

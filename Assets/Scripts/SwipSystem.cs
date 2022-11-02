@@ -9,6 +9,8 @@ public class SwipSystem : MonoSingleton<SwipSystem>
     bool moved;
     public bool stayMoneyPlane, stayResearchPlane;
 
+    [SerializeField] private float distance;
+
     public GameObject leftSideObject, rightSideObject;
 
     [SerializeField] private GameObject _leftGame;
@@ -26,7 +28,6 @@ public class SwipSystem : MonoSingleton<SwipSystem>
                     break;
 
                 case TouchPhase.Moved:
-                    moved = true;
 
                     Debug.Log("Began");
 
@@ -34,39 +35,35 @@ public class SwipSystem : MonoSingleton<SwipSystem>
 
                 case TouchPhase.Ended:
                     vec2Finish = touch.position.x;
-                    SwipSystemFunc(vec2Start, vec2Finish, moved);
-                    moved = false;
+                    SwipSystemFunc(vec2Start, vec2Finish);
                     break;
             }
 
         }
     }
 
-    private void SwipSystemFunc(float start, float finish, bool moved)
+    private void SwipSystemFunc(float start, float finish)
     {
-        if (moved)
+        if (finish - start > distance)
         {
-            if (finish - start > 0)
+            if (!MoveCamera.Instance.move && stayMoneyPlane)
             {
-                if (!MoveCamera.Instance.move && stayMoneyPlane)
-                {
-                    MoveCamera.Instance.ResearchCameraNewPos();
-                    _leftGame.SetActive(true);
-                    _rightGame.SetActive(false);
-                    stayResearchPlane = true;
-                    stayMoneyPlane = false;
-                }
+                MoveCamera.Instance.ResearchCameraNewPos();
+                _leftGame.SetActive(true);
+                _rightGame.SetActive(false);
+                stayResearchPlane = true;
+                stayMoneyPlane = false;
             }
-            else
+        }
+        else if (finish - start < distance)
+        {
+            if (!MoveCamera.Instance.move && stayResearchPlane)
             {
-                if (!MoveCamera.Instance.move && stayResearchPlane)
-                {
-                    MoveCamera.Instance.MoneyCameraNewPos();
-                    _leftGame.SetActive(false);
-                    _rightGame.SetActive(true);
-                    stayResearchPlane = false;
-                    stayMoneyPlane = true;
-                }
+                MoveCamera.Instance.MoneyCameraNewPos();
+                _leftGame.SetActive(false);
+                _rightGame.SetActive(true);
+                stayResearchPlane = false;
+                stayMoneyPlane = true;
             }
         }
     }
