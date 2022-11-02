@@ -9,8 +9,7 @@ public class SwipSystem : MonoSingleton<SwipSystem>
     bool moved;
     public bool stayMoneyPlane, stayResearchPlane;
 
-    public GameObject leftSideObject;
-    public GameObject rightSideObject;
+    public GameObject leftSideObject, rightSideObject;
 
     [SerializeField] private GameObject _leftGame;
     [SerializeField] private GameObject _rightGame;
