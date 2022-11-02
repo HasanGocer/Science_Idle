@@ -41,12 +41,14 @@ public class ItemData : MonoSingleton<ItemData>
         {
             maxFactor.runnerCount = ((field.runnerCount / MyDoPath.Instance.runnerCount) + 1) * MyDoPath.Instance.runnerCount;
         }
+
         field.bobinCount = standart.bobinCount + (factor.bobinCount * constant.bobinCount);
         fieldPrice.bobinCount = fieldPrice.bobinCount * factor.bobinCount;
         if (field.bobinCount > maxFactor.bobinCount)
         {
             maxFactor.bobinCount = ((field.bobinCount / MyDoPath.Instance.runnerCount) + 1) * MyDoPath.Instance.runnerCount;
         }
+
         field.tableCount = standart.tableCount + (factor.tableCount * constant.tableCount);
         fieldPrice.tableCount = fieldPrice.tableCount * factor.tableCount;
         if (field.tableCount > maxFactor.tableCount)
