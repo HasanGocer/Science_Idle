@@ -9,6 +9,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     public int money;
     public int researchPoint;
+    public int counterPoint;
     public int vibration;
     public int sound;
 
@@ -21,6 +22,7 @@ public class GameManager : MonoSingleton<GameManager>
         else
         {
             PlayerPrefs.SetInt("researchPoint", 100);
+            researchPoint = PlayerPrefs.GetInt("researchPoint");
         }
         Buttons.Instance.ResearchPointText.text = researchPoint.ToString();
 
@@ -32,8 +34,19 @@ public class GameManager : MonoSingleton<GameManager>
         else
         {
             PlayerPrefs.SetInt("money", 100);
+            money = PlayerPrefs.GetInt("money");
         }
         Buttons.Instance.moneyText.text = money.ToString();
+
+        if (PlayerPrefs.HasKey("counterPoint"))
+        {
+            counterPoint = PlayerPrefs.GetInt("counterPoint");
+        }
+        else
+        {
+            PlayerPrefs.SetInt("counterPoint", 100);
+            counterPoint = PlayerPrefs.GetInt("counterPoint");
+        }
 
         if (PlayerPrefs.HasKey("vibration"))
         {
@@ -130,6 +143,11 @@ public class GameManager : MonoSingleton<GameManager>
         PlayerPrefs.SetInt("money", money);
     }
 
+    public void SetCounterPoint()
+    {
+        PlayerPrefs.SetInt("counterPoint", counterPoint);
+    }
+
     public void SetSound()
     {
         PlayerPrefs.SetInt("sound", sound);
@@ -146,8 +164,6 @@ public class GameManager : MonoSingleton<GameManager>
         ItemData.Instance.field.runnerCount = ItemData.Instance.standart.runnerCount + (ItemData.Instance.factor.runnerCount * ItemData.Instance.constant.runnerCount);
         ItemData.Instance.fieldPrice.runnerCount = ItemData.Instance.fieldPrice.runnerCount / (ItemData.Instance.factor.runnerCount - 1);
         ItemData.Instance.fieldPrice.runnerCount = ItemData.Instance.fieldPrice.runnerCount * ItemData.Instance.factor.runnerCount;
-
-
     }
 
     public void SetRunnerSpeed()
@@ -180,7 +196,6 @@ public class GameManager : MonoSingleton<GameManager>
         ItemData.Instance.field.addedResearchPoint = ItemData.Instance.standart.addedResearchPoint + (ItemData.Instance.factor.addedResearchPoint * ItemData.Instance.constant.addedResearchPoint);
         ItemData.Instance.fieldPrice.addedResearchPoint = ItemData.Instance.fieldPrice.addedResearchPoint / (ItemData.Instance.factor.addedResearchPoint - 1);
         ItemData.Instance.fieldPrice.addedResearchPoint = ItemData.Instance.fieldPrice.addedResearchPoint * ItemData.Instance.factor.addedResearchPoint;
-
     }
 
     public void SetTableCount()

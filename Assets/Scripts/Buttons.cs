@@ -10,6 +10,7 @@ public class Buttons : MonoSingleton<Buttons>
     [SerializeField] private GameObject _GlobalGame;
     public Text moneyText;
     public Text ResearchPointText;
+    public Text counterPointText;
 
     [SerializeField] private Sprite _red, _green;
     [SerializeField] private Button _settingBackButton;
