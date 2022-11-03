@@ -47,6 +47,7 @@ public class GameManager : MonoSingleton<GameManager>
             PlayerPrefs.SetInt("counterPoint", 100);
             counterPoint = PlayerPrefs.GetInt("counterPoint");
         }
+        Buttons.Instance.counterPointText.text = counterPoint.ToString();
 
         if (PlayerPrefs.HasKey("vibration"))
         {

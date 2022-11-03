@@ -21,7 +21,7 @@ public class Buttons : MonoSingleton<Buttons>
     public Button runnerAddedButton, bobinCountButton, moneyPlaneButton;
     public Text runnerAddedText, bobinCountText, moneyPlaneText;
 
-    public Button tableAddedButton, StartBarButton, researchPlaneButton;
+    public Button tableAddedButton, StartBarButton, researchPlaneButton, auctionButton;
     public Text tableAddedText, StartBarText, researchPlaneText;
 
 
@@ -61,6 +61,7 @@ public class Buttons : MonoSingleton<Buttons>
         StartBarButton.onClick.AddListener(StartBar);
         researchPlaneButton.onClick.AddListener(ResearchPlaneButton);
         moneyPlaneButton.onClick.AddListener(MoneyPlaneButton);
+        auctionButton.onClick.AddListener(AuctionButton);
     }
 
     public void TextStart()
@@ -184,6 +185,11 @@ public class Buttons : MonoSingleton<Buttons>
 
             BuyPlane.Instance.ResearchPlanes[BuyPlane.Instance.ResearchPlanes.Count - 1].GetComponent<TableBuy>().TableBuyWithButton();
         }
+    }
+
+    private void AuctionButton()
+    {
+        StartCoroutine(CounterSystem.Instance.CounterFinish());
     }
 
     /*private void BarSpeedUpdate()

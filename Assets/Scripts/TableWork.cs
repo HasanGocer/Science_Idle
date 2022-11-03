@@ -49,6 +49,7 @@ public class TableWork : MonoBehaviour
                 barImage.fillAmount = 0;
                 _bar = false;
                 StartCoroutine(PointText.Instance.CallPointMoneyText(transform.gameObject));
+                CounterSystem.Instance.CounterPlus((int)ItemData.Instance.field.addedMoney);
                 break;
             }
         }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CounterSystem : MonoBehaviour
+public class CounterSystem : MonoSingleton<CounterSystem>
 {
     public float auctionTime;
 
@@ -43,6 +43,8 @@ public class CounterSystem : MonoBehaviour
             }
         }
 
+        GameManager.Instance.SetMoney();
+        Buttons.Instance.moneyText.text = GameManager.Instance.money.ToString();
         GameManager.Instance.counterPoint = 0;
         GameManager.Instance.SetCounterPoint();
         Buttons.Instance.counterPointText.text = GameManager.Instance.counterPoint.ToString();
