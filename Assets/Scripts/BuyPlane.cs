@@ -13,6 +13,9 @@ public class BuyPlane : MonoSingleton<BuyPlane>
     public int moneyPlaneDistance, researchPlaneDistance;
     public bool runnerCountMaxBool, BobinCountMaxBool;
     public bool tableCountMaxBool;
+    [SerializeField] private float particalSeenTime;
+    [SerializeField] private int OPPlaneParticalCount;
+    [SerializeField] private float planeParticalDisctance;
 
     public void StartPlanePlacement()
     {
@@ -21,6 +24,7 @@ public class BuyPlane : MonoSingleton<BuyPlane>
             GameObject obj = ObjectPool.Instance.GetPooledObject(OPMoneyPlaneCount);
             obj.transform.position = new Vector3(moneyPlaneTempaltePosition.transform.position.x, (moneyPlaneDistance * i1) + moneyPlaneTempaltePosition.transform.position.y, moneyPlaneTempaltePosition.transform.position.z);
             obj.GetComponent<MeshRenderer>().material = MoneyMaterials[i1];
+            StartCoroutine(Partical(obj));
 
             if (i1 != ItemData.Instance.field.moneyPlane - 1)
             {
@@ -41,6 +45,8 @@ public class BuyPlane : MonoSingleton<BuyPlane>
             GameObject obj = ObjectPool.Instance.GetPooledObject(OPResearchPlaneCount);
             obj.transform.position = new Vector3(researchPlaneTempaltePosition.transform.position.x, (researchPlaneDistance * i1) + researchPlaneTempaltePosition.transform.position.y, researchPlaneTempaltePosition.transform.position.z);
             obj.GetComponent<MeshRenderer>().material = ResearchMaterials[i1];
+            StartCoroutine(Partical(obj));
+
             if (i1 != ItemData.Instance.field.researchPlane - 1)
             {
                 obj.GetComponent<TableBuy>().TableCount = obj.GetComponent<TableBuy>().TableTemplateCount;
@@ -67,6 +73,7 @@ public class BuyPlane : MonoSingleton<BuyPlane>
         obj.GetComponent<BobinManager>().BobinBuy();
         RunnerManager.Instance.NewStartRunner();
         MoveCamera.Instance.MoneyCameraNewPos();
+        StartCoroutine(Partical(obj));
         MoneyPlanes.Add(obj);
         Buttons.Instance.bobinCountText.text = ItemData.Instance.fieldPrice.bobinCount.ToString();
         Buttons.Instance.runnerAddedText.text = ItemData.Instance.fieldPrice.runnerCount.ToString();
@@ -89,6 +96,7 @@ public class BuyPlane : MonoSingleton<BuyPlane>
         GameManager.Instance.SetResearchPlane();
         MoveCamera.Instance.ResearchCameraNewPos();
         obj.GetComponent<TableBuy>().TableCount = 1;
+        StartCoroutine(Partical(obj));
         ResearchPlanes.Add(obj);
         Buttons.Instance.tableAddedText.text = ItemData.Instance.fieldPrice.tableCount.ToString();
         Buttons.Instance.researchPlaneButton.gameObject.SetActive(false);
@@ -117,5 +125,13 @@ public class BuyPlane : MonoSingleton<BuyPlane>
             Buttons.Instance.StartBarButton.gameObject.SetActive(false);
             Buttons.Instance.researchPlaneButton.gameObject.SetActive(true);
         }
+    }
+
+    IEnumerator Partical(GameObject pos)
+    {
+        GameObject partical = ObjectPool.Instance.GetPooledObject(OPPlaneParticalCount);
+        partical.transform.position = new Vector3(pos.transform.position.x, pos.transform.position.y + planeParticalDisctance, pos.transform.position.z);
+        yield return new WaitForSeconds(particalSeenTime);
+        ObjectPool.Instance.AddObject(OPPlaneParticalCount, partical);
     }
 }

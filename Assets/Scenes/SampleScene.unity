@@ -788,6 +788,9 @@ MonoBehaviour:
   runnerCountMaxBool: 0
   BobinCountMaxBool: 0
   tableCountMaxBool: 0
+  particalSeenTime: 3
+  OPPlaneParticalCount: 5
+  planeParticalDisctance: 30
 --- !u!114 &326707834
 MonoBehaviour:
   m_ObjectHideFlags: 0
