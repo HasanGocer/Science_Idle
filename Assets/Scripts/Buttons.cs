@@ -71,21 +71,21 @@ public class Buttons : MonoSingleton<Buttons>
         moneyPlaneText.text = ItemData.Instance.fieldPrice.moneyPlane.ToString();
         researchPlaneText.text = ItemData.Instance.fieldPrice.researchPlane.ToString();
         tableAddedText.text = ItemData.Instance.fieldPrice.tableCount.ToString();
-        if (ItemData.Instance.field.tableCount == ItemData.Instance.maxFactor.tableCount)
+        if (ItemData.Instance.field.tableCount % 6 == 0)
         {
             tableAddedText.text = "Full";
             tableAddedButton.enabled = false;
             BuyPlane.Instance.tableCountMaxBool = true;
         }
         bobinCountText.text = ItemData.Instance.fieldPrice.bobinCount.ToString();
-        if (ItemData.Instance.field.bobinCount == ItemData.Instance.maxFactor.bobinCount)
+        if (ItemData.Instance.field.bobinCount % MyDoPath.Instance.runnerCount == 0)
         {
             bobinCountText.text = "Full";
             bobinCountButton.enabled = false;
             BuyPlane.Instance.BobinCountMaxBool = true;
         }
         runnerAddedText.text = ItemData.Instance.fieldPrice.runnerCount.ToString();
-        if (ItemData.Instance.field.bobinCount == ItemData.Instance.maxFactor.bobinCount)
+        if (ItemData.Instance.field.bobinCount % MyDoPath.Instance.runnerCount == 0)
         {
             runnerAddedText.text = "Full";
             runnerAddedButton.enabled = false;
@@ -189,7 +189,7 @@ public class Buttons : MonoSingleton<Buttons>
 
     private void AuctionButton()
     {
-        StartCoroutine(CounterSystem.Instance.CounterFinish());
+        CounterSystem.Instance.CounterFinish();
     }
 
     /*private void BarSpeedUpdate()

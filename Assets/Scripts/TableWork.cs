@@ -8,6 +8,7 @@ public class TableWork : MonoBehaviour
     [SerializeField] private Image barImage;
     private bool _bar;
     public int barPrice = 2;
+    [SerializeField] private GameObject workWithStickman;
 
     public IEnumerator StartBar(int i)
     {
@@ -24,8 +25,10 @@ public class TableWork : MonoBehaviour
                 GameManager.Instance.money += (int)ItemData.Instance.field.addedMoney;
                 GameManager.Instance.SetMoney();
                 Buttons.Instance.moneyText.text = GameManager.Instance.money.ToString();
+                workWithStickman.SetActive(true);
                 if (GameManager.Instance.researchPoint < barPrice)
                 {
+                    workWithStickman.SetActive(false);
                     break;
                 }
             }

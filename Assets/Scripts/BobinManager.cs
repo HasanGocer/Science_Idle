@@ -8,6 +8,8 @@ public class BobinManager : MonoBehaviour /* MonoSingleton<BobinManager>*/
 
     public int bobinCount;
     public int PlaneCount;
+    [SerializeField] private float particalSeenTime;
+    [SerializeField] private int OPBobinParticalCount;
 
 
     public void PlaneFullBobinPlacemennt()
@@ -15,6 +17,7 @@ public class BobinManager : MonoBehaviour /* MonoSingleton<BobinManager>*/
         for (int i = 0; i < MyDoPath.Instance.runnerCount; i++)
         {
             bobins[i].SetActive(true);
+            StartCoroutine(Partical(i));
         }
     }
 
@@ -25,6 +28,7 @@ public class BobinManager : MonoBehaviour /* MonoSingleton<BobinManager>*/
             for (int i = 0; i < MyDoPath.Instance.runnerCount; i++)
             {
                 bobins[i].SetActive(true);
+                StartCoroutine(Partical(i));
             }
         }
         else
@@ -32,6 +36,7 @@ public class BobinManager : MonoBehaviour /* MonoSingleton<BobinManager>*/
             for (int i = 0; i < ItemData.Instance.field.bobinCount % MyDoPath.Instance.runnerCount; i++)
             {
                 bobins[i].SetActive(true);
+                StartCoroutine(Partical(i));
             }
         }
 
@@ -47,10 +52,12 @@ public class BobinManager : MonoBehaviour /* MonoSingleton<BobinManager>*/
         if (ItemData.Instance.field.bobinCount % MyDoPath.Instance.runnerCount == 0)
         {
             bobins[MyDoPath.Instance.runnerCount - 1].SetActive(true);
+            StartCoroutine(Partical(MyDoPath.Instance.runnerCount - 1));
         }
         else
         {
             bobins[(ItemData.Instance.field.bobinCount % MyDoPath.Instance.runnerCount) - 1].SetActive(true);
+            StartCoroutine(Partical((ItemData.Instance.field.bobinCount % MyDoPath.Instance.runnerCount) - 1));
         }
 
         if (ItemData.Instance.maxFactor.bobinCount == ItemData.Instance.factor.bobinCount)
@@ -61,5 +68,13 @@ public class BobinManager : MonoBehaviour /* MonoSingleton<BobinManager>*/
             BuyPlane.Instance.BobinCountMaxBool = true;
             BuyPlane.Instance.NewMoneyPlaneButton();
         }
+    }
+
+    IEnumerator Partical(int count)
+    {
+        GameObject partical = ObjectPool.Instance.GetPooledObject(OPBobinParticalCount);
+        partical.transform.position = bobins[count].transform.position;
+        yield return new WaitForSeconds(particalSeenTime);
+        ObjectPool.Instance.AddObject(OPBobinParticalCount, partical);
     }
 }
