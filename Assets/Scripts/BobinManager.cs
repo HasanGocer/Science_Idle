@@ -17,7 +17,6 @@ public class BobinManager : MonoBehaviour /* MonoSingleton<BobinManager>*/
         for (int i = 0; i < MyDoPath.Instance.runnerCount; i++)
         {
             bobins[i].SetActive(true);
-            StartCoroutine(Partical(i));
         }
     }
 
@@ -28,7 +27,6 @@ public class BobinManager : MonoBehaviour /* MonoSingleton<BobinManager>*/
             for (int i = 0; i < MyDoPath.Instance.runnerCount; i++)
             {
                 bobins[i].SetActive(true);
-                StartCoroutine(Partical(i));
             }
         }
         else
@@ -36,7 +34,6 @@ public class BobinManager : MonoBehaviour /* MonoSingleton<BobinManager>*/
             for (int i = 0; i < ItemData.Instance.field.bobinCount % MyDoPath.Instance.runnerCount; i++)
             {
                 bobins[i].SetActive(true);
-                StartCoroutine(Partical(i));
             }
         }
 
