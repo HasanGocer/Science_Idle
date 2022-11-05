@@ -175,15 +175,7 @@ public class Buttons : MonoSingleton<Buttons>
     {
         if (GameManager.Instance.researchPoint >= ItemData.Instance.fieldPrice.tableCount && ItemData.Instance.factor.tableCount <= ItemData.Instance.maxFactor.tableCount)
         {
-<<<<<<< Updated upstream
-            GameManager.Instance.researchPoint -= (int)ItemData.Instance.fieldPrice.tableCount;
-            GameManager.Instance.SetResearchPoint();
-            ItemData.Instance.TableCount();
-            ResearchPointText.text = GameManager.Instance.researchPoint.ToString();
-
-=======
             MoneySystem.Instance.ResearchTextRevork((int)(ItemData.Instance.fieldPrice.tableCount * -1));
->>>>>>> Stashed changes
             BuyPlane.Instance.ResearchPlanes[BuyPlane.Instance.ResearchPlanes.Count - 1].GetComponent<TableBuy>().TableBuyWithButton();
         }
     }
