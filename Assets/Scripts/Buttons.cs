@@ -181,6 +181,7 @@ public class Buttons : MonoSingleton<Buttons>
         {
             GameManager.Instance.researchPoint -= (int)ItemData.Instance.fieldPrice.tableCount;
             GameManager.Instance.SetResearchPoint();
+            ItemData.Instance.TableCount();
             ResearchPointText.text = GameManager.Instance.researchPoint.ToString();
 
             BuyPlane.Instance.ResearchPlanes[BuyPlane.Instance.ResearchPlanes.Count - 1].GetComponent<TableBuy>().TableBuyWithButton();

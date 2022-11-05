@@ -20,7 +20,7 @@ public class SwipSystem : MonoSingleton<SwipSystem>
     {
         if (Input.touchCount > 0)
         {
-
+            touch = Input.GetTouch(0);
             switch (touch.phase)
             {
                 case TouchPhase.Began:
