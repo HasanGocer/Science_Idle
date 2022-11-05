@@ -7,7 +7,7 @@ public class SwipSystem : MonoSingleton<SwipSystem>
     Touch touch;
     float vec2Start, vec2Finish;
     bool moved;
-    public bool stayMoneyPlane, stayResearchPlane;
+    public bool stayMoneyPlane, stayResearchPlane, buttonClickControl;
 
     [SerializeField] private float distance;
 
@@ -20,7 +20,7 @@ public class SwipSystem : MonoSingleton<SwipSystem>
     {
         if (Input.touchCount > 0)
         {
-            touch = Input.GetTouch(0);
+
             switch (touch.phase)
             {
                 case TouchPhase.Began:
@@ -38,7 +38,6 @@ public class SwipSystem : MonoSingleton<SwipSystem>
                     SwipSystemFunc(vec2Start, vec2Finish);
                     break;
             }
-
         }
     }
 
