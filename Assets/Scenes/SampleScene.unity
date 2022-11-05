@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2138677392}
-  m_IndirectSpecularColor: {r: 0.15457445, g: 0.15929838, b: 0.2546651, a: 1}
+  m_IndirectSpecularColor: {r: 0.15457457, g: 0.15929843, b: 0.25466532, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -825,6 +825,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stayMoneyPlane: 0
   stayResearchPlane: 0
+  buttonClickControl: 0
   distance: 0
   leftSideObject: {fileID: 1171400785}
   rightSideObject: {fileID: 854070801}
@@ -3798,7 +3799,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ee624ef7702f174aa57ed88651197af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camPosTemplate: {x: 0, y: 10, z: -9}
+  camPosMoneyTemplate: {x: 0, y: 10, z: -20}
+  camPosResearchTemplate: {x: 0, y: 15, z: -25}
   moneyTempatePos: {x: 0, y: 0, z: 0}
   ResearchTemplatePos: {x: 0, y: 0, z: 0}
   planeLimit: 7
