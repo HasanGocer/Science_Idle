@@ -17,14 +17,10 @@ public class TableWork : MonoBehaviour
             if (!_bar)
             {
                 _bar = true;
-                GameManager.Instance.researchPoint -= barPrice;
-                Buttons.Instance.ResearchPointText.text = GameManager.Instance.researchPoint.ToString();
-                GameManager.Instance.SetResearchPoint();
+                MoneySystem.Instance.ResearchTextRevork(barPrice * -1);
                 StartCoroutine(Bar());
                 yield return new WaitForSeconds(0.1f);
-                GameManager.Instance.money += (int)ItemData.Instance.field.addedMoney;
-                GameManager.Instance.SetMoney();
-                Buttons.Instance.moneyText.text = GameManager.Instance.money.ToString();
+                MoneySystem.Instance.MoneyTextRevork((int)ItemData.Instance.field.addedMoney);
                 workWithStickman.SetActive(true);
                 if (GameManager.Instance.researchPoint < barPrice)
                 {

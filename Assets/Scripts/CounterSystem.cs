@@ -27,9 +27,7 @@ public class CounterSystem : MonoSingleton<CounterSystem>
 
             if (limit <= determination.down)
             {
-                GameManager.Instance.money += (GameManager.Instance.counterPoint / limit);
-                GameManager.Instance.SetMoney();
-                Buttons.Instance.moneyText.text = GameManager.Instance.money.ToString();
+                MoneySystem.Instance.MoneyTextRevork(GameManager.Instance.counterPoint / limit);
                 GameManager.Instance.counterPoint = 0;
                 GameManager.Instance.SetCounterPoint();
                 Buttons.Instance.counterPointText.text = GameManager.Instance.counterPoint.ToString();
@@ -37,9 +35,7 @@ public class CounterSystem : MonoSingleton<CounterSystem>
             }
             else if (limit <= determination.stay)
             {
-                GameManager.Instance.money += GameManager.Instance.counterPoint;
-                GameManager.Instance.SetMoney();
-                Buttons.Instance.moneyText.text = GameManager.Instance.money.ToString();
+                MoneySystem.Instance.MoneyTextRevork(GameManager.Instance.counterPoint);
                 GameManager.Instance.counterPoint = 0;
                 GameManager.Instance.SetCounterPoint();
                 Buttons.Instance.counterPointText.text = GameManager.Instance.counterPoint.ToString();
@@ -50,9 +46,6 @@ public class CounterSystem : MonoSingleton<CounterSystem>
                 GameManager.Instance.counterPoint += limit * (GameManager.Instance.counterPoint / (determination.up * determination.down));
             }
         }
-
-        GameManager.Instance.SetMoney();
-        Buttons.Instance.moneyText.text = GameManager.Instance.money.ToString();
         GameManager.Instance.counterPoint = 0;
         GameManager.Instance.SetCounterPoint();
         Buttons.Instance.counterPointText.text = GameManager.Instance.counterPoint.ToString();

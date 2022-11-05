@@ -66,8 +66,8 @@ public class Buttons : MonoSingleton<Buttons>
 
     public void TextStart()
     {
-        moneyText.text = GameManager.Instance.money.ToString();
-        ResearchPointText.text = GameManager.Instance.researchPoint.ToString();
+        MoneySystem.Instance.MoneyTextRevork(0);
+        MoneySystem.Instance.ResearchTextRevork(0);
         moneyPlaneText.text = ItemData.Instance.fieldPrice.moneyPlane.ToString();
         researchPlaneText.text = ItemData.Instance.fieldPrice.researchPlane.ToString();
         tableAddedText.text = ItemData.Instance.fieldPrice.tableCount.ToString();
@@ -157,9 +157,7 @@ public class Buttons : MonoSingleton<Buttons>
     {
         if (GameManager.Instance.money >= ItemData.Instance.fieldPrice.runnerCount && ItemData.Instance.factor.runnerCount <= ItemData.Instance.maxFactor.runnerCount)
         {
-            GameManager.Instance.money -= ItemData.Instance.fieldPrice.runnerCount;
-            GameManager.Instance.SetMoney();
-            moneyText.text = GameManager.Instance.money.ToString();
+            MoneySystem.Instance.MoneyTextRevork((ItemData.Instance.fieldPrice.runnerCount * -1));
             RunnerManager.Instance.NewStartRunner();
         }
     }
@@ -168,9 +166,7 @@ public class Buttons : MonoSingleton<Buttons>
     {
         if (GameManager.Instance.money >= ItemData.Instance.fieldPrice.bobinCount && ItemData.Instance.factor.bobinCount <= ItemData.Instance.maxFactor.bobinCount)
         {
-            GameManager.Instance.money -= (int)ItemData.Instance.fieldPrice.bobinCount;
-            GameManager.Instance.SetMoney();
-            moneyText.text = GameManager.Instance.money.ToString();
+            MoneySystem.Instance.MoneyTextRevork((ItemData.Instance.fieldPrice.bobinCount * -1));
             BuyPlane.Instance.MoneyPlanes[BuyPlane.Instance.MoneyPlanes.Count - 1].GetComponent<BobinManager>().BobinBuy();
         }
     }
@@ -179,11 +175,15 @@ public class Buttons : MonoSingleton<Buttons>
     {
         if (GameManager.Instance.researchPoint >= ItemData.Instance.fieldPrice.tableCount && ItemData.Instance.factor.tableCount <= ItemData.Instance.maxFactor.tableCount)
         {
+<<<<<<< Updated upstream
             GameManager.Instance.researchPoint -= (int)ItemData.Instance.fieldPrice.tableCount;
             GameManager.Instance.SetResearchPoint();
             ItemData.Instance.TableCount();
             ResearchPointText.text = GameManager.Instance.researchPoint.ToString();
 
+=======
+            MoneySystem.Instance.ResearchTextRevork((int)(ItemData.Instance.fieldPrice.tableCount * -1));
+>>>>>>> Stashed changes
             BuyPlane.Instance.ResearchPlanes[BuyPlane.Instance.ResearchPlanes.Count - 1].GetComponent<TableBuy>().TableBuyWithButton();
         }
     }
