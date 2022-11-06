@@ -7,6 +7,7 @@ public class TableWork : MonoBehaviour
 {
     [SerializeField] private Image barImage;
     private bool _bar;
+    public bool hide;
     public int barPrice = 2;
     [SerializeField] private GameObject workWithStickman;
 
@@ -14,7 +15,7 @@ public class TableWork : MonoBehaviour
     {
         while (true)
         {
-            if (!_bar)
+            if (!_bar && !hide)
             {
                 _bar = true;
                 MoneySystem.Instance.ResearchTextRevork(barPrice * -1);

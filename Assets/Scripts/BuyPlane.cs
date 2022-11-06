@@ -115,10 +115,7 @@ public class BuyPlane : MonoSingleton<BuyPlane>
         MoveCamera.Instance.MoneyCameraNewPos();
         StartCoroutine(Partical(obj));
         MoneyPlanes.Add(obj);
-        if (ItemData.Instance.field.moneyPlane > PlaneHideSystem.Instance.moneyHidePlaneCount)
-        {
-            PlaneHideSystem.Instance.MoneyPlaneHide();
-        }
+        PlaneHideSystem.Instance.MoneyPlaneHide();
         Buttons.Instance.bobinCountText.text = ItemData.Instance.fieldPrice.bobinCount.ToString();
         Buttons.Instance.runnerAddedText.text = ItemData.Instance.fieldPrice.runnerCount.ToString();
         Buttons.Instance.moneyPlaneButton.gameObject.SetActive(false);
@@ -142,10 +139,7 @@ public class BuyPlane : MonoSingleton<BuyPlane>
         obj.GetComponent<TableBuy>().TableCount = 1;
         StartCoroutine(Partical(obj));
         ResearchPlanes.Add(obj);
-        if (ItemData.Instance.field.researchPlane > PlaneHideSystem.Instance.researchHidePlaneCount)
-        {
-            PlaneHideSystem.Instance.ResearchPlaneHide();
-        }
+        PlaneHideSystem.Instance.ResearchPlaneHide();
         Buttons.Instance.tableAddedText.text = ItemData.Instance.fieldPrice.tableCount.ToString();
         Buttons.Instance.researchPlaneButton.gameObject.SetActive(false);
         Buttons.Instance.tableAddedButton.gameObject.SetActive(true);

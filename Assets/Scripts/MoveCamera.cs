@@ -30,7 +30,7 @@ public class MoveCamera : MonoSingleton<MoveCamera>
         ResearchTemplatePos = SwipSystem.Instance.leftSideObject.transform.position;
         SwipSystem.Instance.rightSideObject.transform.position = new Vector3(moneyTempatePos.x, moneyTempatePos.y + camPosMoneyTemplate.y * ItemData.Instance.field.moneyPlane, moneyTempatePos.z + camPosMoneyTemplate.z * ItemData.Instance.field.moneyPlane);
         SwipSystem.Instance.leftSideObject.transform.position = new Vector3(ResearchTemplatePos.x, ResearchTemplatePos.y + camPosResearchTemplate.y * ItemData.Instance.field.researchPlane, ResearchTemplatePos.z + camPosResearchTemplate.z * ItemData.Instance.field.researchPlane);
-        if (planeLimit <= ItemData.Instance.field.moneyPlane)
+        if (planeLimit >= ItemData.Instance.field.moneyPlane)
         {
             transform.position = new Vector3(moneyTempatePos.x, moneyTempatePos.y + camPosMoneyTemplate.y * ItemData.Instance.field.moneyPlane, moneyTempatePos.z + camPosMoneyTemplate.z * ItemData.Instance.field.moneyPlane);
         }
@@ -43,7 +43,7 @@ public class MoveCamera : MonoSingleton<MoveCamera>
 
     public void MoneyCameraNewPos()
     {
-        if (planeLimit <= ItemData.Instance.field.moneyPlane)
+        if (planeLimit >= ItemData.Instance.field.moneyPlane)
         {
             SwipSystem.Instance.rightSideObject.transform.position = new Vector3(moneyTempatePos.x, moneyTempatePos.y + camPosMoneyTemplate.y * ItemData.Instance.field.moneyPlane, moneyTempatePos.z + camPosMoneyTemplate.z * ItemData.Instance.field.moneyPlane);
         }
@@ -57,7 +57,7 @@ public class MoveCamera : MonoSingleton<MoveCamera>
 
     public void ResearchCameraNewPos()
     {
-        if (planeLimit <= ItemData.Instance.field.moneyPlane)
+        if (planeLimit >= ItemData.Instance.field.researchPlane)
         {
             SwipSystem.Instance.leftSideObject.transform.position = new Vector3(ResearchTemplatePos.x, ResearchTemplatePos.y + camPosResearchTemplate.y * ItemData.Instance.field.researchPlane, ResearchTemplatePos.z + camPosResearchTemplate.z * ItemData.Instance.field.researchPlane);
         }

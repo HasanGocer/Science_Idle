@@ -18,10 +18,12 @@ public class PlaneHideSystem : MonoSingleton<PlaneHideSystem>
             for (int i = 0; i < MyDoPath.Instance.runnerCount; i++)
             {
                 BuyPlane.Instance.MoneyPlanes[BuyPlane.Instance.MoneyPlanes.Count - planeLimit - 1].GetComponent<BobinManager>().bobins[i].SetActive(false);
-                ObjectPool.Instance.AddObject(_OPRunnerCount, RunnerManager.Instance.Runner[((BuyPlane.Instance.MoneyPlanes.Count - planeLimit - 1) * 4) + i]);
+                ObjectPool.Instance.AddObject(_OPRunnerCount, RunnerManager.Instance.Runner[((BuyPlane.Instance.MoneyPlanes.Count - planeLimit - 1) * MyDoPath.Instance.runnerCount) + i]);
             }
             ObjectPool.Instance.AddObject(_OPMoneyPlaneCount, BuyPlane.Instance.MoneyPlanes[BuyPlane.Instance.MoneyPlanes.Count - planeLimit - 1].gameObject);
             moneyHidePlaneCount++;
+            GameManager.Instance.SetMoneyHidePlaneCount();
+            StartCoroutine(HideMoneyAdded());
         }
     }
 
@@ -29,16 +31,18 @@ public class PlaneHideSystem : MonoSingleton<PlaneHideSystem>
     {
         if (BuyPlane.Instance.ResearchPlanes.Count > planeLimit)
         {
-            TableBuy tableBuy = BuyPlane.Instance.MoneyPlanes[BuyPlane.Instance.ResearchPlanes.Count - planeLimit - 1].GetComponent<TableBuy>();
+            TableBuy tableBuy = BuyPlane.Instance.ResearchPlanes[BuyPlane.Instance.ResearchPlanes.Count - planeLimit - 1].GetComponent<TableBuy>();
             for (int i = 0; i < 6; i++)
             {
-                tableBuy.PasiveTables.Add(tableBuy.ActiveTables[i]);
                 tableBuy.PasiveTables[i].SetActive(false);
+                tableBuy.ActiveTables[i].GetComponent<TableWork>().hide = true;
             }
             tableBuy.ActiveTables.Clear();
             tableBuy.ActiveTablesBool.Clear();
             ObjectPool.Instance.AddObject(_OPResearchPlaneCount, BuyPlane.Instance.ResearchPlanes[BuyPlane.Instance.ResearchPlanes.Count - planeLimit - 1].gameObject);
             researchHidePlaneCount++;
+            GameManager.Instance.SetResearchHidePlaneCount();
+            StartCoroutine(HideResearchAdded());
         }
     }
 

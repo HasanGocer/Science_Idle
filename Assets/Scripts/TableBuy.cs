@@ -52,6 +52,5 @@ public class TableBuy : MonoBehaviour
                 BuyPlane.Instance.NewResearchPlaneButton();
             }
         }
-
     }
 }

@@ -3820,7 +3820,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ee624ef7702f174aa57ed88651197af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camPosMoneyTemplate: {x: 0, y: 10, z: -20}
+  camPosMoneyTemplate: {x: 0, y: 15, z: -20}
   camPosResearchTemplate: {x: 0, y: 15, z: -25}
   moneyTempatePos: {x: 0, y: 0, z: 0}
   ResearchTemplatePos: {x: 0, y: 0, z: 0}

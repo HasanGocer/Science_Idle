@@ -24,7 +24,7 @@ public class GameManager : MonoSingleton<GameManager>
             PlayerPrefs.SetInt("researchPoint", 100);
             researchPoint = PlayerPrefs.GetInt("researchPoint");
         }
-        MoneySystem.Instance.ResearchTextRevork(0);
+        MoneySystem.Instance.ResearchTextRevork(9999999);
 
         if (PlayerPrefs.HasKey("money"))
         {
@@ -35,7 +35,7 @@ public class GameManager : MonoSingleton<GameManager>
             PlayerPrefs.SetInt("money", 100);
             money = PlayerPrefs.GetInt("money");
         }
-        MoneySystem.Instance.MoneyTextRevork(0);
+        MoneySystem.Instance.MoneyTextRevork(9999999);
 
         if (PlayerPrefs.HasKey("counterPoint"))
         {
@@ -256,5 +256,15 @@ public class GameManager : MonoSingleton<GameManager>
         ItemData.Instance.field.researchPlane = ItemData.Instance.standart.researchPlane + (ItemData.Instance.factor.researchPlane * ItemData.Instance.constant.researchPlane);
         ItemData.Instance.fieldPrice.researchPlane = ItemData.Instance.fieldPrice.researchPlane / (ItemData.Instance.factor.researchPlane - 1);
         ItemData.Instance.fieldPrice.researchPlane = ItemData.Instance.fieldPrice.researchPlane * ItemData.Instance.factor.researchPlane;
+    }
+
+    public void SetMoneyHidePlaneCount()
+    {
+        PlayerPrefs.SetInt("moneyHidePlaneCount", ItemData.Instance.factor.moneyPlane - PlaneHideSystem.Instance.planeLimit);
+    }
+
+    public void SetResearchHidePlaneCount()
+    {
+        PlayerPrefs.SetInt("researchHidePlaneCount", ItemData.Instance.factor.researchPlane - PlaneHideSystem.Instance.planeLimit);
     }
 }

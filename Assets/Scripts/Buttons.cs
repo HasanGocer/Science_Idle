@@ -217,7 +217,18 @@ public class Buttons : MonoSingleton<Buttons>
 
     IEnumerator StartBarAyEnum()
     {
-        for (int i1 = 0; i1 < ItemData.Instance.field.researchPlane; i1++)
+        int researchLimit = 0;
+
+        if (PlaneHideSystem.Instance.researchHidePlaneCount > 0)
+        {
+            researchLimit = ItemData.Instance.field.researchPlane - PlaneHideSystem.Instance.planeLimit;
+        }
+        else
+        {
+            researchLimit = 0;
+        }
+
+        for (int i1 = researchLimit; i1 < ItemData.Instance.field.researchPlane; i1++)
         {
             if (i1 != ItemData.Instance.field.researchPlane - 1)
             {
@@ -250,6 +261,7 @@ public class Buttons : MonoSingleton<Buttons>
                     TableBuy tableBuy = BuyPlane.Instance.ResearchPlanes[i1].GetComponent<TableBuy>();
                     if (!tableBuy.ActiveTablesBool[i2])
                     {
+                        tableBuy.ActiveTables[i2].GetComponent<TableWork>().hide = false;
                         StartCoroutine(tableBuy.ActiveTables[i2].GetComponent<TableWork>().StartBar(i2));
                         tableBuy.ActiveTablesBool[i2] = true;
                         yield return new WaitForSeconds(0.1f);
