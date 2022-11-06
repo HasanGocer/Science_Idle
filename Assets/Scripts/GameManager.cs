@@ -21,10 +21,10 @@ public class GameManager : MonoSingleton<GameManager>
         }
         else
         {
-            PlayerPrefs.SetInt("researchPoint", 100);
+            PlayerPrefs.SetInt("researchPoint", 0);
             researchPoint = PlayerPrefs.GetInt("researchPoint");
         }
-        MoneySystem.Instance.ResearchTextRevork(9999999);
+        MoneySystem.Instance.ResearchTextRevork(0);
 
         if (PlayerPrefs.HasKey("money"))
         {
@@ -32,10 +32,10 @@ public class GameManager : MonoSingleton<GameManager>
         }
         else
         {
-            PlayerPrefs.SetInt("money", 100);
+            PlayerPrefs.SetInt("money", 0);
             money = PlayerPrefs.GetInt("money");
         }
-        MoneySystem.Instance.MoneyTextRevork(9999999);
+        MoneySystem.Instance.MoneyTextRevork(0);
 
         if (PlayerPrefs.HasKey("counterPoint"))
         {
@@ -43,7 +43,7 @@ public class GameManager : MonoSingleton<GameManager>
         }
         else
         {
-            PlayerPrefs.SetInt("counterPoint", 100);
+            PlayerPrefs.SetInt("counterPoint", 0);
             counterPoint = PlayerPrefs.GetInt("counterPoint");
         }
         Buttons.Instance.counterPointText.text = counterPoint.ToString();
