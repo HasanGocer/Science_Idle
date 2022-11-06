@@ -52,6 +52,10 @@ public class TableWork : MonoBehaviour
                 CounterSystem.Instance.CounterPlus((int)ItemData.Instance.field.addedMoney);
                 break;
             }
+            if (hide)
+            {
+                break;
+            }
         }
     }
 }

@@ -79,6 +79,7 @@ public class PlaneHideSystem : MonoSingleton<PlaneHideSystem>
                     for (int i = 0; i < researchHidePlaneCount; i++)
                     {
                         MoneySystem.Instance.ResearchTextRevork(6 * (int)ItemData.Instance.field.addedResearchPoint);
+                        CounterSystem.Instance.CounterPlus((int)ItemData.Instance.field.addedMoney);
                     }
                     yield return new WaitForSeconds(_researchRespawnTime);
                 }
