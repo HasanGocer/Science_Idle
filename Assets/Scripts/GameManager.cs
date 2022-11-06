@@ -129,6 +129,37 @@ public class GameManager : MonoSingleton<GameManager>
             PlayerPrefs.SetInt("researchPlane", ItemData.Instance.factor.researchPlane);
         }
 
+        if (PlayerPrefs.HasKey("moneyHidePlaneCount"))
+        {
+            PlaneHideSystem.Instance.moneyHidePlaneCount = PlayerPrefs.GetInt("moneyHidePlaneCount");
+        }
+        else
+        {
+            if (ItemData.Instance.factor.moneyPlane > PlaneHideSystem.Instance.planeLimit)
+            {
+                PlayerPrefs.SetInt("moneyHidePlaneCount", ItemData.Instance.factor.moneyPlane - PlaneHideSystem.Instance.planeLimit);
+            }
+            else
+            {
+                PlayerPrefs.SetInt("moneyHidePlaneCount", 0);
+            }
+        }
+
+        if (PlayerPrefs.HasKey("researchHidePlaneCount"))
+        {
+            PlaneHideSystem.Instance.researchHidePlaneCount = PlayerPrefs.GetInt("researchHidePlaneCount");
+        }
+        else
+        {
+            if (ItemData.Instance.factor.researchPlane > PlaneHideSystem.Instance.planeLimit)
+            {
+                PlayerPrefs.SetInt("researchHidePlaneCount", ItemData.Instance.factor.researchPlane - PlaneHideSystem.Instance.planeLimit);
+            }
+            else
+            {
+                PlayerPrefs.SetInt("researchHidePlaneCount", 0);
+            }
+        }
 
         ItemData.Instance.ItemPlacement();
     }

@@ -19,11 +19,35 @@ public class BuyPlane : MonoSingleton<BuyPlane>
 
     public void StartPlanePlacement()
     {
-        for (int i1 = 0; i1 < ItemData.Instance.field.moneyPlane; i1++)
+        int moneyLimit = 0;
+
+        if (PlaneHideSystem.Instance.moneyHidePlaneCount > 0)
+        {
+            moneyLimit = ItemData.Instance.field.moneyPlane - PlaneHideSystem.Instance.planeLimit;
+            StartCoroutine(PlaneHideSystem.Instance.HideMoneyAdded());
+        }
+        else
+        {
+            moneyLimit = 0;
+        }
+
+        int researchLimit = 0;
+
+        if (PlaneHideSystem.Instance.researchHidePlaneCount > 0)
+        {
+            researchLimit = ItemData.Instance.field.researchPlane - PlaneHideSystem.Instance.planeLimit;
+            StartCoroutine(PlaneHideSystem.Instance.HideResearchAdded());
+        }
+        else
+        {
+            researchLimit = 0;
+        }
+
+        for (int i1 = moneyLimit; i1 < ItemData.Instance.field.moneyPlane; i1++)
         {
             GameObject obj = ObjectPool.Instance.GetPooledObject(OPMoneyPlaneCount);
             obj.transform.position = new Vector3(moneyPlaneTempaltePosition.transform.position.x, (moneyPlaneDistance * i1) + moneyPlaneTempaltePosition.transform.position.y, moneyPlaneTempaltePosition.transform.position.z);
-            obj.GetComponent<MeshRenderer>().material = MoneyMaterials[i1];
+            obj.GetComponent<MeshRenderer>().material = MoneyMaterials[MoneyMaterials.Count % i1];
             //StartCoroutine(Partical(obj));
 
             if (i1 != ItemData.Instance.field.moneyPlane - 1)
@@ -40,11 +64,11 @@ public class BuyPlane : MonoSingleton<BuyPlane>
             MoneyPlanes.Add(obj);
         }
 
-        for (int i1 = 0; i1 < ItemData.Instance.field.researchPlane; i1++)
+        for (int i1 = researchLimit; i1 < ItemData.Instance.field.researchPlane; i1++)
         {
             GameObject obj = ObjectPool.Instance.GetPooledObject(OPResearchPlaneCount);
             obj.transform.position = new Vector3(researchPlaneTempaltePosition.transform.position.x, (researchPlaneDistance * i1) + researchPlaneTempaltePosition.transform.position.y, researchPlaneTempaltePosition.transform.position.z);
-            obj.GetComponent<MeshRenderer>().material = ResearchMaterials[i1];
+            obj.GetComponent<MeshRenderer>().material = ResearchMaterials[ResearchMaterials.Count % i1];
             //StartCoroutine(Partical(obj));
 
             if (i1 != ItemData.Instance.field.researchPlane - 1)
@@ -75,6 +99,10 @@ public class BuyPlane : MonoSingleton<BuyPlane>
         MoveCamera.Instance.MoneyCameraNewPos();
         StartCoroutine(Partical(obj));
         MoneyPlanes.Add(obj);
+        if (ItemData.Instance.field.moneyPlane > PlaneHideSystem.Instance.moneyHidePlaneCount)
+        {
+            PlaneHideSystem.Instance.MoneyPlaneHide();
+        }
         Buttons.Instance.bobinCountText.text = ItemData.Instance.fieldPrice.bobinCount.ToString();
         Buttons.Instance.runnerAddedText.text = ItemData.Instance.fieldPrice.runnerCount.ToString();
         Buttons.Instance.moneyPlaneButton.gameObject.SetActive(false);
@@ -98,6 +126,10 @@ public class BuyPlane : MonoSingleton<BuyPlane>
         obj.GetComponent<TableBuy>().TableCount = 1;
         StartCoroutine(Partical(obj));
         ResearchPlanes.Add(obj);
+        if (ItemData.Instance.field.researchPlane > PlaneHideSystem.Instance.researchHidePlaneCount)
+        {
+            PlaneHideSystem.Instance.ResearchPlaneHide();
+        }
         Buttons.Instance.tableAddedText.text = ItemData.Instance.fieldPrice.tableCount.ToString();
         Buttons.Instance.researchPlaneButton.gameObject.SetActive(false);
         Buttons.Instance.tableAddedButton.gameObject.SetActive(true);
