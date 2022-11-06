@@ -642,6 +642,7 @@ GameObject:
   - component: {fileID: 326707832}
   - component: {fileID: 326707833}
   - component: {fileID: 326707834}
+  - component: {fileID: 326707835}
   m_Layer: 0
   m_Name: PlaneManager
   m_TagString: Untagged
@@ -831,6 +832,26 @@ MonoBehaviour:
   rightSideObject: {fileID: 854070801}
   _leftGame: {fileID: 1351123862}
   _rightGame: {fileID: 1375485836}
+--- !u!114 &326707835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 326707831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e34a4a03358bc24d8b2ab3b8ce80db9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  planeLimit: 10
+  _OPRunnerCount: 0
+  _OPMoneyPlaneCount: 3
+  _OPResearchPlaneCount: 4
+  _moneyRespawnTime: 1
+  _researchRespawnTime: 1
+  moneyHidePlaneCount: 0
+  researchHidePlaneCount: 0
 --- !u!1 &335827637
 GameObject:
   m_ObjectHideFlags: 0
@@ -6932,6 +6953,7 @@ GameObject:
   - component: {fileID: 7627590490061665290}
   - component: {fileID: 7627590490061665289}
   - component: {fileID: 7627590490061665291}
+  - component: {fileID: 7627590490061665292}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -7157,3 +7179,18 @@ MonoBehaviour:
     up: 4
     stay: 4
     down: 2
+--- !u!114 &7627590490061665292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7627590490061665284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edb5d603548aaf04fbcfbb6a2a1c51a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _billion: 1000000000
+  _million: 1000000
+  _thousand: 1000

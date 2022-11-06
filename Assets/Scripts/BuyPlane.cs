@@ -47,7 +47,15 @@ public class BuyPlane : MonoSingleton<BuyPlane>
         {
             GameObject obj = ObjectPool.Instance.GetPooledObject(OPMoneyPlaneCount);
             obj.transform.position = new Vector3(moneyPlaneTempaltePosition.transform.position.x, (moneyPlaneDistance * i1) + moneyPlaneTempaltePosition.transform.position.y, moneyPlaneTempaltePosition.transform.position.z);
-            obj.GetComponent<MeshRenderer>().material = MoneyMaterials[MoneyMaterials.Count % i1];
+            if (MoneyMaterials.Count < i1)
+            {
+                obj.GetComponent<MeshRenderer>().material = MoneyMaterials[MoneyMaterials.Count % i1];
+            }
+            else
+            {
+                obj.GetComponent<MeshRenderer>().material = MoneyMaterials[i1];
+            }
+
             //StartCoroutine(Partical(obj));
 
             if (i1 != ItemData.Instance.field.moneyPlane - 1)
@@ -68,7 +76,15 @@ public class BuyPlane : MonoSingleton<BuyPlane>
         {
             GameObject obj = ObjectPool.Instance.GetPooledObject(OPResearchPlaneCount);
             obj.transform.position = new Vector3(researchPlaneTempaltePosition.transform.position.x, (researchPlaneDistance * i1) + researchPlaneTempaltePosition.transform.position.y, researchPlaneTempaltePosition.transform.position.z);
-            obj.GetComponent<MeshRenderer>().material = ResearchMaterials[ResearchMaterials.Count % i1];
+
+            if (ResearchMaterials.Count < i1)
+            {
+                obj.GetComponent<MeshRenderer>().material = ResearchMaterials[ResearchMaterials.Count % i1];
+            }
+            else
+            {
+                obj.GetComponent<MeshRenderer>().material = ResearchMaterials[i1];
+            }
             //StartCoroutine(Partical(obj));
 
             if (i1 != ItemData.Instance.field.researchPlane - 1)
