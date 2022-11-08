@@ -35,11 +35,12 @@ public class ItemData : MonoSingleton<ItemData>
         if (field.runnerCount > maxFactor.runnerCount)
         {
             maxFactor.runnerCount = ((field.runnerCount / MyDoPath.Instance.runnerCount) + 1) * MyDoPath.Instance.runnerCount;
-            if (field.moneyPlane * MyDoPath.Instance.runnerCount > field.runnerCount)
+            if (factor.moneyPlane * MyDoPath.Instance.runnerCount > factor.runnerCount)
             {
-                int newCount = field.runnerCount % MyDoPath.Instance.runnerCount;
-                newCount += field.moneyPlane * MyDoPath.Instance.runnerCount;
-                field.runnerCount = newCount;
+                int newCount = factor.runnerCount % MyDoPath.Instance.runnerCount;
+                newCount += factor.moneyPlane * MyDoPath.Instance.runnerCount;
+                factor.runnerCount = newCount;
+                maxFactor.runnerCount = (factor.moneyPlane + 1) * MyDoPath.Instance.runnerCount;
                 GameManager.Instance.SetRunnerCount();
             }
         }
@@ -49,11 +50,12 @@ public class ItemData : MonoSingleton<ItemData>
         if (field.bobinCount > maxFactor.bobinCount)
         {
             maxFactor.bobinCount = ((field.bobinCount / MyDoPath.Instance.runnerCount) + 1) * MyDoPath.Instance.runnerCount;
-            if (field.moneyPlane * MyDoPath.Instance.runnerCount > field.bobinCount)
+            if (factor.moneyPlane * MyDoPath.Instance.runnerCount > factor.bobinCount)
             {
-                int newCount = field.bobinCount % MyDoPath.Instance.runnerCount;
-                newCount += field.moneyPlane * MyDoPath.Instance.runnerCount;
-                field.bobinCount = newCount;
+                int newCount = factor.bobinCount % MyDoPath.Instance.runnerCount;
+                newCount += factor.moneyPlane * MyDoPath.Instance.runnerCount;
+                factor.bobinCount = newCount;
+                maxFactor.bobinCount = (factor.moneyPlane + 1) * MyDoPath.Instance.runnerCount;
                 GameManager.Instance.SetBobinCount();
             }
         }
@@ -63,11 +65,12 @@ public class ItemData : MonoSingleton<ItemData>
         if (field.tableCount > maxFactor.tableCount)
         {
             maxFactor.tableCount = ((field.tableCount / 6) + 1) * 6;
-            if (field.moneyPlane * 6 > field.tableCount)
+            if (factor.moneyPlane * 6 > factor.tableCount)
             {
-                int newCount = field.tableCount % 6;
-                newCount += field.moneyPlane * 6;
-                field.tableCount = newCount;
+                int newCount = factor.tableCount % 6;
+                newCount += factor.moneyPlane * 6;
+                factor.tableCount = newCount;
+                maxFactor.tableCount = (factor.moneyPlane + 1) * 6;
                 GameManager.Instance.SetTableCount();
             }
         }
