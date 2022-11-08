@@ -10,6 +10,7 @@ public class TableWork : MonoBehaviour
     public bool hide;
     public int barPrice = 2;
     [SerializeField] private GameObject workWithStickman;
+    [SerializeField] private int barTime = 3;
 
     public IEnumerator StartBar(int i)
     {
@@ -41,7 +42,7 @@ public class TableWork : MonoBehaviour
         float timer = 0;
         while (true)
         {
-            timer += Time.deltaTime / ItemData.Instance.field.barSpeed;
+            timer += Time.deltaTime / barTime;
             barImage.fillAmount = Mathf.Lerp(0, 1, timer);
             yield return new WaitForSeconds(Time.deltaTime);
             if (barImage.fillAmount == 1)
@@ -54,6 +55,7 @@ public class TableWork : MonoBehaviour
             }
             if (hide)
             {
+                _bar = false;
                 break;
             }
         }

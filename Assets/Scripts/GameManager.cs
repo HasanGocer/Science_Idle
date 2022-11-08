@@ -197,14 +197,6 @@ public class GameManager : MonoSingleton<GameManager>
         ItemData.Instance.fieldPrice.runnerCount = ItemData.Instance.fieldPrice.runnerCount * ItemData.Instance.factor.runnerCount;
     }
 
-    public void SetRunnerSpeed()
-    {
-        PlayerPrefs.SetFloat("runnerSpeed", ItemData.Instance.factor.runnerSpeed);
-        ItemData.Instance.field.runnerSpeed = ItemData.Instance.standart.runnerSpeed - (ItemData.Instance.factor.runnerSpeed * ItemData.Instance.constant.runnerSpeed);
-        ItemData.Instance.fieldPrice.runnerSpeed = ItemData.Instance.fieldPrice.runnerSpeed / (ItemData.Instance.factor.runnerSpeed - 1);
-        ItemData.Instance.fieldPrice.runnerSpeed = ItemData.Instance.fieldPrice.runnerSpeed * ItemData.Instance.factor.runnerSpeed;
-    }
-
     public void SetBobinCount()
     {
         PlayerPrefs.SetInt("bobinCount", ItemData.Instance.factor.bobinCount);
@@ -213,33 +205,12 @@ public class GameManager : MonoSingleton<GameManager>
         ItemData.Instance.fieldPrice.bobinCount = ItemData.Instance.fieldPrice.bobinCount * ItemData.Instance.factor.bobinCount;
     }
 
-    public void SetAddedMoney()
-    {
-        PlayerPrefs.SetFloat("addedMoney", ItemData.Instance.factor.addedMoney);
-        ItemData.Instance.field.addedMoney = ItemData.Instance.standart.addedMoney + (ItemData.Instance.factor.addedMoney * ItemData.Instance.constant.addedMoney);
-        ItemData.Instance.fieldPrice.addedMoney = ItemData.Instance.fieldPrice.addedMoney / (ItemData.Instance.factor.addedMoney - 1);
-        ItemData.Instance.fieldPrice.addedMoney = ItemData.Instance.fieldPrice.addedMoney * ItemData.Instance.factor.addedMoney;
-    }
-
-    public void SetAddedResearchPoint()
-    {
-        PlayerPrefs.SetFloat("addedResearchPoint", ItemData.Instance.factor.addedResearchPoint);
-        ItemData.Instance.field.addedResearchPoint = ItemData.Instance.standart.addedResearchPoint + (ItemData.Instance.factor.addedResearchPoint * ItemData.Instance.constant.addedResearchPoint);
-        ItemData.Instance.fieldPrice.addedResearchPoint = ItemData.Instance.fieldPrice.addedResearchPoint / (ItemData.Instance.factor.addedResearchPoint - 1);
-        ItemData.Instance.fieldPrice.addedResearchPoint = ItemData.Instance.fieldPrice.addedResearchPoint * ItemData.Instance.factor.addedResearchPoint;
-    }
-
     public void SetTableCount()
     {
         PlayerPrefs.SetInt("tableCount", ItemData.Instance.factor.tableCount);
         ItemData.Instance.field.tableCount = ItemData.Instance.standart.tableCount + (ItemData.Instance.factor.tableCount * ItemData.Instance.constant.tableCount);
         ItemData.Instance.fieldPrice.tableCount = ItemData.Instance.fieldPrice.tableCount / (ItemData.Instance.factor.tableCount - 1);
         ItemData.Instance.fieldPrice.tableCount = ItemData.Instance.fieldPrice.tableCount * ItemData.Instance.factor.tableCount;
-    }
-
-    public void SetBarSpeed()
-    {
-        PlayerPrefs.SetFloat("i", ItemData.Instance.field.barSpeed);
     }
 
     public void SetMoneyPlane()
