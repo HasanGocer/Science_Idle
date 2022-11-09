@@ -72,16 +72,7 @@ public class GameManager : MonoSingleton<GameManager>
         }
         else
         {
-            PlayerPrefs.SetInt("runnerCount", ItemData.Instance.factor.runnerCount);
-        }
-
-        if (PlayerPrefs.HasKey("runnerSpeed"))
-        {
-            ItemData.Instance.factor.runnerSpeed = PlayerPrefs.GetFloat("runnerSpeed");
-        }
-        else
-        {
-            PlayerPrefs.SetFloat("runnerSpeed", ItemData.Instance.factor.runnerSpeed);
+            PlayerPrefs.SetInt("runnerCount", 1);
         }
 
         if (PlayerPrefs.HasKey("bobinCount"))
@@ -90,16 +81,7 @@ public class GameManager : MonoSingleton<GameManager>
         }
         else
         {
-            PlayerPrefs.SetInt("bobinCount", ItemData.Instance.factor.bobinCount);
-        }
-
-        if (PlayerPrefs.HasKey("addedMoney"))
-        {
-            ItemData.Instance.factor.addedMoney = PlayerPrefs.GetFloat("addedMoney");
-        }
-        else
-        {
-            PlayerPrefs.SetFloat("addedMoney", ItemData.Instance.factor.addedMoney);
+            PlayerPrefs.SetInt("bobinCount", 1);
         }
 
         if (PlayerPrefs.HasKey("tableCount"))
@@ -108,7 +90,7 @@ public class GameManager : MonoSingleton<GameManager>
         }
         else
         {
-            PlayerPrefs.SetInt("tableCount", ItemData.Instance.factor.tableCount);
+            PlayerPrefs.SetInt("tableCount",1);
         }
 
         if (PlayerPrefs.HasKey("moneyPlane"))
@@ -117,7 +99,7 @@ public class GameManager : MonoSingleton<GameManager>
         }
         else
         {
-            PlayerPrefs.SetInt("moneyPlane", ItemData.Instance.factor.moneyPlane);
+            PlayerPrefs.SetInt("moneyPlane", 1);
         }
 
         if (PlayerPrefs.HasKey("researchPlane"))
@@ -126,7 +108,7 @@ public class GameManager : MonoSingleton<GameManager>
         }
         else
         {
-            PlayerPrefs.SetInt("researchPlane", ItemData.Instance.factor.researchPlane);
+            PlayerPrefs.SetInt("researchPlane", 1);
         }
 
         if (PlayerPrefs.HasKey("moneyHidePlaneCount"))
