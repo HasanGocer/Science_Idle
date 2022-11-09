@@ -29,6 +29,7 @@ public class Buttons : MonoSingleton<Buttons>
 
     private void Start()
     {
+        
         if (GameManager.Instance.sound == 1)
         {
             _soundButton.gameObject.GetComponent<Image>().sprite = _green;
