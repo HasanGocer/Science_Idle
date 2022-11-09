@@ -24,7 +24,7 @@ public class GameManager : MonoSingleton<GameManager>
             PlayerPrefs.SetInt("researchPoint", 0);
             researchPoint = PlayerPrefs.GetInt("researchPoint");
         }
-        MoneySystem.Instance.ResearchTextRevork(0);
+        MoneySystem.Instance.ResearchTextRevork(300000);
 
         if (PlayerPrefs.HasKey("money"))
         {

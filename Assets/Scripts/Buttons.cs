@@ -207,13 +207,13 @@ public class Buttons : MonoSingleton<Buttons>
 
     private void MoneyPlaneButton()
     {
-        if (GameManager.Instance.researchPoint >= ItemData.Instance.fieldPrice.moneyPlane && ItemData.Instance.factor.moneyPlane <= ItemData.Instance.maxFactor.moneyPlane)
+        if (GameManager.Instance.money >= ItemData.Instance.fieldPrice.moneyPlane && ItemData.Instance.factor.moneyPlane <= ItemData.Instance.maxFactor.moneyPlane)
             BuyPlane.Instance.AddNewMoneyPlane();
     }
 
     private void ResearchPlaneButton()
     {
-        if (GameManager.Instance.money >= ItemData.Instance.fieldPrice.researchPlane && ItemData.Instance.factor.researchPlane <= ItemData.Instance.maxFactor.researchPlane)
+        if (GameManager.Instance.researchPoint >= ItemData.Instance.fieldPrice.researchPlane /*&& ItemData.Instance.field.researchPlane <= ItemData.Instance.maxFactor.researchPlane*/)
             BuyPlane.Instance.AddNewResearchPlane();
     }
 

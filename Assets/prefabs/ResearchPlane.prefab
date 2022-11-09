@@ -37,7 +37,7 @@ Transform:
   - {fileID: 7417547996408585456}
   - {fileID: 7756351125148701290}
   - {fileID: 8757063714294471875}
-  - {fileID: 5489383182904065050}
+  - {fileID: 5930592575339458563}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -123,7 +123,7 @@ MonoBehaviour:
   - {fileID: 5544769987904494506}
   - {fileID: 4730624828621706544}
   - {fileID: 6018429208826436505}
-  - {fileID: 7362438285381909312}
+  - {fileID: 8669188429323319129}
   ActiveTablesBool: 000000000000
   barPrice: 2
   TableTemplateCount: 6
@@ -554,7 +554,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3132555124952380978, guid: 806b9f22ab0701148ae0ba3c526e8b6b, type: 3}
   m_PrefabInstance: {fileID: 6983622241944880683}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &7446462984947386920
+--- !u!1001 &8733782377940174385
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -563,7 +563,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 106824415346356584, guid: 806b9f22ab0701148ae0ba3c526e8b6b, type: 3}
       propertyPath: m_Name
-      value: TableWithStickman (5)
+      value: TableWithStickman (6)
       objectReference: {fileID: 0}
     - target: {fileID: 106824415346356584, guid: 806b9f22ab0701148ae0ba3c526e8b6b, type: 3}
       propertyPath: m_IsActive
@@ -587,7 +587,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3132555124952380978, guid: 806b9f22ab0701148ae0ba3c526e8b6b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.0000076293945
+      value: -0.000007629395
       objectReference: {fileID: 0}
     - target: {fileID: 3132555124952380978, guid: 806b9f22ab0701148ae0ba3c526e8b6b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -621,30 +621,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6018962442384136163, guid: 806b9f22ab0701148ae0ba3c526e8b6b, type: 3}
-      propertyPath: barImage
-      value: 
-      objectReference: {fileID: 1898156423708151424}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 806b9f22ab0701148ae0ba3c526e8b6b, type: 3}
---- !u!1 &7362438285381909312 stripped
+--- !u!1 &8669188429323319129 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 106824415346356584, guid: 806b9f22ab0701148ae0ba3c526e8b6b, type: 3}
-  m_PrefabInstance: {fileID: 7446462984947386920}
+  m_PrefabInstance: {fileID: 8733782377940174385}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &5489383182904065050 stripped
+--- !u!4 &5930592575339458563 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3132555124952380978, guid: 806b9f22ab0701148ae0ba3c526e8b6b, type: 3}
-  m_PrefabInstance: {fileID: 7446462984947386920}
+  m_PrefabInstance: {fileID: 8733782377940174385}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1898156423708151424 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9007407699597608104, guid: 806b9f22ab0701148ae0ba3c526e8b6b, type: 3}
-  m_PrefabInstance: {fileID: 7446462984947386920}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
