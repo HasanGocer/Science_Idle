@@ -47,8 +47,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   barImage: {fileID: 9007407699597608104}
+  hide: 0
   barPrice: 2
   workWithStickman: {fileID: 3613993245499486632}
+  barTime: 3
 --- !u!1 &459757478440981673
 GameObject:
   m_ObjectHideFlags: 0
@@ -1456,7 +1458,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 6.395172, y: 17}
+  m_AnchoredPosition: {x: 6.395172, y: 24.07}
   m_SizeDelta: {x: 60, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &6835707900408465091
