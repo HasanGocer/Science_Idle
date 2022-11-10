@@ -24,11 +24,6 @@ public class TableWork : MonoBehaviour
                 yield return new WaitForSeconds(0.1f);
                 MoneySystem.Instance.MoneyTextRevork((int)ItemData.Instance.field.addedMoney);
                 workWithStickman.SetActive(true);
-                if (GameManager.Instance.researchPoint < barPrice)
-                {
-                    workWithStickman.SetActive(false);
-                    break;
-                }
             }
             else
                 yield return null;
