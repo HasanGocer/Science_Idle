@@ -11,7 +11,6 @@ public class TableWork : MonoBehaviour
     public int barPrice = 2;
     [SerializeField] private GameObject workWithStickman;
     [SerializeField] private int barTime = 3;
-    public bool touchInScreen;
 
     public IEnumerator StartBar(int i)
     {
@@ -44,7 +43,7 @@ public class TableWork : MonoBehaviour
         while (true)
         {
             timer += Time.deltaTime / barTime;
-            if (touchInScreen)
+            if (SpeedBarOption.Instance.touchInScreen)
                 timer += Time.deltaTime / barTime;
             barImage.fillAmount = Mathf.Lerp(0, 1, timer);
             yield return new WaitForSeconds(Time.deltaTime);

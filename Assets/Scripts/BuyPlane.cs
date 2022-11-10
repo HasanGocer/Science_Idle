@@ -80,7 +80,6 @@ public class BuyPlane : MonoSingleton<BuyPlane>
             if (ResearchMaterials.Count < i1)
             {
                 obj.GetComponent<MeshRenderer>().material = ResearchMaterials[ResearchMaterials.Count % i1];
-                tableWork
             }
             else
             {
