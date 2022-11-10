@@ -115,6 +115,7 @@ public class ItemData : MonoSingleton<ItemData>
         Buttons.Instance.ButtonStart();
         Buttons.Instance.TextStart();
         MoveCamera.Instance.StartCamPos();
+        StartCoroutine(Buttons.Instance.StartBarAyEnum());
     }
 
     public void RunnerCount()

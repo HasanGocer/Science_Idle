@@ -148,8 +148,6 @@ public class BuyPlane : MonoSingleton<BuyPlane>
         Buttons.Instance.researchPlaneButton.gameObject.SetActive(false);
         Buttons.Instance.tableAddedButton.gameObject.SetActive(true);
         Buttons.Instance.tableAddedButton.enabled = true;
-        Buttons.Instance.StartBarButton.gameObject.SetActive(true);
-        Buttons.Instance.StartBarButton.enabled = true;
         BuyPlane.Instance.tableCountMaxBool = false;
     }
 
@@ -168,7 +166,6 @@ public class BuyPlane : MonoSingleton<BuyPlane>
         if (tableCountMaxBool)
         {
             Buttons.Instance.tableAddedButton.gameObject.SetActive(false);
-            Buttons.Instance.StartBarButton.gameObject.SetActive(false);
             Buttons.Instance.researchPlaneButton.gameObject.SetActive(true);
         }
     }

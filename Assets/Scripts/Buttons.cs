@@ -18,18 +18,21 @@ public class Buttons : MonoSingleton<Buttons>
     [SerializeField] private Button _settingButton;
     [SerializeField] private GameObject _settingGame;
 
+    [SerializeField] private GameObject firstTouchGame;
+    [SerializeField] private Button firstTouchButton;
+
     public Button runnerAddedButton, bobinCountButton, moneyPlaneButton;
     public Text runnerAddedText, bobinCountText, moneyPlaneText;
 
-    public Button tableAddedButton, StartBarButton, researchPlaneButton, auctionButton;
-    public Text tableAddedText, StartBarText, researchPlaneText;
+    public Button tableAddedButton, researchPlaneButton, auctionButton;
+    public Text tableAddedText, researchPlaneText;
 
 
 
 
     private void Start()
     {
-        
+
         if (GameManager.Instance.sound == 1)
         {
             _soundButton.gameObject.GetComponent<Image>().sprite = _green;
@@ -59,10 +62,10 @@ public class Buttons : MonoSingleton<Buttons>
         runnerAddedButton.onClick.AddListener(AddedRunner);
         bobinCountButton.onClick.AddListener(BobinCount);
         tableAddedButton.onClick.AddListener(AddedTable);
-        StartBarButton.onClick.AddListener(StartBar);
         researchPlaneButton.onClick.AddListener(ResearchPlaneButton);
         moneyPlaneButton.onClick.AddListener(MoneyPlaneButton);
         auctionButton.onClick.AddListener(AuctionButton);
+        firstTouchButton.onClick.AddListener(FirstTouchButton);
     }
 
     public void TextStart()
@@ -92,7 +95,6 @@ public class Buttons : MonoSingleton<Buttons>
             runnerAddedButton.enabled = false;
             BuyPlane.Instance.runnerCountMaxBool = true;
         }
-        StartBarText.text = "2";
 
         if (BuyPlane.Instance.runnerCountMaxBool && BuyPlane.Instance.BobinCountMaxBool)
         {
@@ -178,32 +180,19 @@ public class Buttons : MonoSingleton<Buttons>
         {
             MoneySystem.Instance.ResearchTextRevork((int)(ItemData.Instance.fieldPrice.tableCount * -1));
             BuyPlane.Instance.ResearchPlanes[BuyPlane.Instance.ResearchPlanes.Count - 1].GetComponent<TableBuy>().TableBuyWithButton();
+            StartCoroutine(Buttons.Instance.StartBarAyEnum());
         }
+    }
+
+    private void FirstTouchButton()
+    {
+        firstTouchButton.gameObject.SetActive(false);
+        firstTouchGame.SetActive(false);
     }
 
     private void AuctionButton()
     {
         CounterSystem.Instance.CounterFinish();
-    }
-
-    /*private void BarSpeedUpdate()
-    {
-        if (GameManager.Instance.researchPoint >= ItemData.Instance.fieldPrice.barSpeed && ItemData.Instance.factor.barSpeed <= ItemData.Instance.maxFactor.barSpeed && ItemData.Instance.field.barSpeed > ItemData.Instance.max.barSpeed)
-        {
-            GameManager.Instance.researchPoint -= (int)ItemData.Instance.fieldPrice.barSpeed;
-            GameManager.Instance.SetResearchPoint();
-            ItemData.Instance.factor.barSpeed++;
-            ItemData.Instance.BarSpeed();
-            GameManager.Instance.SetBarSpeed();
-        }
-    }*/
-
-    private void StartBar()
-    {
-        if (GameManager.Instance.researchPoint >= 2)
-        {
-            StartCoroutine(StartBarAyEnum());
-        }
     }
 
     private void MoneyPlaneButton()
@@ -218,7 +207,7 @@ public class Buttons : MonoSingleton<Buttons>
             BuyPlane.Instance.AddNewResearchPlane();
     }
 
-    IEnumerator StartBarAyEnum()
+    public IEnumerator StartBarAyEnum()
     {
         int researchLimit = 0;
 
