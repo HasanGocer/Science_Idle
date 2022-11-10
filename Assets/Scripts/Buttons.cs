@@ -188,6 +188,11 @@ public class Buttons : MonoSingleton<Buttons>
     {
         firstTouchButton.gameObject.SetActive(false);
         firstTouchGame.SetActive(false);
+        MyDoPath.Instance.PlanePlacement();
+        BuyPlane.Instance.StartPlanePlacement();
+        StartCoroutine(RunnerManager.Instance.StartRunner());
+        MoveCamera.Instance.StartCamPos();
+        StartCoroutine(Buttons.Instance.StartBarAyEnum());
     }
 
     private void AuctionButton()

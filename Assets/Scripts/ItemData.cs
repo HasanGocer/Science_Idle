@@ -108,14 +108,8 @@ public class ItemData : MonoSingleton<ItemData>
         {
             field.researchPlane = max.researchPlane;
         }
-
-        MyDoPath.Instance.PlanePlacement();
-        BuyPlane.Instance.StartPlanePlacement();
-        StartCoroutine(RunnerManager.Instance.StartRunner());
         Buttons.Instance.ButtonStart();
         Buttons.Instance.TextStart();
-        MoveCamera.Instance.StartCamPos();
-        StartCoroutine(Buttons.Instance.StartBarAyEnum());
     }
 
     public void RunnerCount()

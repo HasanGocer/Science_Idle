@@ -80,6 +80,7 @@ public class BuyPlane : MonoSingleton<BuyPlane>
             if (ResearchMaterials.Count < i1)
             {
                 obj.GetComponent<MeshRenderer>().material = ResearchMaterials[ResearchMaterials.Count % i1];
+                tableWork
             }
             else
             {
@@ -119,6 +120,7 @@ public class BuyPlane : MonoSingleton<BuyPlane>
         PlaneHideSystem.Instance.MoneyPlaneHide();
         Buttons.Instance.bobinCountText.text = ItemData.Instance.fieldPrice.bobinCount.ToString();
         Buttons.Instance.runnerAddedText.text = ItemData.Instance.fieldPrice.runnerCount.ToString();
+        Buttons.Instance.moneyPlaneText.text = ItemData.Instance.fieldPrice.moneyPlane.ToString();
         Buttons.Instance.moneyPlaneButton.gameObject.SetActive(false);
         Buttons.Instance.bobinCountButton.gameObject.SetActive(true);
         Buttons.Instance.bobinCountButton.enabled = true;
@@ -145,6 +147,7 @@ public class BuyPlane : MonoSingleton<BuyPlane>
         Debug.Log("o");
         PlaneHideSystem.Instance.ResearchPlaneHide();
         Buttons.Instance.tableAddedText.text = ItemData.Instance.fieldPrice.tableCount.ToString();
+        Buttons.Instance.researchPlaneText.text = ItemData.Instance.fieldPrice.researchPlane.ToString();
         Buttons.Instance.researchPlaneButton.gameObject.SetActive(false);
         Buttons.Instance.tableAddedButton.gameObject.SetActive(true);
         Buttons.Instance.tableAddedButton.enabled = true;
