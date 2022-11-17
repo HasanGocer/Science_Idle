@@ -56,7 +56,8 @@ public class PlaneHideSystem : MonoSingleton<PlaneHideSystem>
                 {
                     for (int i = 0; i < moneyHidePlaneCount; i++)
                     {
-                        MoneySystem.Instance.MoneyTextRevork(MyDoPath.Instance.runnerCount * (int)ItemData.Instance.field.addedMoney);
+                        GameManager.Instance.contractCount--;
+                        GameManager.Instance.SetContractCount();
                     }
                     yield return new WaitForSeconds(_moneyRespawnTime);
                 }

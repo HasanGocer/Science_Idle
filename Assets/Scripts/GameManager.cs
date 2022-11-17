@@ -10,8 +10,11 @@ public class GameManager : MonoSingleton<GameManager>
     public int money;
     public int researchPoint;
     public int counterPoint;
+    public int contractType, contractMaxCount, contractCount;
     public int vibration;
     public int sound;
+
+    public bool contractBool;
 
     public void AwakeOP()
     {
@@ -24,7 +27,7 @@ public class GameManager : MonoSingleton<GameManager>
             PlayerPrefs.SetInt("researchPoint", 0);
             researchPoint = PlayerPrefs.GetInt("researchPoint");
         }
-        MoneySystem.Instance.ResearchTextRevork(0);
+        MoneySystem.Instance.ResearchTextRevork(35);
 
         if (PlayerPrefs.HasKey("money"))
         {
@@ -35,7 +38,34 @@ public class GameManager : MonoSingleton<GameManager>
             PlayerPrefs.SetInt("money", 0);
             money = PlayerPrefs.GetInt("money");
         }
-        MoneySystem.Instance.MoneyTextRevork(0);
+        MoneySystem.Instance.MoneyTextRevork(35);
+
+        if (PlayerPrefs.HasKey("contractType"))
+        {
+            contractType = PlayerPrefs.GetInt("contractType");
+        }
+        else
+        {
+            PlayerPrefs.SetInt("contractType", 0);
+        }
+
+        if (PlayerPrefs.HasKey("contractMaxCount"))
+        {
+            contractMaxCount = PlayerPrefs.GetInt("contractMaxCount");
+        }
+        else
+        {
+            PlayerPrefs.SetInt("contractMaxCount", 0);
+        }
+
+        if (PlayerPrefs.HasKey("contractCount"))
+        {
+            contractCount = PlayerPrefs.GetInt("contractCount");
+        }
+        else
+        {
+            PlayerPrefs.SetInt("contractCount", 0);
+        }
 
         if (PlayerPrefs.HasKey("counterPoint"))
         {
@@ -90,7 +120,7 @@ public class GameManager : MonoSingleton<GameManager>
         }
         else
         {
-            PlayerPrefs.SetInt("tableCount",1);
+            PlayerPrefs.SetInt("tableCount", 1);
         }
 
         if (PlayerPrefs.HasKey("moneyPlane"))
@@ -154,6 +184,26 @@ public class GameManager : MonoSingleton<GameManager>
     public void SetMoney()
     {
         PlayerPrefs.SetInt("money", money);
+    }
+
+    public void SetContractType()
+    {
+        PlayerPrefs.SetInt("contractType", contractType);
+    }
+
+    public void SetContractMaxCount()
+    {
+        PlayerPrefs.SetInt("contractMaxCount", contractMaxCount);
+    }
+
+    public void SetContractCount()
+    {
+        PlayerPrefs.SetInt("contractCount", contractCount);
+        ContractSystem.Instance.counter.text = contractCount.ToString();
+       ContractSystem.Instance. contractViewText.text = GameManager.Instance.contractCount.ToString();
+
+        if (contractCount <= 0)
+            ContractSystem.Instance.FinishContract();
     }
 
     public void SetCounterPoint()

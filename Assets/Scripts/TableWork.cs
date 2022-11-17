@@ -16,13 +16,14 @@ public class TableWork : MonoBehaviour
     {
         while (true)
         {
-            if (!_bar && !hide)
+            if (!_bar && !hide && GameManager.Instance.contractBool)
             {
                 _bar = true;
                 MoneySystem.Instance.ResearchTextRevork(barPrice * -1);
                 StartCoroutine(Bar());
                 yield return new WaitForSeconds(0.1f);
-                MoneySystem.Instance.MoneyTextRevork((int)ItemData.Instance.field.addedMoney);
+                GameManager.Instance.contractCount--;
+                GameManager.Instance.SetContractCount();
                 workWithStickman.SetActive(true);
             }
             else

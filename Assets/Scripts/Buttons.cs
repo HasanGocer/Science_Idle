@@ -193,6 +193,7 @@ public class Buttons : MonoSingleton<Buttons>
         StartCoroutine(RunnerManager.Instance.StartRunner());
         MoveCamera.Instance.StartCamPos();
         StartCoroutine(Buttons.Instance.StartBarAyEnum());
+        ContractSystem.Instance.ContractSystemStart();
     }
 
     private void AuctionButton()
