@@ -46,8 +46,11 @@ public class ContractSystem : MonoSingleton<ContractSystem>
 
     public void FinishContract()
     {
+        _contractViewPanel.SetActive(false);
+        _contractPanel.SetActive(false);
         _finishContractPanel.SetActive(true);
         GameManager.Instance.contractBool = false;
+        GameManager.Instance.SetContractBool();
         finishCountText.text = (GameManager.Instance.contractMaxCount * _budgetFactor).ToString();
         StartCoroutine(BarStart(-300, 300));
     }
@@ -156,6 +159,7 @@ public class ContractSystem : MonoSingleton<ContractSystem>
         counter.text = GameManager.Instance.contractCount.ToString();
         contractViewText.text = GameManager.Instance.contractCount.ToString();
         GameManager.Instance.contractBool = true;
+        GameManager.Instance.SetContractBool();
         contractViewImage.sprite = contractImageTemplate[newContract[count].contractTypeCount];
         contractViewText.text = GameManager.Instance.contractCount.ToString();
     }

@@ -78,6 +78,18 @@ public class GameManager : MonoSingleton<GameManager>
         }
         Buttons.Instance.counterPointText.text = counterPoint.ToString();
 
+        if (PlayerPrefs.HasKey("contractBool"))
+        {
+            if (PlayerPrefs.GetInt("contractBool") == 1)
+                contractBool = true;
+            else
+                contractBool = false;
+        }
+        else
+        {
+            PlayerPrefs.SetInt("contractBool", 0);
+        }
+
         if (PlayerPrefs.HasKey("vibration"))
         {
             vibration = PlayerPrefs.GetInt("vibration");
@@ -196,11 +208,19 @@ public class GameManager : MonoSingleton<GameManager>
         PlayerPrefs.SetInt("contractMaxCount", contractMaxCount);
     }
 
+    public void SetContractBool()
+    {
+        if (contractBool == true)
+            PlayerPrefs.SetInt("contractBool", 1);
+        else
+            PlayerPrefs.SetInt("contractBool", 0);
+    }
+
     public void SetContractCount()
     {
         PlayerPrefs.SetInt("contractCount", contractCount);
         ContractSystem.Instance.counter.text = contractCount.ToString();
-       ContractSystem.Instance. contractViewText.text = GameManager.Instance.contractCount.ToString();
+        ContractSystem.Instance.contractViewText.text = GameManager.Instance.contractCount.ToString();
 
         if (contractCount <= 0)
             ContractSystem.Instance.FinishContract();
