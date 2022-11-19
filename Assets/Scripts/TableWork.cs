@@ -23,6 +23,8 @@ public class TableWork : MonoBehaviour
                 StartCoroutine(Bar());
                 yield return new WaitForSeconds(0.1f);
                 GameManager.Instance.contractCount--;
+                if (GameManager.Instance.contractCount < 0)
+                    GameManager.Instance.contractCount = 0;
                 GameManager.Instance.SetContractCount();
                 workWithStickman.SetActive(true);
             }

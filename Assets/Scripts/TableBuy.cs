@@ -51,6 +51,7 @@ public class TableBuy : MonoBehaviour
                 Buttons.Instance.tableAddedText.text = "Full";
                 BuyPlane.Instance.NewResearchPlaneButton();
             }
+            StartCoroutine(Buttons.Instance.StartBarAyEnum());
         }
     }
 }

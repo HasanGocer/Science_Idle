@@ -110,6 +110,14 @@ public class ItemData : MonoSingleton<ItemData>
         }
         Buttons.Instance.ButtonStart();
         Buttons.Instance.TextStart();
+
+        if (PlayerPrefs.HasKey("firstGame"))
+        {
+            if (PlayerPrefs.GetInt("firstGame") == 1)
+            {
+                Buttons.Instance.FirstTouchButton();
+            }
+        }
     }
 
     public void RunnerCount()

@@ -59,18 +59,10 @@ public class MyDoPath : MonoSingleton<MyDoPath>
         }
     }*/
 
-    public void StartNewRunner(GameObject obj, bool downPlane, int planeCount)
+    public void StartNewRunner(GameObject obj, int planeCount)
     {
-        if (downPlane)
-        {
             runnerTime = BallTower[planeCount].length * (ItemData.Instance.field.runnerSpeed);
             obj.transform.DOPath(BallTower[planeCount].BallsV3, runnerTime, PathType.CatmullRom, PathMode.Full3D, 20, Color.black).SetEase(Ease.Linear).SetLoops(1000);
-        }
-        else
-        {
-            runnerTime = BallTower[planeCount].length * (ItemData.Instance.field.runnerSpeed);
-            obj.transform.DOPath(BallTower[planeCount].BallsV3, runnerTime, PathType.CatmullRom, PathMode.Full3D, 20, Color.black).SetEase(Ease.Linear).SetLoops(1000);
-        }
     }
 
     public void AddedNewWay()

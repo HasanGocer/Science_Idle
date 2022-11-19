@@ -132,19 +132,17 @@ public class BuyPlane : MonoSingleton<BuyPlane>
     public void AddNewResearchPlane()
     {
         MoneySystem.Instance.ResearchTextRevork(ItemData.Instance.fieldPrice.researchPlane * -1);
-        Debug.Log("q");
         GameObject obj = ObjectPool.Instance.GetPooledObject(OPResearchPlaneCount);
         obj.transform.position = new Vector3(researchPlaneTempaltePosition.transform.position.x, researchPlaneTempaltePosition.transform.position.y + (researchPlaneDistance * ItemData.Instance.field.researchPlane), researchPlaneTempaltePosition.transform.position.z);
         obj.GetComponent<MeshRenderer>().material = ResearchMaterials[ItemData.Instance.field.researchPlane];
-        obj.GetComponent<TableBuy>().TableBuyWithButton();
         ItemData.Instance.factor.researchPlane++;
         GameManager.Instance.SetResearchPlane();
         MoveCamera.Instance.ResearchCameraNewPos();
         obj.GetComponent<TableBuy>().TableCount = 1;
         StartCoroutine(Partical(obj));
         ResearchPlanes.Add(obj);
-        Debug.Log("o");
         PlaneHideSystem.Instance.ResearchPlaneHide();
+        obj.GetComponent<TableBuy>().TableBuyWithButton();
         Buttons.Instance.tableAddedText.text = ItemData.Instance.fieldPrice.tableCount.ToString();
         Buttons.Instance.researchPlaneText.text = ItemData.Instance.fieldPrice.researchPlane.ToString();
         Buttons.Instance.researchPlaneButton.gameObject.SetActive(false);

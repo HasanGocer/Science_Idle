@@ -27,8 +27,7 @@ public class Buttons : MonoSingleton<Buttons>
     public Button tableAddedButton, researchPlaneButton, auctionButton;
     public Text tableAddedText, researchPlaneText;
 
-
-
+    public GameObject GeneralPanel;
 
     private void Start()
     {
@@ -89,7 +88,7 @@ public class Buttons : MonoSingleton<Buttons>
             BuyPlane.Instance.BobinCountMaxBool = true;
         }
         runnerAddedText.text = ItemData.Instance.fieldPrice.runnerCount.ToString();
-        if (ItemData.Instance.field.bobinCount % MyDoPath.Instance.runnerCount == 0)
+        if (ItemData.Instance.field.runnerCount % MyDoPath.Instance.runnerCount == 0)
         {
             runnerAddedText.text = "Full";
             runnerAddedButton.enabled = false;
@@ -180,11 +179,10 @@ public class Buttons : MonoSingleton<Buttons>
         {
             MoneySystem.Instance.ResearchTextRevork((int)(ItemData.Instance.fieldPrice.tableCount * -1));
             BuyPlane.Instance.ResearchPlanes[BuyPlane.Instance.ResearchPlanes.Count - 1].GetComponent<TableBuy>().TableBuyWithButton();
-            StartCoroutine(Buttons.Instance.StartBarAyEnum());
         }
     }
 
-    private void FirstTouchButton()
+    public void FirstTouchButton()
     {
         firstTouchButton.gameObject.SetActive(false);
         firstTouchGame.SetActive(false);
@@ -194,6 +192,7 @@ public class Buttons : MonoSingleton<Buttons>
         MoveCamera.Instance.StartCamPos();
         StartCoroutine(Buttons.Instance.StartBarAyEnum());
         ContractSystem.Instance.ContractSystemStart();
+        PlayerPrefs.SetInt("firstGame", 1);
     }
 
     private void AuctionButton()

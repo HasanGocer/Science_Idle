@@ -16,6 +16,11 @@ public class CounterSystem : MonoSingleton<CounterSystem>
     {
         GameManager.Instance.counterPoint += count;
         GameManager.Instance.SetCounterPoint();
+        if (GameManager.Instance.counterPoint < 0)
+        {
+            GameManager.Instance.counterPoint = 0;
+
+        }
         Buttons.Instance.counterPointText.text = GameManager.Instance.counterPoint.ToString();
     }
 
