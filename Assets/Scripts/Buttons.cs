@@ -192,6 +192,7 @@ public class Buttons : MonoSingleton<Buttons>
         MoveCamera.Instance.StartCamPos();
         StartCoroutine(Buttons.Instance.StartBarAyEnum());
         ContractSystem.Instance.ContractSystemStart();
+        EventSystem.Instance.EventSystemStart();
         PlayerPrefs.SetInt("firstGame", 1);
     }
 
