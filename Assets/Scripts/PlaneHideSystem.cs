@@ -57,6 +57,8 @@ public class PlaneHideSystem : MonoSingleton<PlaneHideSystem>
                     for (int i = 0; i < moneyHidePlaneCount; i++)
                     {
                         GameManager.Instance.contractCount--;
+                        if (GameManager.Instance.contractCount < 0)
+                            GameManager.Instance.contractCount = 0;
                         GameManager.Instance.SetContractCount();
                     }
                     yield return new WaitForSeconds(_moneyRespawnTime);
