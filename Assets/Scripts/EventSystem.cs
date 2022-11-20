@@ -24,6 +24,7 @@ public class EventSystem : MonoSingleton<EventSystem>
     {
         eventButtons[0].onClick.AddListener(EventPanelButton1);
         eventButtons[1].onClick.AddListener(EventPanelButton2);
+        eventButtons[2].onClick.AddListener(EventPanelButton3);
     }
 
     public IEnumerator RandomEvenent(int maxRandom›nteger)
@@ -50,6 +51,14 @@ public class EventSystem : MonoSingleton<EventSystem>
                     int randomMoney = GameManager.Instance.money / 100;
                     eventButtons[1].gameObject.transform.GetChild(0).GetComponent<Text>().text = "- " + randomMoney.ToString() + " Money";
                 }
+                else if (range < 15)
+                {
+                    eventPanel.SetActive(true);
+                    eventText.text = eventStrings[1];
+                    eventButtons[2].gameObject.SetActive(true);
+                    int randomMoney = GameManager.Instance.money / 10;
+                    eventButtons[2].gameObject.transform.GetChild(0).GetComponent<Text>().text = "- " + randomMoney.ToString() + " Money";
+                }
                 else
                     panelOpen = false;
 
@@ -66,6 +75,7 @@ public class EventSystem : MonoSingleton<EventSystem>
         MoneySystem.Instance.MoneyTextRevork(randomMoney);
         eventPanel.SetActive(false);
         panelOpen = false;
+        eventButtons[0].gameObject.SetActive(false);
     }
 
     private void EventPanelButton2()
@@ -76,5 +86,17 @@ public class EventSystem : MonoSingleton<EventSystem>
         MoneySystem.Instance.MoneyTextRevork(randomMoney * -1);
         eventPanel.SetActive(false);
         panelOpen = false;
+        eventButtons[1].gameObject.SetActive(false);
+    }
+
+    private void EventPanelButton3()
+    {
+        int randomMoney = GameManager.Instance.money / 10;
+        eventButtons[1].gameObject.SetActive(false);
+        eventButtons[1].gameObject.transform.GetChild(0).GetComponent<Text>().text = "+ " + randomMoney.ToString() + " Money";
+        MoneySystem.Instance.MoneyTextRevork(randomMoney);
+        eventPanel.SetActive(false);
+        panelOpen = false;
+        eventButtons[2].gameObject.SetActive(false);
     }
 }
