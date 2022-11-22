@@ -23,11 +23,9 @@ public class ContractSystem : MonoSingleton<ContractSystem>
     [SerializeField] private GameObject _contractPanel, _contractViewPanel, _finishContractPanel;
     [SerializeField] private Image contractViewImage;
     public Text contractViewText;
-    [SerializeField] bool handStop;
+    [SerializeField] private int _finishMoneyFactor;
     [SerializeField] private Text finishCountText;
     [SerializeField] Button addFinishButton, freeFinishButton;
-
-    [SerializeField] private Image hand;
 
     public Button openContractButton, closeContractButton;
 
@@ -40,7 +38,7 @@ public class ContractSystem : MonoSingleton<ContractSystem>
         contractButton[2].onClick.AddListener(() => ContractSelect(2));
         contractButton[3].onClick.AddListener(() => ContractSelect(3));
         contractButton[4].onClick.AddListener(() => ContractSelect(4));
-        addFinishButton.onClick.AddListener(TouchBar);
+        addFinishButton.onClick.AddListener(() => TouchBar(_finishMoneyFactor));
         freeFinishButton.onClick.AddListener(FreeFinish);
     }
 
@@ -52,7 +50,6 @@ public class ContractSystem : MonoSingleton<ContractSystem>
         GameManager.Instance.contractBool = false;
         GameManager.Instance.SetContractBool();
         finishCountText.text = (GameManager.Instance.contractMaxCount * _budgetFactor).ToString();
-        StartCoroutine(BarStart(-300, 300));
     }
 
     public void ContractPanelOpen()
@@ -84,45 +81,10 @@ public class ContractSystem : MonoSingleton<ContractSystem>
         return contract;
     }
 
-    public IEnumerator BarStart(int firstPos, int lastPos)
-    {
-        int factor = 1;
-        while (true)
-        {
-            if (handStop)
-            {
-                factor = 2;
-                StopBar(factor);
-                break;
-            }
-            yield return new WaitForSeconds(0.3f);
-            if (handStop)
-            {
-                factor = 3;
-                StopBar(factor);
-                break;
-            }
-            yield return new WaitForSeconds(0.4f);
-            if (handStop)
-            {
-                factor = 2;
-                StopBar(factor);
-                break;
-            }
-            yield return new WaitForSeconds(0.3f);
-        }
-    }
-
-    public void TouchBar()
-    {
-        handStop = true;
-    }
-
-    public void StopBar(int count)
+    public void TouchBar(int count)
     {
         MoneySystem.Instance.MoneyTextRevork(GameManager.Instance.contractMaxCount * _budgetFactor * count);
         _finishContractPanel.SetActive(false);
-        handStop = false;
     }
 
     public void FreeFinish()
@@ -130,7 +92,6 @@ public class ContractSystem : MonoSingleton<ContractSystem>
         MoneySystem.Instance.MoneyTextRevork(GameManager.Instance.contractMaxCount * _budgetFactor);
         _finishContractPanel.SetActive(false);
     }
-
 
     public void NewContractView()
     {
