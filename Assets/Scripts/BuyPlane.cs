@@ -104,7 +104,6 @@ public class BuyPlane : MonoSingleton<BuyPlane>
     public void AddNewMoneyPlane()
     {
         MoneySystem.Instance.MoneyTextRevork(ItemData.Instance.fieldPrice.moneyPlane * -1);
-
         GameObject obj = ObjectPool.Instance.GetPooledObject(OPMoneyPlaneCount);
         obj.transform.position = new Vector3(moneyPlaneTempaltePosition.transform.position.x, moneyPlaneTempaltePosition.transform.position.y + (moneyPlaneDistance * ItemData.Instance.field.moneyPlane), moneyPlaneTempaltePosition.transform.position.z);
         obj.GetComponent<BobinManager>().PlaneCount = ItemData.Instance.factor.moneyPlane;
@@ -116,6 +115,9 @@ public class BuyPlane : MonoSingleton<BuyPlane>
         MoveCamera.Instance.MoneyCameraNewPos();
         StartCoroutine(Partical(obj));
         MoneyPlanes.Add(obj);
+        if (MoneyPlanes.Count > PlaneHideSystem.Instance.planeLimit)
+            MoneyPlanes.RemoveAt(0);
+
         PlaneHideSystem.Instance.MoneyPlaneHide();
         Buttons.Instance.bobinCountText.text = ItemData.Instance.fieldPrice.bobinCount.ToString();
         Buttons.Instance.runnerAddedText.text = ItemData.Instance.fieldPrice.runnerCount.ToString();
@@ -141,6 +143,8 @@ public class BuyPlane : MonoSingleton<BuyPlane>
         obj.GetComponent<TableBuy>().TableCount = 1;
         StartCoroutine(Partical(obj));
         ResearchPlanes.Add(obj);
+        if (ResearchPlanes.Count > PlaneHideSystem.Instance.planeLimit)
+            ResearchPlanes.RemoveAt(0);
         PlaneHideSystem.Instance.ResearchPlaneHide();
         obj.GetComponent<TableBuy>().TableBuyWithButton();
         Buttons.Instance.tableAddedText.text = ItemData.Instance.fieldPrice.tableCount.ToString();

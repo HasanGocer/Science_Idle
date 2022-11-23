@@ -219,16 +219,17 @@ public class Buttons : MonoSingleton<Buttons>
 
         if (PlaneHideSystem.Instance.researchHidePlaneCount > 0)
         {
-            researchLimit = ItemData.Instance.field.researchPlane - PlaneHideSystem.Instance.planeLimit;
+            researchLimit = PlaneHideSystem.Instance.planeLimit;
         }
         else
         {
-            researchLimit = 0;
+            researchLimit = ItemData.Instance.field.researchPlane;
         }
 
-        for (int i1 = researchLimit; i1 < ItemData.Instance.field.researchPlane; i1++)
+        for (int i1 = 0; i1 < researchLimit; i1++)
         {
-            if (i1 != ItemData.Instance.field.researchPlane - 1)
+            print(i1);
+            if (i1 != researchLimit - 1)
             {
                 for (int i2 = 0; i2 < BuyPlane.Instance.ResearchPlanes[0].GetComponent<TableBuy>().TableTemplateCount; i2++)
                 {

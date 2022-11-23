@@ -50,7 +50,7 @@ public class PlaneHideSystem : MonoSingleton<PlaneHideSystem>
     {
         while (true)
         {
-            if (moneyHidePlaneCount > 0)
+            if (moneyHidePlaneCount > 0 && GameManager.Instance.contractBool)
             {
                 for (int i1 = 0; i1 < MyDoPath.Instance.runnerCount; i1++)
                 {
