@@ -184,16 +184,27 @@ public class Buttons : MonoSingleton<Buttons>
 
     public void FirstTouchButton()
     {
+        print(1);
         firstTouchButton.gameObject.SetActive(false);
+        print(2);
         firstTouchGame.SetActive(false);
+        print(3);
         MyDoPath.Instance.PlanePlacement();
+        print(4);
         BuyPlane.Instance.StartPlanePlacement();
+        print(5);
         StartCoroutine(RunnerManager.Instance.StartRunner());
+        print(6);
         MoveCamera.Instance.StartCamPos();
+        print(7);
         StartCoroutine(Buttons.Instance.StartBarAyEnum());
+        print(8);
         ContractSystem.Instance.ContractSystemStart();
+        print(9);
         EventSystem.Instance.EventSystemStart();
+        print(10);
         PlayerPrefs.SetInt("firstGame", 1);
+        print(11);
     }
 
     private void AuctionButton()
@@ -217,7 +228,7 @@ public class Buttons : MonoSingleton<Buttons>
     {
         int researchLimit = 0;
 
-        if (PlaneHideSystem.Instance.researchHidePlaneCount > 0)
+        if (PlaneHideSystem.Instance.planeLimit <= ItemData.Instance.field.researchPlane)
         {
             researchLimit = PlaneHideSystem.Instance.planeLimit;
         }

@@ -6546,7 +6546,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camPosMoneyTemplate: {x: 0, y: 18, z: -10}
-  camPosResearchTemplate: {x: 0, y: 18, z: -25}
+  camPosResearchTemplate: {x: 0, y: 26, z: -20}
   moneyTempatePos: {x: 0, y: 0, z: 0}
   ResearchTemplatePos: {x: 0, y: 0, z: 0}
   planeLimit: 7
