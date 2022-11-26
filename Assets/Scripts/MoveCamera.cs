@@ -9,7 +9,7 @@ public class MoveCamera : MonoSingleton<MoveCamera>
     public Vector3 camPosResearchTemplate;
     public Vector3 moneyTempatePos, ResearchTemplatePos;
     [SerializeField] private int planeLimit;
-
+    public bool rightSidePos;
     [SerializeField] private float _moveTime;
     public bool move;
 
@@ -39,6 +39,7 @@ public class MoveCamera : MonoSingleton<MoveCamera>
             transform.position = new Vector3(moneyTempatePos.x, moneyTempatePos.y + camPosMoneyTemplate.y * ItemData.Instance.field.moneyPlane, moneyTempatePos.z + camPosMoneyTemplate.z * planeLimit);
         }
         SwipSystem.Instance.stayMoneyPlane = true;
+        rightSidePos = false;
     }
 
     public void MoneyCameraNewPos()
@@ -53,6 +54,9 @@ public class MoveCamera : MonoSingleton<MoveCamera>
 
         }
         StartCoroutine(DoMoveCamera(SwipSystem.Instance.rightSideObject));
+        rightSidePos = true;
+        if (!PlayerPrefs.HasKey("firstGameTap"))
+            Buttons.Instance.tapTutorial.SetActive(true);
     }
 
     public void ResearchCameraNewPos()
@@ -66,5 +70,6 @@ public class MoveCamera : MonoSingleton<MoveCamera>
             SwipSystem.Instance.leftSideObject.transform.position = new Vector3(ResearchTemplatePos.x, ResearchTemplatePos.y + camPosResearchTemplate.y * ItemData.Instance.field.researchPlane, ResearchTemplatePos.z + camPosResearchTemplate.z * planeLimit);
         }
         StartCoroutine(DoMoveCamera(SwipSystem.Instance.leftSideObject));
+        rightSidePos = false;
     }
 }

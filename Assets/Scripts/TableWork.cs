@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class TableWork : MonoBehaviour
 {
     [SerializeField] private Image barImage;
+    [SerializeField] private Image barSpeedImage;
     private bool _bar;
     public bool hide;
     public int barPrice = 2;
@@ -42,8 +43,17 @@ public class TableWork : MonoBehaviour
         {
             timer += Time.deltaTime / barTime;
             if (SpeedBarOption.Instance.touchInScreen)
-                timer += Time.deltaTime / barTime;
+            {
+                timer += (Time.deltaTime * 2) / barTime;
+                barSpeedImage.gameObject.SetActive(true);
+            }
+            else
+            {
+                barSpeedImage.gameObject.SetActive(false);
+            }
             barImage.fillAmount = Mathf.Lerp(0, 1, timer);
+            barSpeedImage.fillAmount = Mathf.Lerp(0, 1, timer);
+
             yield return new WaitForSeconds(Time.deltaTime);
             if (barImage.fillAmount == 1)
             {

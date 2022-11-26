@@ -29,6 +29,8 @@ public class Buttons : MonoSingleton<Buttons>
 
     public GameObject GeneralPanel;
 
+    public GameObject contractTutorial,tapTutorial;
+
     private void Start()
     {
 
@@ -184,27 +186,18 @@ public class Buttons : MonoSingleton<Buttons>
 
     public void FirstTouchButton()
     {
-        print(1);
+        if (!PlayerPrefs.HasKey("firstGame"))
+            contractTutorial.SetActive(true);
         firstTouchButton.gameObject.SetActive(false);
-        print(2);
         firstTouchGame.SetActive(false);
-        print(3);
         MyDoPath.Instance.PlanePlacement();
-        print(4);
         BuyPlane.Instance.StartPlanePlacement();
-        print(5);
         StartCoroutine(RunnerManager.Instance.StartRunner());
-        print(6);
         MoveCamera.Instance.StartCamPos();
-        print(7);
         StartCoroutine(Buttons.Instance.StartBarAyEnum());
-        print(8);
         ContractSystem.Instance.ContractSystemStart();
-        print(9);
         EventSystem.Instance.EventSystemStart();
-        print(10);
         PlayerPrefs.SetInt("firstGame", 1);
-        print(11);
     }
 
     private void AuctionButton()
@@ -239,7 +232,6 @@ public class Buttons : MonoSingleton<Buttons>
 
         for (int i1 = 0; i1 < researchLimit; i1++)
         {
-            print(i1);
             if (i1 != researchLimit - 1)
             {
                 for (int i2 = 0; i2 < BuyPlane.Instance.ResearchPlanes[0].GetComponent<TableBuy>().TableTemplateCount; i2++)

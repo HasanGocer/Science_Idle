@@ -54,6 +54,7 @@ public class ContractSystem : MonoSingleton<ContractSystem>
 
     public void ContractPanelOpen()
     {
+        Buttons.Instance.contractTutorial.SetActive(false);
         if (!GameManager.Instance.contractBool)
         {
             _contractPanel.SetActive(true);
