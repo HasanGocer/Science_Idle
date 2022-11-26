@@ -70,6 +70,9 @@ public class BuyPlane : MonoSingleton<BuyPlane>
             }
             obj.GetComponent<BobinManager>().PlaneCount = i1;
             MoneyPlanes.Add(obj);
+            PlaneHideSystem.Instance.MoneyPlaneHide();
+            if (MoneyPlanes.Count > PlaneHideSystem.Instance.planeLimit)
+                MoneyPlanes.RemoveAt(0);
         }
 
         for (int i1 = researchLimit; i1 < ItemData.Instance.field.researchPlane; i1++)
@@ -98,6 +101,9 @@ public class BuyPlane : MonoSingleton<BuyPlane>
             obj.GetComponent<TableBuy>().TablePlacement();
             obj.GetComponent<TableBuy>().PlaneCount = i1;
             ResearchPlanes.Add(obj);
+            PlaneHideSystem.Instance.ResearchPlaneHide();
+            if (ResearchPlanes.Count > PlaneHideSystem.Instance.planeLimit)
+                ResearchPlanes.RemoveAt(0);
         }
     }
 
@@ -115,10 +121,10 @@ public class BuyPlane : MonoSingleton<BuyPlane>
         MoveCamera.Instance.MoneyCameraNewPos();
         StartCoroutine(Partical(obj));
         MoneyPlanes.Add(obj);
+        PlaneHideSystem.Instance.MoneyPlaneHide();
         if (MoneyPlanes.Count > PlaneHideSystem.Instance.planeLimit)
             MoneyPlanes.RemoveAt(0);
 
-        PlaneHideSystem.Instance.MoneyPlaneHide();
         Buttons.Instance.bobinCountText.text = ItemData.Instance.fieldPrice.bobinCount.ToString();
         Buttons.Instance.runnerAddedText.text = ItemData.Instance.fieldPrice.runnerCount.ToString();
         Buttons.Instance.moneyPlaneText.text = ItemData.Instance.fieldPrice.moneyPlane.ToString();
@@ -143,9 +149,9 @@ public class BuyPlane : MonoSingleton<BuyPlane>
         obj.GetComponent<TableBuy>().TableCount = 1;
         StartCoroutine(Partical(obj));
         ResearchPlanes.Add(obj);
+        PlaneHideSystem.Instance.ResearchPlaneHide();
         if (ResearchPlanes.Count > PlaneHideSystem.Instance.planeLimit)
             ResearchPlanes.RemoveAt(0);
-        PlaneHideSystem.Instance.ResearchPlaneHide();
         obj.GetComponent<TableBuy>().TableBuyWithButton();
         Buttons.Instance.tableAddedText.text = ItemData.Instance.fieldPrice.tableCount.ToString();
         Buttons.Instance.researchPlaneText.text = ItemData.Instance.fieldPrice.researchPlane.ToString();
