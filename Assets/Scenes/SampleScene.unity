@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2138677392}
-  m_IndirectSpecularColor: {r: 0.15457457, g: 0.15929843, b: 0.25466532, a: 1}
+  m_IndirectSpecularColor: {r: 0.15457445, g: 0.15929838, b: 0.2546651, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2197,6 +2197,7 @@ GameObject:
   - component: {fileID: 351518631}
   - component: {fileID: 351518630}
   - component: {fileID: 351518629}
+  - component: {fileID: 351518632}
   m_Layer: 5
   m_Name: ContractButton
   m_TagString: Untagged
@@ -2306,6 +2307,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 351518627}
   m_CullTransparentMesh: 1
+--- !u!95 &351518632
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 351518627}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8ef47be1313d502429259aae92ed39d0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &355840162
 GameObject:
   m_ObjectHideFlags: 0
@@ -6646,6 +6666,7 @@ MonoBehaviour:
   moneyTempatePos: {x: 0, y: 0, z: 0}
   ResearchTemplatePos: {x: 0, y: 0, z: 0}
   planeLimit: 7
+  rightSidePos: 0
   _moveTime: 2
   move: 0
 --- !u!1 &1692699267
@@ -10094,6 +10115,8 @@ MonoBehaviour:
   tableAddedText: {fileID: 1031265067}
   researchPlaneText: {fileID: 765932454}
   GeneralPanel: {fileID: 1618464514}
+  contractTutorial: {fileID: 0}
+  tapTutorial: {fileID: 0}
 --- !u!114 &7627590490061665288
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10335,14 +10358,21 @@ MonoBehaviour:
   eventPanel: {fileID: 616687773}
   eventText: {fileID: 1052004525}
   eventStrings:
-  - "Laboratuvara bir vergi memuru geldi. Hesaplamada bir hata yapt\u0131klar\u0131n\u0131
-    ve size fazladan ald\u0131klar\u0131 vergiyi iade etmeye geldiklerini s\xF6ylediler"
-  - "Laboratuvara bir vergi memuru geldi. Hesaplamada bir hata yapt\u0131klar\u0131n\u0131
-    ve sizden eksik para ald\u0131klar\u0131n\u0131 vergiyi tahsil etmeye geldiklerini
-    s\xF6ylediler"
-  - "Bir \u015Firket size yat\u0131r\u0131m yapmak istedi\u011Fini iletti. Sizin
-    projelerinizi daha h\u0131zl\u0131 hayata ge\xE7irmeniz i\xE7in size bir miktar
-    para \xF6neriyor. "
+  - A tax officer came to the lab. They said they made a mistake in the calculation
+    and came to you to refund the extra tax.
+  - A tax officer came to the lab. They said that they made a mistake in the calculation
+    and they took the missing money from you and they came to collect the tax.
+  - A company has told you that it wants to invest. He offers you some money to bring
+    your projects to life faster.
+  - There was a fire in your lab.
+  - Your research has hurt some people. Your loss has been declared.
+  - Your research has been verified by universities and agreed to buy your products.
+  - You lost the court. You will have to pay some amount.
+  - Some of your products broke sales records. Your partners pay bonuses for fulfilling
+    the contract.
+  - New production record, congratulations.
+  - The campaign you launched has brought fame to your lab and your partners are
+    happy about it.
   eventButtons:
   - {fileID: 1231414849}
   - {fileID: 1337188389}
