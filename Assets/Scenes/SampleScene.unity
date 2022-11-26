@@ -5143,6 +5143,7 @@ GameObject:
   - component: {fileID: 1280704725}
   - component: {fileID: 1280704724}
   - component: {fileID: 1280704723}
+  - component: {fileID: 1280704726}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -5226,6 +5227,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1280704721}
   m_CullTransparentMesh: 1
+--- !u!114 &1280704726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1280704721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1299235625
 GameObject:
   m_ObjectHideFlags: 0
@@ -7913,6 +7929,88 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1942147718}
   m_CullTransparentMesh: 1
+--- !u!1 &1968456821
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1968456823}
+  - component: {fileID: 1968456822}
+  m_Layer: 0
+  m_Name: White
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!212 &1968456822
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1968456821}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 12fa28db31dcb8241a1a5e98ef4d353a, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 5, y: 5}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!4 &1968456823
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1968456821}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -57.152283, y: -150.31152, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1976871455
 GameObject:
   m_ObjectHideFlags: 0
@@ -10115,8 +10213,8 @@ MonoBehaviour:
   tableAddedText: {fileID: 1031265067}
   researchPlaneText: {fileID: 765932454}
   GeneralPanel: {fileID: 1618464514}
-  contractTutorial: {fileID: 0}
-  tapTutorial: {fileID: 0}
+  contractTutorial: {fileID: 1968456821}
+  tapTutorial: {fileID: 1968456821}
 --- !u!114 &7627590490061665288
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10301,12 +10399,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   newContract: []
   contractImageTemplate:
-  - {fileID: 21300000, guid: ae8a5bdf1b3a4f646b47c8aeebd9d598, type: 3}
-  - {fileID: 21300000, guid: e5d7a52377356dd41b31a97832b814db, type: 3}
-  - {fileID: 21300000, guid: c9a4b45888520e04db3ab3df78677557, type: 3}
-  - {fileID: 21300000, guid: c07cc1c049d14ba479d9eb11e7761d15, type: 3}
-  - {fileID: 21300000, guid: 69e50719d8f70b74eba8f6ba4e9458aa, type: 3}
-  - {fileID: 21300000, guid: 8c272547439a4d7418b6dc2c51eb352d, type: 3}
+  - {fileID: 21300000, guid: 98b1d48fab0e7204ca324b719f33a7b7, type: 3}
+  - {fileID: 21300000, guid: 5f7f1a4d1f8e9524ba182bdff72454d8, type: 3}
+  - {fileID: 21300000, guid: 82456e6f84b085143aaa45f62ed9e58a, type: 3}
+  - {fileID: 21300000, guid: 34713c3c13f9f7a4abecad7d707676ca, type: 3}
+  - {fileID: 21300000, guid: d85df0b91804a7c4e83fbb050d50502c, type: 3}
+  - {fileID: 21300000, guid: 7e329cb1202cdab4a8145e03383d7278, type: 3}
   contractImage:
   - {fileID: 210963238}
   - {fileID: 307509292}
