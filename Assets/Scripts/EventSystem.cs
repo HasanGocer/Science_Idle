@@ -25,6 +25,13 @@ public class EventSystem : MonoSingleton<EventSystem>
         eventButtons[0].onClick.AddListener(EventPanelButton1);
         eventButtons[1].onClick.AddListener(EventPanelButton2);
         eventButtons[2].onClick.AddListener(EventPanelButton3);
+        eventButtons[3].onClick.AddListener(EventPanelButton4);
+        eventButtons[4].onClick.AddListener(EventPanelButton5);
+        eventButtons[5].onClick.AddListener(EventPanelButton6);
+        eventButtons[6].onClick.AddListener(EventPanelButton7);
+        eventButtons[7].onClick.AddListener(EventPanelButton8);
+        eventButtons[8].onClick.AddListener(EventPanelButton9);
+        eventButtons[9].onClick.AddListener(EventPanelButton10);
     }
 
     public IEnumerator RandomEvenent(int maxRandom›nteger)
@@ -48,16 +55,73 @@ public class EventSystem : MonoSingleton<EventSystem>
                     eventPanel.SetActive(true);
                     eventText.text = eventStrings[1];
                     eventButtons[1].gameObject.SetActive(true);
-                    int randomMoney = GameManager.Instance.money / 100;
+                    int randomMoney = GameManager.Instance.money / 10;
                     eventButtons[1].gameObject.transform.GetChild(0).GetComponent<Text>().text = "- " + randomMoney.ToString() + " Money";
                 }
                 else if (range < 15)
                 {
                     eventPanel.SetActive(true);
-                    eventText.text = eventStrings[1];
+                    eventText.text = eventStrings[2];
                     eventButtons[2].gameObject.SetActive(true);
+                    int randomMoney = GameManager.Instance.money / 100;
+                    eventButtons[2].gameObject.transform.GetChild(0).GetComponent<Text>().text = "+ " + randomMoney.ToString() + " Money";
+                }
+                else if (range < 20)
+                {
+                    eventPanel.SetActive(true);
+                    eventText.text = eventStrings[3];
+                    eventButtons[3].gameObject.SetActive(true);
                     int randomMoney = GameManager.Instance.money / 10;
-                    eventButtons[2].gameObject.transform.GetChild(0).GetComponent<Text>().text = "- " + randomMoney.ToString() + " Money";
+                    eventButtons[3].gameObject.transform.GetChild(0).GetComponent<Text>().text = "- " + randomMoney.ToString() + " Money";
+
+                }
+                else if (range < 25)
+                {
+                    eventPanel.SetActive(true);
+                    eventText.text = eventStrings[4];
+                    eventButtons[4].gameObject.SetActive(true);
+                    int randomMoney = GameManager.Instance.money / 100;
+                    eventButtons[4].gameObject.transform.GetChild(0).GetComponent<Text>().text = "- " + randomMoney.ToString() + " Money";
+                }
+                else if (range < 30)
+                {
+                    eventPanel.SetActive(true);
+                    eventText.text = eventStrings[5];
+                    eventButtons[5].gameObject.SetActive(true);
+                    int randomMoney = GameManager.Instance.money / 10;
+                    eventButtons[5].gameObject.transform.GetChild(0).GetComponent<Text>().text = "- " + randomMoney.ToString() + " Money";
+                }
+                else if (range < 35)
+                {
+                    eventPanel.SetActive(true);
+                    eventText.text = eventStrings[6];
+                    eventButtons[6].gameObject.SetActive(true);
+                    int randomMoney = GameManager.Instance.money / 100;
+                    eventButtons[6].gameObject.transform.GetChild(0).GetComponent<Text>().text = "+ " + randomMoney.ToString() + " Money";
+                }
+                else if (range < 40)
+                {
+                    eventPanel.SetActive(true);
+                    eventText.text = eventStrings[7];
+                    eventButtons[7].gameObject.SetActive(true);
+                    int randomMoney = GameManager.Instance.money / 10;
+                    eventButtons[7].gameObject.transform.GetChild(0).GetComponent<Text>().text = "+ " + randomMoney.ToString() + " Money";
+                }
+                else if (range < 45)
+                {
+                    eventPanel.SetActive(true);
+                    eventText.text = eventStrings[8];
+                    eventButtons[8].gameObject.SetActive(true);
+                    int randomMoney = GameManager.Instance.money / 100;
+                    eventButtons[8].gameObject.transform.GetChild(0).GetComponent<Text>().text = "+ " + randomMoney.ToString() + " Money";
+                }
+                else if (range < 50)
+                {
+                    eventPanel.SetActive(true);
+                    eventText.text = eventStrings[9];
+                    eventButtons[8].gameObject.SetActive(true);
+                    int randomMoney = GameManager.Instance.money / 10;
+                    eventButtons[8].gameObject.transform.GetChild(0).GetComponent<Text>().text = "+ " + randomMoney.ToString() + " Money";
                 }
                 else
                     panelOpen = false;
@@ -73,30 +137,94 @@ public class EventSystem : MonoSingleton<EventSystem>
         int randomMoney = GameManager.Instance.money / 100;
         eventButtons[0].gameObject.SetActive(false);
         MoneySystem.Instance.MoneyTextRevork(randomMoney);
-        eventPanel.SetActive(false);
-        panelOpen = false;
+        LastFunc();
         eventButtons[0].gameObject.SetActive(false);
     }
 
     private void EventPanelButton2()
     {
-        int randomMoney = GameManager.Instance.money / 100;
+        int randomMoney = GameManager.Instance.money / 10;
         eventButtons[1].gameObject.SetActive(false);
-        eventButtons[1].gameObject.transform.GetChild(0).GetComponent<Text>().text = "- " + randomMoney.ToString() + " Money";
         MoneySystem.Instance.MoneyTextRevork(randomMoney * -1);
-        eventPanel.SetActive(false);
-        panelOpen = false;
+        LastFunc();
         eventButtons[1].gameObject.SetActive(false);
     }
 
     private void EventPanelButton3()
     {
-        int randomMoney = GameManager.Instance.money / 10;
-        eventButtons[1].gameObject.SetActive(false);
-        eventButtons[1].gameObject.transform.GetChild(0).GetComponent<Text>().text = "+ " + randomMoney.ToString() + " Money";
+        int randomMoney = GameManager.Instance.money / 100;
+        eventButtons[2].gameObject.SetActive(false);
         MoneySystem.Instance.MoneyTextRevork(randomMoney);
+        LastFunc();
+        eventButtons[2].gameObject.SetActive(false);
+    }
+
+    private void EventPanelButton4()
+    {
+        int randomMoney = GameManager.Instance.money / 10;
+        eventButtons[3].gameObject.SetActive(false);
+        MoneySystem.Instance.MoneyTextRevork(randomMoney * -1);
+        LastFunc();
+        eventButtons[3].gameObject.SetActive(false);
+    }
+
+    private void EventPanelButton5()
+    {
+        int randomMoney = GameManager.Instance.money / 100;
+        eventButtons[4].gameObject.SetActive(false);
+        MoneySystem.Instance.MoneyTextRevork(randomMoney * -1);
+        LastFunc();
+        eventButtons[4].gameObject.SetActive(false);
+    }
+
+    private void EventPanelButton6()
+    {
+        int randomMoney = GameManager.Instance.money / 10;
+        eventButtons[5].gameObject.SetActive(false);
+        MoneySystem.Instance.MoneyTextRevork(randomMoney);
+        LastFunc();
+        eventButtons[5].gameObject.SetActive(false);
+    }
+
+    private void EventPanelButton7()
+    {
+        int randomMoney = GameManager.Instance.money / 100;
+        eventButtons[6].gameObject.SetActive(false);
+        MoneySystem.Instance.MoneyTextRevork(randomMoney * -1);
+        LastFunc();
+        eventButtons[6].gameObject.SetActive(false);
+    }
+
+    private void EventPanelButton8()
+    {
+        int randomMoney = GameManager.Instance.money / 10;
+        eventButtons[7].gameObject.SetActive(false);
+        MoneySystem.Instance.MoneyTextRevork(randomMoney);
+        LastFunc();
+        eventButtons[7].gameObject.SetActive(false);
+    }
+
+    private void EventPanelButton9()
+    {
+        int randomMoney = GameManager.Instance.money / 100;
+        eventButtons[8].gameObject.SetActive(false);
+        MoneySystem.Instance.MoneyTextRevork(randomMoney);
+        LastFunc();
+        eventButtons[8].gameObject.SetActive(false);
+    }
+
+    private void EventPanelButton10()
+    {
+        int randomMoney = GameManager.Instance.money / 10;
+        eventButtons[8].gameObject.SetActive(false);
+        MoneySystem.Instance.MoneyTextRevork(randomMoney);
+        LastFunc();
+        eventButtons[8].gameObject.SetActive(false);
+    }
+
+    private void LastFunc()
+    {
         eventPanel.SetActive(false);
         panelOpen = false;
-        eventButtons[2].gameObject.SetActive(false);
     }
 }

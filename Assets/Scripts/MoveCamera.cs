@@ -54,7 +54,7 @@ public class MoveCamera : MonoSingleton<MoveCamera>
 
         }
         StartCoroutine(DoMoveCamera(SwipSystem.Instance.rightSideObject));
-        rightSidePos = true;
+        rightSidePos = false;
         if (!PlayerPrefs.HasKey("firstGameTap"))
             Buttons.Instance.tapTutorial.SetActive(true);
     }
@@ -70,6 +70,6 @@ public class MoveCamera : MonoSingleton<MoveCamera>
             SwipSystem.Instance.leftSideObject.transform.position = new Vector3(ResearchTemplatePos.x, ResearchTemplatePos.y + camPosResearchTemplate.y * ItemData.Instance.field.researchPlane, ResearchTemplatePos.z + camPosResearchTemplate.z * planeLimit);
         }
         StartCoroutine(DoMoveCamera(SwipSystem.Instance.leftSideObject));
-        rightSidePos = false;
+        rightSidePos = true;
     }
 }

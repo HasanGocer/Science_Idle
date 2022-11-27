@@ -27,12 +27,6 @@ public class SwipSystem : MonoSingleton<SwipSystem>
                     vec2Start = touch.position.x;
                     break;
 
-                case TouchPhase.Moved:
-
-                    Debug.Log("Began");
-
-                    break;
-
                 case TouchPhase.Ended:
                     vec2Finish = touch.position.x;
                     SwipSystemFunc(vec2Start, vec2Finish);

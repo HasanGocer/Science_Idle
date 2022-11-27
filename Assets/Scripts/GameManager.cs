@@ -27,7 +27,7 @@ public class GameManager : MonoSingleton<GameManager>
             PlayerPrefs.SetInt("researchPoint", 35);
             researchPoint = PlayerPrefs.GetInt("researchPoint");
         }
-        MoneySystem.Instance.ResearchTextRevork(9999999);
+        MoneySystem.Instance.ResearchTextRevork(0);
 
         if (PlayerPrefs.HasKey("money"))
         {
@@ -38,7 +38,7 @@ public class GameManager : MonoSingleton<GameManager>
             PlayerPrefs.SetInt("money", 35);
             money = PlayerPrefs.GetInt("money");
         }
-        MoneySystem.Instance.MoneyTextRevork(09999999);
+        MoneySystem.Instance.MoneyTextRevork(0);
 
         if (PlayerPrefs.HasKey("contractType"))
         {
