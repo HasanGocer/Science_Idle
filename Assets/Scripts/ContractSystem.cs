@@ -40,6 +40,7 @@ public class ContractSystem : MonoSingleton<ContractSystem>
         contractButton[4].onClick.AddListener(() => ContractSelect(4));
         addFinishButton.onClick.AddListener(() => TouchBar(_finishMoneyFactor));
         freeFinishButton.onClick.AddListener(FreeFinish);
+        contractViewImage.sprite = contractImageTemplate[GameManager.Instance.contractType];
     }
 
     public void FinishContract()
