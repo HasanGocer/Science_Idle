@@ -1543,7 +1543,7 @@ GameObject:
   - component: {fileID: 4598842776393161270}
   - component: {fileID: 2635784759375915539}
   - component: {fileID: 2592674432293777739}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ResearchPlane
   m_TagString: Untagged
   m_Icon: {fileID: 0}

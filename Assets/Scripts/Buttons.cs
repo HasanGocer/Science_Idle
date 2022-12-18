@@ -33,6 +33,7 @@ public class Buttons : MonoSingleton<Buttons>
 
     private void Start()
     {
+        
 
         if (GameManager.Instance.sound == 1)
         {

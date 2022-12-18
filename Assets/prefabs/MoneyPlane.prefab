@@ -120,7 +120,7 @@ GameObject:
   - component: {fileID: 7582271263273296818}
   - component: {fileID: 5682791503389153144}
   - component: {fileID: 123191131440420206}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MoneyPlane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -210,8 +210,6 @@ MonoBehaviour:
   - {fileID: 6421219798931197360}
   bobinCount: 4
   PlaneCount: 0
-  particalSeenTime: 3
-  OPBobinParticalCount: 5
 --- !u!1 &6421219798216659499
 GameObject:
   m_ObjectHideFlags: 0

@@ -16,8 +16,14 @@ public class GameManager : MonoSingleton<GameManager>
 
     public bool contractBool;
 
+
+    private void Start()
+    {
+        GameObject.FindObjectOfType<AdManager>().InitializeAds();
+    }
     public void AwakeOP()
     {
+        
         if (PlayerPrefs.HasKey("researchPoint"))
         {
             researchPoint = PlayerPrefs.GetInt("researchPoint");
