@@ -7,6 +7,7 @@ using UnityEngine;
 public class AdManager : MonoBehaviour
 {
     public static AdManager current;
+    public int count = 0, maxCount = 3;
     public BannerView bannerView;
     public InterstitialAd interstitial;
     public float intertstitialAdTimer = 5;
@@ -26,10 +27,10 @@ public class AdManager : MonoBehaviour
         {
             intertstitialAdTimer -= Time.deltaTime;
         }
-        
+
     }
 
-  
+
     private void RequestBanner()
     {
 #if UNITY_ANDROID
@@ -100,5 +101,5 @@ public class AdManager : MonoBehaviour
     {
         RequestInterstitial();
     }
-  
+
 }

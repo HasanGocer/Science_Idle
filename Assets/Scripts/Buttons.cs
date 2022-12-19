@@ -62,7 +62,7 @@ public class Buttons : MonoSingleton<Buttons>
         ItemData.Field price = ItemData.Instance.fieldPrice;
         GameManager gameManager = GameManager.Instance;
 
-        if (price.runnerCount < gameManager.money)
+        if (price.runnerCount > gameManager.money)
         {
             runnerAddedAdd.gameObject.SetActive(true);
             runnerAddedText.gameObject.SetActive(false);
@@ -73,7 +73,7 @@ public class Buttons : MonoSingleton<Buttons>
             runnerAddedText.gameObject.SetActive(true);
         }
 
-        if (price.bobinCount < gameManager.money)
+        if (price.bobinCount > gameManager.money)
         {
             bobinCountAdd.gameObject.SetActive(true);
             bobinCountText.gameObject.SetActive(false);
@@ -84,7 +84,7 @@ public class Buttons : MonoSingleton<Buttons>
             bobinCountText.gameObject.SetActive(true);
         }
 
-        if (price.moneyPlane < gameManager.money)
+        if (price.moneyPlane > gameManager.money)
         {
             moneyPlaneAdd.gameObject.SetActive(true);
             moneyPlaneText.gameObject.SetActive(false);
@@ -95,7 +95,7 @@ public class Buttons : MonoSingleton<Buttons>
             moneyPlaneText.gameObject.SetActive(true);
         }
 
-        if (price.tableCount < gameManager.money)
+        if (price.tableCount > gameManager.money)
         {
             tableAddedButton.gameObject.SetActive(true);
             tableAddedText.gameObject.SetActive(false);
@@ -106,7 +106,7 @@ public class Buttons : MonoSingleton<Buttons>
             tableAddedText.gameObject.SetActive(true);
         }
 
-        if (price.researchPlane < gameManager.money)
+        if (price.researchPlane > gameManager.money)
         {
             researchPlaneAdd.gameObject.SetActive(true);
             researchPlaneText.gameObject.SetActive(false);
@@ -223,35 +223,56 @@ public class Buttons : MonoSingleton<Buttons>
 
     private void AddedRunner()
     {
+        StartButtonPrice();
         if (GameManager.Instance.money >= ItemData.Instance.fieldPrice.runnerCount && ItemData.Instance.factor.runnerCount <= ItemData.Instance.maxFactor.runnerCount)
         {
             MoneySystem.Instance.MoneyTextRevork((ItemData.Instance.fieldPrice.runnerCount * -1));
             RunnerManager.Instance.NewStartRunner();
         }
         else if (Application.internetReachability != NetworkReachability.NotReachable && ItemData.Instance.factor.runnerCount <= ItemData.Instance.maxFactor.runnerCount)
-            RunnerManager.Instance.NewStartRunner();
+        {
+            if (AdManager.current.IsReadyInterstitialAd()&&AdManager.current.count<= AdManager.current.maxCount)
+            {
+                AdManager.current.interstitial.Show();
+                RunnerManager.Instance.NewStartRunner();
+            }
+        }
     }
 
     private void BobinCount()
     {
+        StartButtonPrice();
         if (GameManager.Instance.money >= ItemData.Instance.fieldPrice.bobinCount && ItemData.Instance.factor.bobinCount <= ItemData.Instance.maxFactor.bobinCount)
         {
             MoneySystem.Instance.MoneyTextRevork((ItemData.Instance.fieldPrice.bobinCount * -1));
             BuyPlane.Instance.MoneyPlanes[BuyPlane.Instance.MoneyPlanes.Count - 1].GetComponent<BobinManager>().BobinBuy();
         }
         else if (Application.internetReachability != NetworkReachability.NotReachable && ItemData.Instance.factor.bobinCount <= ItemData.Instance.maxFactor.bobinCount)
-            BuyPlane.Instance.MoneyPlanes[BuyPlane.Instance.MoneyPlanes.Count - 1].GetComponent<BobinManager>().BobinBuy();
+        {
+            if (AdManager.current.IsReadyInterstitialAd() && AdManager.current.count <= AdManager.current.maxCount)
+            {
+                AdManager.current.interstitial.Show();
+                BuyPlane.Instance.MoneyPlanes[BuyPlane.Instance.MoneyPlanes.Count - 1].GetComponent<BobinManager>().BobinBuy();
+            }
+        }
     }
 
     private void AddedTable()
     {
+        StartButtonPrice();
         if (GameManager.Instance.researchPoint >= ItemData.Instance.fieldPrice.tableCount && ItemData.Instance.factor.tableCount <= ItemData.Instance.maxFactor.tableCount)
         {
             MoneySystem.Instance.ResearchTextRevork((int)(ItemData.Instance.fieldPrice.tableCount * -1));
             BuyPlane.Instance.ResearchPlanes[BuyPlane.Instance.ResearchPlanes.Count - 1].GetComponent<TableBuy>().TableBuyWithButton();
         }
         else if (Application.internetReachability != NetworkReachability.NotReachable && ItemData.Instance.factor.tableCount <= ItemData.Instance.maxFactor.tableCount)
-            BuyPlane.Instance.ResearchPlanes[BuyPlane.Instance.ResearchPlanes.Count - 1].GetComponent<TableBuy>().TableBuyWithButton();
+        {
+            if (AdManager.current.IsReadyInterstitialAd() && AdManager.current.count <= AdManager.current.maxCount)
+            {
+                AdManager.current.interstitial.Show();
+                BuyPlane.Instance.ResearchPlanes[BuyPlane.Instance.ResearchPlanes.Count - 1].GetComponent<TableBuy>().TableBuyWithButton();
+            }
+        }
     }
 
     public void FirstTouchButton()
@@ -278,24 +299,38 @@ public class Buttons : MonoSingleton<Buttons>
 
     private void MoneyPlaneButton()
     {
+        StartButtonPrice();
         if (GameManager.Instance.money >= ItemData.Instance.fieldPrice.moneyPlane && ItemData.Instance.factor.moneyPlane <= ItemData.Instance.maxFactor.moneyPlane)
         {
             MoneySystem.Instance.MoneyTextRevork(ItemData.Instance.fieldPrice.moneyPlane * -1);
             BuyPlane.Instance.AddNewMoneyPlane();
         }
         else if (Application.internetReachability != NetworkReachability.NotReachable && ItemData.Instance.factor.moneyPlane <= ItemData.Instance.maxFactor.moneyPlane)
-            BuyPlane.Instance.AddNewMoneyPlane();
+        {
+            if (AdManager.current.IsReadyInterstitialAd() && AdManager.current.count <= AdManager.current.maxCount)
+            {
+                AdManager.current.interstitial.Show();
+                BuyPlane.Instance.AddNewMoneyPlane();
+            }
+        }
     }
 
     private void ResearchPlaneButton()
     {
+        StartButtonPrice();
         if (GameManager.Instance.researchPoint >= ItemData.Instance.fieldPrice.researchPlane /*&& ItemData.Instance.field.researchPlane <= ItemData.Instance.maxFactor.researchPlane*/)
         {
             MoneySystem.Instance.ResearchTextRevork(ItemData.Instance.fieldPrice.researchPlane * -1);
             BuyPlane.Instance.AddNewResearchPlane();
         }
         else if (Application.internetReachability != NetworkReachability.NotReachable)
-            BuyPlane.Instance.AddNewResearchPlane();
+        {
+            if (AdManager.current.IsReadyInterstitialAd() && AdManager.current.count <= AdManager.current.maxCount)
+            {
+                AdManager.current.interstitial.Show();
+                BuyPlane.Instance.AddNewResearchPlane();
+            }
+        }
 
     }
 
