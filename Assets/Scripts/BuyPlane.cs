@@ -109,7 +109,6 @@ public class BuyPlane : MonoSingleton<BuyPlane>
 
     public void AddNewMoneyPlane()
     {
-        MoneySystem.Instance.MoneyTextRevork(ItemData.Instance.fieldPrice.moneyPlane * -1);
         GameObject obj = ObjectPool.Instance.GetPooledObject(OPMoneyPlaneCount);
         obj.transform.position = new Vector3(moneyPlaneTempaltePosition.transform.position.x, moneyPlaneTempaltePosition.transform.position.y + (moneyPlaneDistance * ItemData.Instance.field.moneyPlane), moneyPlaneTempaltePosition.transform.position.z);
         obj.GetComponent<BobinManager>().PlaneCount = ItemData.Instance.factor.moneyPlane;
@@ -139,7 +138,6 @@ public class BuyPlane : MonoSingleton<BuyPlane>
 
     public void AddNewResearchPlane()
     {
-        MoneySystem.Instance.ResearchTextRevork(ItemData.Instance.fieldPrice.researchPlane * -1);
         GameObject obj = ObjectPool.Instance.GetPooledObject(OPResearchPlaneCount);
         obj.transform.position = new Vector3(researchPlaneTempaltePosition.transform.position.x, researchPlaneTempaltePosition.transform.position.y + (researchPlaneDistance * ItemData.Instance.field.researchPlane), researchPlaneTempaltePosition.transform.position.z);
         obj.GetComponent<MeshRenderer>().material = ResearchMaterials[ItemData.Instance.field.researchPlane];

@@ -23,17 +23,19 @@ public class Buttons : MonoSingleton<Buttons>
 
     public Button runnerAddedButton, bobinCountButton, moneyPlaneButton;
     public Text runnerAddedText, bobinCountText, moneyPlaneText;
+    public Image runnerAddedAdd, bobinCountAdd, moneyPlaneAdd;
 
     public Button tableAddedButton, researchPlaneButton, auctionButton;
     public Text tableAddedText, researchPlaneText;
+    public Image tableAddedAdd, researchPlaneAdd;
 
     public GameObject GeneralPanel;
 
-    public GameObject contractTutorial,tapTutorial;
+    public GameObject contractTutorial, tapTutorial;
 
     private void Start()
     {
-        
+
 
         if (GameManager.Instance.sound == 1)
         {
@@ -52,6 +54,67 @@ public class Buttons : MonoSingleton<Buttons>
         else
         {
             _vibrationButton.gameObject.GetComponent<Image>().sprite = _red;
+        }
+    }
+
+    public void StartButtonPrice()
+    {
+        ItemData.Field price = ItemData.Instance.fieldPrice;
+        GameManager gameManager = GameManager.Instance;
+
+        if (price.runnerCount < gameManager.money)
+        {
+            runnerAddedAdd.gameObject.SetActive(true);
+            runnerAddedText.gameObject.SetActive(false);
+        }
+        else
+        {
+            runnerAddedAdd.gameObject.SetActive(false);
+            runnerAddedText.gameObject.SetActive(true);
+        }
+
+        if (price.bobinCount < gameManager.money)
+        {
+            bobinCountAdd.gameObject.SetActive(true);
+            bobinCountText.gameObject.SetActive(false);
+        }
+        else
+        {
+            bobinCountAdd.gameObject.SetActive(false);
+            bobinCountText.gameObject.SetActive(true);
+        }
+
+        if (price.moneyPlane < gameManager.money)
+        {
+            moneyPlaneAdd.gameObject.SetActive(true);
+            moneyPlaneText.gameObject.SetActive(false);
+        }
+        else
+        {
+            moneyPlaneAdd.gameObject.SetActive(false);
+            moneyPlaneText.gameObject.SetActive(true);
+        }
+
+        if (price.tableCount < gameManager.money)
+        {
+            tableAddedButton.gameObject.SetActive(true);
+            tableAddedText.gameObject.SetActive(false);
+        }
+        else
+        {
+            tableAddedButton.gameObject.SetActive(false);
+            tableAddedText.gameObject.SetActive(true);
+        }
+
+        if (price.researchPlane < gameManager.money)
+        {
+            researchPlaneAdd.gameObject.SetActive(true);
+            researchPlaneText.gameObject.SetActive(false);
+        }
+        else
+        {
+            researchPlaneAdd.gameObject.SetActive(false);
+            researchPlaneText.gameObject.SetActive(true);
         }
     }
 
@@ -165,6 +228,8 @@ public class Buttons : MonoSingleton<Buttons>
             MoneySystem.Instance.MoneyTextRevork((ItemData.Instance.fieldPrice.runnerCount * -1));
             RunnerManager.Instance.NewStartRunner();
         }
+        else if (Application.internetReachability != NetworkReachability.NotReachable && ItemData.Instance.factor.runnerCount <= ItemData.Instance.maxFactor.runnerCount)
+            RunnerManager.Instance.NewStartRunner();
     }
 
     private void BobinCount()
@@ -174,6 +239,8 @@ public class Buttons : MonoSingleton<Buttons>
             MoneySystem.Instance.MoneyTextRevork((ItemData.Instance.fieldPrice.bobinCount * -1));
             BuyPlane.Instance.MoneyPlanes[BuyPlane.Instance.MoneyPlanes.Count - 1].GetComponent<BobinManager>().BobinBuy();
         }
+        else if (Application.internetReachability != NetworkReachability.NotReachable && ItemData.Instance.factor.bobinCount <= ItemData.Instance.maxFactor.bobinCount)
+            BuyPlane.Instance.MoneyPlanes[BuyPlane.Instance.MoneyPlanes.Count - 1].GetComponent<BobinManager>().BobinBuy();
     }
 
     private void AddedTable()
@@ -183,6 +250,8 @@ public class Buttons : MonoSingleton<Buttons>
             MoneySystem.Instance.ResearchTextRevork((int)(ItemData.Instance.fieldPrice.tableCount * -1));
             BuyPlane.Instance.ResearchPlanes[BuyPlane.Instance.ResearchPlanes.Count - 1].GetComponent<TableBuy>().TableBuyWithButton();
         }
+        else if (Application.internetReachability != NetworkReachability.NotReachable && ItemData.Instance.factor.tableCount <= ItemData.Instance.maxFactor.tableCount)
+            BuyPlane.Instance.ResearchPlanes[BuyPlane.Instance.ResearchPlanes.Count - 1].GetComponent<TableBuy>().TableBuyWithButton();
     }
 
     public void FirstTouchButton()
@@ -199,6 +268,7 @@ public class Buttons : MonoSingleton<Buttons>
         ContractSystem.Instance.ContractSystemStart();
         EventSystem.Instance.EventSystemStart();
         PlayerPrefs.SetInt("firstGame", 1);
+        StartButtonPrice();
     }
 
     private void AuctionButton()
@@ -209,13 +279,24 @@ public class Buttons : MonoSingleton<Buttons>
     private void MoneyPlaneButton()
     {
         if (GameManager.Instance.money >= ItemData.Instance.fieldPrice.moneyPlane && ItemData.Instance.factor.moneyPlane <= ItemData.Instance.maxFactor.moneyPlane)
+        {
+            MoneySystem.Instance.MoneyTextRevork(ItemData.Instance.fieldPrice.moneyPlane * -1);
+            BuyPlane.Instance.AddNewMoneyPlane();
+        }
+        else if (Application.internetReachability != NetworkReachability.NotReachable && ItemData.Instance.factor.moneyPlane <= ItemData.Instance.maxFactor.moneyPlane)
             BuyPlane.Instance.AddNewMoneyPlane();
     }
 
     private void ResearchPlaneButton()
     {
         if (GameManager.Instance.researchPoint >= ItemData.Instance.fieldPrice.researchPlane /*&& ItemData.Instance.field.researchPlane <= ItemData.Instance.maxFactor.researchPlane*/)
+        {
+            MoneySystem.Instance.ResearchTextRevork(ItemData.Instance.fieldPrice.researchPlane * -1);
             BuyPlane.Instance.AddNewResearchPlane();
+        }
+        else if (Application.internetReachability != NetworkReachability.NotReachable)
+            BuyPlane.Instance.AddNewResearchPlane();
+
     }
 
     public IEnumerator StartBarAyEnum()

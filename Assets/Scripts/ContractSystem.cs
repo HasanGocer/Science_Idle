@@ -85,13 +85,18 @@ public class ContractSystem : MonoSingleton<ContractSystem>
 
     public void TouchBar(int count)
     {
-        MoneySystem.Instance.MoneyTextRevork(GameManager.Instance.contractMaxCount * _budgetFactor * count);
-        _finishContractPanel.SetActive(false);
+        if (Application.internetReachability != NetworkReachability.NotReachable)
+        {
+            MoneySystem.Instance.MoneyTextRevork(GameManager.Instance.contractMaxCount * _budgetFactor * count);
+            Buttons.Instance.StartButtonPrice();
+            _finishContractPanel.SetActive(false);
+        }
     }
 
     public void FreeFinish()
     {
         MoneySystem.Instance.MoneyTextRevork(GameManager.Instance.contractMaxCount * _budgetFactor);
+        Buttons.Instance.StartButtonPrice();
         _finishContractPanel.SetActive(false);
     }
 
