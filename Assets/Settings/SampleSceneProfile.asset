@@ -122,15 +122,15 @@ MonoBehaviour:
   m_AdvancedMode: 0
   type:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 1
   intensity:
     m_OverrideState: 1
-    m_Value: 0.4
+    m_Value: 0.14
     min: 0
     max: 1
   response:
     m_OverrideState: 1
-    m_Value: 0.32
+    m_Value: 0.71
     min: 0
     max: 1
   texture:

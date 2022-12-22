@@ -9,7 +9,7 @@ public class TouchBobin : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Ball"))
         {
-            MoneySystem.Instance.ResearchTextRevork((int)((ItemData.Instance.field.addedMoney * GetComponentInParent<BobinManager>().bobinCount)));
+            MoneySystem.Instance.ResearchTextRevork((int)((ItemData.Instance.field.addedMoney)));
             Buttons.Instance.StartButtonPrice();
             StartCoroutine(PointText.Instance.CallPointResearchText(transform.gameObject));
         }
