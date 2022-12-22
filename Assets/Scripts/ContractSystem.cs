@@ -49,6 +49,7 @@ public class ContractSystem : MonoSingleton<ContractSystem>
         _contractPanel.SetActive(false);
         _finishContractPanel.SetActive(true);
         GameManager.Instance.contractBool = false;
+        StartCoroutine(BarSystem.Instance.BarImageFillAmountIenum());
         GameManager.Instance.SetContractBool();
         finishCountText.text = (GameManager.Instance.contractMaxCount * _budgetFactor).ToString();
     }
@@ -87,7 +88,7 @@ public class ContractSystem : MonoSingleton<ContractSystem>
     {
         if (Application.internetReachability != NetworkReachability.NotReachable)
         {
-            MoneySystem.Instance.MoneyTextRevork(GameManager.Instance.contractMaxCount * _budgetFactor * count);
+            BarSystem.Instance.BarStopButton(GameManager.Instance.contractMaxCount * _budgetFactor);
             Buttons.Instance.StartButtonPrice();
             _finishContractPanel.SetActive(false);
         }
