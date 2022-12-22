@@ -62,7 +62,7 @@ public class Buttons : MonoSingleton<Buttons>
         ItemData.Field price = ItemData.Instance.fieldPrice;
         GameManager gameManager = GameManager.Instance;
 
-        if (price.runnerCount > gameManager.money && AdManager.current.count== AdManager.current.maxCount)
+        if (price.runnerCount > gameManager.money && AdManager.current.count <= AdManager.current.maxCount)
         {
             runnerAddedAdd.gameObject.SetActive(true);
             runnerAddedText.gameObject.SetActive(false);
@@ -73,7 +73,7 @@ public class Buttons : MonoSingleton<Buttons>
             runnerAddedText.gameObject.SetActive(true);
         }
 
-        if (price.bobinCount > gameManager.money && AdManager.current.count == AdManager.current.maxCount)
+        if (price.bobinCount > gameManager.money && AdManager.current.count <= AdManager.current.maxCount)
         {
             bobinCountAdd.gameObject.SetActive(true);
             bobinCountText.gameObject.SetActive(false);
@@ -84,7 +84,7 @@ public class Buttons : MonoSingleton<Buttons>
             bobinCountText.gameObject.SetActive(true);
         }
 
-        if (price.moneyPlane > gameManager.money && AdManager.current.count == AdManager.current.maxCount)
+        if (price.moneyPlane > gameManager.money && AdManager.current.count <= AdManager.current.maxCount)
         {
             moneyPlaneAdd.gameObject.SetActive(true);
             moneyPlaneText.gameObject.SetActive(false);
@@ -95,7 +95,7 @@ public class Buttons : MonoSingleton<Buttons>
             moneyPlaneText.gameObject.SetActive(true);
         }
 
-        if (price.tableCount > gameManager.money && AdManager.current.count == AdManager.current.maxCount)
+        if (price.tableCount > gameManager.money && AdManager.current.count <= AdManager.current.maxCount)
         {
             tableAddedButton.gameObject.SetActive(true);
             tableAddedText.gameObject.SetActive(false);
@@ -106,7 +106,7 @@ public class Buttons : MonoSingleton<Buttons>
             tableAddedText.gameObject.SetActive(true);
         }
 
-        if (price.researchPlane > gameManager.money && AdManager.current.count == AdManager.current.maxCount)
+        if (price.researchPlane > gameManager.money && AdManager.current.count <= AdManager.current.maxCount)
         {
             researchPlaneAdd.gameObject.SetActive(true);
             researchPlaneText.gameObject.SetActive(false);
@@ -231,7 +231,7 @@ public class Buttons : MonoSingleton<Buttons>
         }
         else if (Application.internetReachability != NetworkReachability.NotReachable && ItemData.Instance.factor.runnerCount <= ItemData.Instance.maxFactor.runnerCount)
         {
-            if (AdManager.current.IsReadyInterstitialAd()&&AdManager.current.count<= AdManager.current.maxCount)
+            if (AdManager.current.IsReadyInterstitialAd() && AdManager.current.count <= AdManager.current.maxCount)
             {
                 AdManager.current.count++;
                 AdManager.current.interstitial.Show();
