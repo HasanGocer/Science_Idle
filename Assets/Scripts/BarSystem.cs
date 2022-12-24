@@ -17,7 +17,9 @@ public class BarSystem : MonoSingleton<BarSystem>
 
         isFinish = false;
         BarFactorPlacement(amount);
+        ContractSystem.Instance.finishCountText.text = (count * barMoneyFactor).ToString();
         MoneySystem.Instance.MoneyTextRevork(count * barMoneyFactor);
+        isFinish = true;
     }
 
     public IEnumerator BarImageFillAmountIenum()

@@ -24,7 +24,7 @@ public class ContractSystem : MonoSingleton<ContractSystem>
     [SerializeField] private Image contractViewImage;
     public Text contractViewText;
     [SerializeField] private int _finishMoneyFactor;
-    [SerializeField] private Text finishCountText;
+    public Text finishCountText;
     [SerializeField] Button addFinishButton, freeFinishButton;
 
     public Button openContractButton, closeContractButton;
