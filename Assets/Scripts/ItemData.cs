@@ -84,30 +84,6 @@ public class ItemData : MonoSingleton<ItemData>
         field.researchPlane = standart.researchPlane + (factor.researchPlane * constant.researchPlane);
         fieldPrice.researchPlane = fieldPrice.researchPlane * factor.researchPlane;
 
-        if (field.runnerCount > max.runnerCount && maxBool.runnerCount)
-        {
-            field.runnerCount = max.runnerCount;
-        }
-
-        if (field.bobinCount > max.bobinCount && maxBool.bobinCount)
-        {
-            field.bobinCount = max.bobinCount;
-        }
-
-        if (field.tableCount > max.tableCount && maxBool.tableCount)
-        {
-            field.tableCount = max.tableCount;
-        }
-
-        if (field.moneyPlane < max.moneyPlane && maxBool.moneyPlane)
-        {
-            field.moneyPlane = max.moneyPlane;
-        }
-
-        if (field.researchPlane < max.researchPlane && maxBool.researchPlane)
-        {
-            field.researchPlane = max.researchPlane;
-        }
         Buttons.Instance.ButtonStart();
         Buttons.Instance.TextStart();
 

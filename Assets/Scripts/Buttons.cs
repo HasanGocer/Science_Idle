@@ -62,6 +62,17 @@ public class Buttons : MonoSingleton<Buttons>
         ItemData.Field price = ItemData.Instance.fieldPrice;
         GameManager gameManager = GameManager.Instance;
 
+        if (price.tableCount > gameManager.money && AdManager.current.count <= AdManager.current.maxCount)
+        {
+            tableAddedAdd.gameObject.SetActive(true);
+            tableAddedText.gameObject.SetActive(false);
+        }
+        else
+        {
+            tableAddedAdd.gameObject.SetActive(false);
+            tableAddedText.gameObject.SetActive(true);
+        }
+
         if (price.runnerCount > gameManager.money && AdManager.current.count <= AdManager.current.maxCount)
         {
             runnerAddedAdd.gameObject.SetActive(true);
@@ -95,16 +106,7 @@ public class Buttons : MonoSingleton<Buttons>
             moneyPlaneText.gameObject.SetActive(true);
         }
 
-        if (price.tableCount > gameManager.money && AdManager.current.count <= AdManager.current.maxCount)
-        {
-            tableAddedButton.gameObject.SetActive(true);
-            tableAddedText.gameObject.SetActive(false);
-        }
-        else
-        {
-            tableAddedButton.gameObject.SetActive(false);
-            tableAddedText.gameObject.SetActive(true);
-        }
+
 
         if (price.researchPlane > gameManager.money && AdManager.current.count <= AdManager.current.maxCount)
         {
@@ -286,13 +288,13 @@ public class Buttons : MonoSingleton<Buttons>
         firstTouchGame.SetActive(false);
         MyDoPath.Instance.PlanePlacement();
         BuyPlane.Instance.StartPlanePlacement();
-        StartCoroutine(RunnerManager.Instance.StartRunner());
         MoveCamera.Instance.StartCamPos();
         StartCoroutine(Buttons.Instance.StartBarAyEnum());
+        StartCoroutine(RunnerManager.Instance.StartRunner());
         ContractSystem.Instance.ContractSystemStart();
         EventSystem.Instance.EventSystemStart();
         PlayerPrefs.SetInt("firstGame", 1);
-        StartButtonPrice();
+        //StartButtonPrice();
     }
 
     private void AuctionButton()
