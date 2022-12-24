@@ -11,9 +11,12 @@ public class AdManager : MonoBehaviour
     public BannerView bannerView;
     public InterstitialAd interstitial;
     public float intertstitialAdTimer = 5;
-    public void InitializeAds()
+    private void Awake()
     {
         current = this;
+    }
+    public void InitializeAds()
+    {
 
         MobileAds.Initialize(initStatus => { });
 

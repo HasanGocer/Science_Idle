@@ -225,7 +225,6 @@ public class Buttons : MonoSingleton<Buttons>
 
     private void AddedRunner()
     {
-        StartButtonPrice();
         if (GameManager.Instance.money >= ItemData.Instance.fieldPrice.runnerCount && ItemData.Instance.factor.runnerCount <= ItemData.Instance.maxFactor.runnerCount)
         {
             MoneySystem.Instance.MoneyTextRevork((ItemData.Instance.fieldPrice.runnerCount * -1));
@@ -240,11 +239,11 @@ public class Buttons : MonoSingleton<Buttons>
                 RunnerManager.Instance.NewStartRunner();
             }
         }
+        StartButtonPrice();
     }
 
     private void BobinCount()
     {
-        StartButtonPrice();
         if (GameManager.Instance.money >= ItemData.Instance.fieldPrice.bobinCount && ItemData.Instance.factor.bobinCount <= ItemData.Instance.maxFactor.bobinCount)
         {
             MoneySystem.Instance.MoneyTextRevork((ItemData.Instance.fieldPrice.bobinCount * -1));
@@ -259,11 +258,11 @@ public class Buttons : MonoSingleton<Buttons>
                 BuyPlane.Instance.MoneyPlanes[BuyPlane.Instance.MoneyPlanes.Count - 1].GetComponent<BobinManager>().BobinBuy();
             }
         }
+        StartButtonPrice();
     }
 
     private void AddedTable()
     {
-        StartButtonPrice();
         if (GameManager.Instance.researchPoint >= ItemData.Instance.fieldPrice.tableCount && ItemData.Instance.factor.tableCount <= ItemData.Instance.maxFactor.tableCount)
         {
             MoneySystem.Instance.ResearchTextRevork((int)(ItemData.Instance.fieldPrice.tableCount * -1));
@@ -278,6 +277,7 @@ public class Buttons : MonoSingleton<Buttons>
                 BuyPlane.Instance.ResearchPlanes[BuyPlane.Instance.ResearchPlanes.Count - 1].GetComponent<TableBuy>().TableBuyWithButton();
             }
         }
+        StartButtonPrice();
     }
 
     public void FirstTouchButton()
@@ -294,7 +294,7 @@ public class Buttons : MonoSingleton<Buttons>
         ContractSystem.Instance.ContractSystemStart();
         EventSystem.Instance.EventSystemStart();
         PlayerPrefs.SetInt("firstGame", 1);
-        //StartButtonPrice();
+        StartButtonPrice();
     }
 
     private void AuctionButton()
@@ -304,7 +304,6 @@ public class Buttons : MonoSingleton<Buttons>
 
     private void MoneyPlaneButton()
     {
-        StartButtonPrice();
         if (GameManager.Instance.money >= ItemData.Instance.fieldPrice.moneyPlane && ItemData.Instance.factor.moneyPlane <= ItemData.Instance.maxFactor.moneyPlane)
         {
             MoneySystem.Instance.MoneyTextRevork(ItemData.Instance.fieldPrice.moneyPlane * -1);
@@ -319,11 +318,11 @@ public class Buttons : MonoSingleton<Buttons>
                 BuyPlane.Instance.AddNewMoneyPlane();
             }
         }
+        StartButtonPrice();
     }
 
     private void ResearchPlaneButton()
     {
-        StartButtonPrice();
         if (GameManager.Instance.researchPoint >= ItemData.Instance.fieldPrice.researchPlane /*&& ItemData.Instance.field.researchPlane <= ItemData.Instance.maxFactor.researchPlane*/)
         {
             MoneySystem.Instance.ResearchTextRevork(ItemData.Instance.fieldPrice.researchPlane * -1);
@@ -338,7 +337,7 @@ public class Buttons : MonoSingleton<Buttons>
                 BuyPlane.Instance.AddNewResearchPlane();
             }
         }
-
+        StartButtonPrice();
     }
 
     public IEnumerator StartBarAyEnum()
