@@ -6982,7 +6982,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1351123863
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7151,7 +7151,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1375485837
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12832,7 +12832,7 @@ MonoBehaviour:
   fieldPrice:
     runnerCount: 50
     bobinCount: 75
-    tableCount: 450
+    tableCount: 10
     moneyPlane: 150
     researchPlane: 600
     runnerSpeed: 25

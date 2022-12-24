@@ -26,15 +26,14 @@ public class BarSystem : MonoSingleton<BarSystem>
     {
         while (isFinish)
         {
+            amount += Time.deltaTime / 5;
             if (_goRight)
             {
-                amount += Time.deltaTime;
                 _bar.transform.position = Vector2.Lerp(startPos.transform.position, finishPos.transform.position, amount);
                 yield return new WaitForSeconds(Time.deltaTime);
             }
             else
             {
-                amount += Time.deltaTime;
                 _bar.transform.position = Vector2.Lerp(finishPos.transform.position, startPos.transform.position, amount);
                 yield return new WaitForSeconds(Time.deltaTime);
             }
