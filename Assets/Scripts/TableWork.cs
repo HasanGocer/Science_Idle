@@ -17,7 +17,7 @@ public class TableWork : MonoBehaviour
     {
         while (true)
         {
-            if (!_bar && !hide && GameManager.Instance.contractBool && GameManager.Instance.researchPoint <= barPrice)
+            if (!_bar && !hide && GameManager.Instance.contractBool && GameManager.Instance.researchPoint >= barPrice)
             {
                 _bar = true;
                 MoneySystem.Instance.ResearchTextRevork(barPrice * -1);

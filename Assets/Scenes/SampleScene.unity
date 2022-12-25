@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2138677392}
-  m_IndirectSpecularColor: {r: 0.30599368, g: 0.10385017, b: 0.2505514, a: 1}
+  m_IndirectSpecularColor: {r: 0.3059937, g: 0.10385017, b: 0.25055143, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -12733,16 +12733,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pools:
-  - objectPrefab: {fileID: 7860331563806631384, guid: 98edbe4d888fa8a43aa2b9664ca59fa0, type: 3}
-    poolSize: 400
+  - objectPrefab: {fileID: 9112922188650319739, guid: 2c646ad1ed245b34a892745b848368f0, type: 3}
+    poolSize: 600
   - objectPrefab: {fileID: 6212779207743706348, guid: 71ac65a1535b94a43abf8cc3569a44ee, type: 3}
     poolSize: 1000
   - objectPrefab: {fileID: 824188479452442530, guid: 54390d45b2fa86447bc399950d442260, type: 3}
     poolSize: 1000
   - objectPrefab: {fileID: 6187286951082718893, guid: 0d533c6dffd5d014f82a2b29e726e33b, type: 3}
-    poolSize: 70
+    poolSize: 120
   - objectPrefab: {fileID: 6475134466524043189, guid: 06e75b04439e48042b9c2150435ed553, type: 3}
-    poolSize: 70
+    poolSize: 120
   - objectPrefab: {fileID: 1575721338728490, guid: 4171bb92c5c591848b14be1db6f3efe2, type: 3}
     poolSize: 1000
 --- !u!114 &7627590490061665289
