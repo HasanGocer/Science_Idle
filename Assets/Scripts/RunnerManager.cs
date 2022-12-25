@@ -54,6 +54,8 @@ public class RunnerManager : MonoSingleton<RunnerManager>
             ItemData.Instance.factor.runnerCount++;
             GameManager.Instance.SetRunnerCount();
             ItemData.Instance.RunnerCount();
+            Vibration.Vibrate(35);
+            SoundSystem.Instance.CallBuyFieldEffect();
             Buttons.Instance.runnerAddedText.text = ItemData.Instance.fieldPrice.runnerCount.ToString();
             Runner.Add(obj);
             MyDoPath.Instance.StartNewRunner(obj, ItemData.Instance.field.moneyPlane - 1);

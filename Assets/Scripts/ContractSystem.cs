@@ -27,6 +27,8 @@ public class ContractSystem : MonoSingleton<ContractSystem>
     public Text finishCountText;
     [SerializeField] Button addFinishButton, freeFinishButton;
 
+    [SerializeField] private GameObject leftParticalPos, rightParticalPos;
+
     public Button openContractButton, closeContractButton;
 
     public void ContractSystemStart()
@@ -48,6 +50,10 @@ public class ContractSystem : MonoSingleton<ContractSystem>
         _contractViewPanel.SetActive(false);
         _contractPanel.SetActive(false);
         _finishContractPanel.SetActive(true);
+        Vibration.Vibrate(35);
+        SoundSystem.Instance.CallMissionCompletedEffect();
+        StartCoroutine(BuyPlane.Instance.Partical(rightParticalPos));
+        StartCoroutine(BuyPlane.Instance.Partical(leftParticalPos));
         GameManager.Instance.contractBool = false;
         StartCoroutine(BarSystem.Instance.BarImageFillAmountIenum());
         GameManager.Instance.SetContractBool();

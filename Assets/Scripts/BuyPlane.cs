@@ -118,6 +118,8 @@ public class BuyPlane : MonoSingleton<BuyPlane>
         obj.GetComponent<BobinManager>().BobinBuy();
         RunnerManager.Instance.NewStartRunner();
         MoveCamera.Instance.MoneyCameraNewPos();
+        Vibration.Vibrate(35);
+        SoundSystem.Instance.CallNewMoneyTableEffect();
         StartCoroutine(Partical(obj));
         MoneyPlanes.Add(obj);
         PlaneHideSystem.Instance.MoneyPlaneHide();
@@ -144,6 +146,8 @@ public class BuyPlane : MonoSingleton<BuyPlane>
         ItemData.Instance.factor.researchPlane++;
         GameManager.Instance.SetResearchPlane();
         MoveCamera.Instance.ResearchCameraNewPos();
+        Vibration.Vibrate(35);
+        SoundSystem.Instance.CallNewResearchTableEffect();
         obj.GetComponent<TableBuy>().TableCount = 1;
         StartCoroutine(Partical(obj));
         ResearchPlanes.Add(obj);
@@ -178,7 +182,7 @@ public class BuyPlane : MonoSingleton<BuyPlane>
         }
     }
 
-    IEnumerator Partical(GameObject pos)
+    public IEnumerator Partical(GameObject pos)
     {
         GameObject partical = ObjectPool.Instance.GetPooledObject(OPPlaneParticalCount);
         partical.transform.position = new Vector3(pos.transform.position.x, pos.transform.position.y + planeParticalDisctance, pos.transform.position.z);

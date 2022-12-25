@@ -27,6 +27,8 @@ public class TableBuy : MonoBehaviour
         if (ItemData.Instance.maxFactor.tableCount >= ItemData.Instance.factor.tableCount)
         {
             ItemData.Instance.factor.tableCount++;
+            Vibration.Vibrate(35);
+            SoundSystem.Instance.CallBuyFieldEffect();
             ItemData.Instance.TableCount();
             GameManager.Instance.SetTableCount();
             Buttons.Instance.tableAddedText.text = ItemData.Instance.fieldPrice.tableCount.ToString();

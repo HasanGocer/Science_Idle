@@ -5,7 +5,7 @@ using UnityEngine;
 public class SoundSystem : MonoSingleton<SoundSystem>
 {
     [SerializeField] private AudioSource mainSource;
-    [SerializeField] private AudioClip mainMusic, bloomEffect, goldEffect;
+    [SerializeField] private AudioClip mainMusic, missionCompletedEffect, newMoneyPlaneBuyEffect, newResearchPlaneBuyEffect, buyFieldEffect;
 
     public void MainMusicPlay()
     {
@@ -18,13 +18,23 @@ public class SoundSystem : MonoSingleton<SoundSystem>
         mainSource.Stop();
     }
 
-    public void EffectCall()
+    public void CallMissionCompletedEffect()
     {
-        mainSource.PlayOneShot(bloomEffect);
+        mainSource.PlayOneShot(missionCompletedEffect);
     }
-    public void EffectGoldCall()
-    {
-        mainSource.PlayOneShot(goldEffect);
 
+    public void CallNewMoneyTableEffect()
+    {
+        mainSource.PlayOneShot(newMoneyPlaneBuyEffect);
+    }
+
+    public void CallNewResearchTableEffect()
+    {
+        mainSource.PlayOneShot(newResearchPlaneBuyEffect);
+    }
+
+    public void CallBuyFieldEffect()
+    {
+        mainSource.PlayOneShot(buyFieldEffect);
     }
 }

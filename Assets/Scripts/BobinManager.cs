@@ -42,6 +42,8 @@ public class BobinManager : MonoBehaviour /* MonoSingleton<BobinManager>*/
         ItemData.Instance.factor.bobinCount++;
         GameManager.Instance.SetBobinCount();
         ItemData.Instance.BobinCount();
+        Vibration.Vibrate(35);
+            SoundSystem.Instance.CallBuyFieldEffect();
         Buttons.Instance.bobinCountText.text = ItemData.Instance.fieldPrice.bobinCount.ToString();
 
         if (ItemData.Instance.field.bobinCount % MyDoPath.Instance.runnerCount == 0)

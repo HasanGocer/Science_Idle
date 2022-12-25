@@ -40,7 +40,7 @@ public class Buttons : MonoSingleton<Buttons>
         if (GameManager.Instance.sound == 1)
         {
             _soundButton.gameObject.GetComponent<Image>().sprite = _green;
-            //SoundSystem.Instance.MainMusicPlay();
+            SoundSystem.Instance.MainMusicPlay();
         }
         else
         {
