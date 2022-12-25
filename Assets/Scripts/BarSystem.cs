@@ -14,8 +14,8 @@ public class BarSystem : MonoSingleton<BarSystem>
 
     public void BarStopButton(int count)
     {
-
         isFinish = false;
+        amount = 0;
         BarFactorPlacement(amount);
         ContractSystem.Instance.finishCountText.text = (count * barMoneyFactor).ToString();
         MoneySystem.Instance.MoneyTextRevork(count * barMoneyFactor);
@@ -30,13 +30,12 @@ public class BarSystem : MonoSingleton<BarSystem>
             if (_goRight)
             {
                 _bar.transform.position = Vector2.Lerp(startPos.transform.position, finishPos.transform.position, amount);
-                yield return new WaitForSeconds(Time.deltaTime);
             }
             else
             {
                 _bar.transform.position = Vector2.Lerp(finishPos.transform.position, startPos.transform.position, amount);
-                yield return new WaitForSeconds(Time.deltaTime);
             }
+            yield return new WaitForEndOfFrame();
 
             if (amount >= 1)
             {

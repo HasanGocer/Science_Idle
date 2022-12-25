@@ -102,9 +102,11 @@ public class ContractSystem : MonoSingleton<ContractSystem>
 
     public void FreeFinish()
     {
+        BarSystem.Instance.isFinish = false;
         MoneySystem.Instance.MoneyTextRevork(GameManager.Instance.contractMaxCount * _budgetFactor);
         Buttons.Instance.StartButtonPrice();
         _finishContractPanel.SetActive(false);
+        BarSystem.Instance.isFinish = true;
     }
 
     public void NewContractView()
