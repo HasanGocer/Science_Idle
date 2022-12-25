@@ -12832,7 +12832,7 @@ MonoBehaviour:
   fieldPrice:
     runnerCount: 50
     bobinCount: 75
-    tableCount: 10
+    tableCount: 450
     moneyPlane: 150
     researchPlane: 600
     runnerSpeed: 25

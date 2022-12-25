@@ -62,7 +62,7 @@ public class Buttons : MonoSingleton<Buttons>
         ItemData.Field price = ItemData.Instance.fieldPrice;
         GameManager gameManager = GameManager.Instance;
 
-        if (price.tableCount > gameManager.money && AdManager.current.count <= AdManager.current.maxCount)
+        if (price.tableCount > gameManager.researchPoint && AdManager.current.count <= AdManager.current.maxCount)
         {
             tableAddedAdd.gameObject.SetActive(true);
             tableAddedText.gameObject.SetActive(false);
@@ -108,7 +108,7 @@ public class Buttons : MonoSingleton<Buttons>
 
 
 
-        if (price.researchPlane > gameManager.money && AdManager.current.count <= AdManager.current.maxCount)
+        if (price.researchPlane > gameManager.researchPoint && AdManager.current.count <= AdManager.current.maxCount)
         {
             researchPlaneAdd.gameObject.SetActive(true);
             researchPlaneText.gameObject.SetActive(false);
