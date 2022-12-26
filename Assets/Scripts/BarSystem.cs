@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class BarSystem : MonoSingleton<BarSystem>
 {
     [SerializeField] private Image _bar;
-    public bool isFinish = true;
+    public bool isFinish;
     [SerializeField] private bool _goRight = true;
     public int barMoneyFactor;
     [SerializeField] private GameObject startPos, finishPos;
@@ -17,13 +17,14 @@ public class BarSystem : MonoSingleton<BarSystem>
         isFinish = false;
         amount = 0;
         BarFactorPlacement(amount);
-        ContractSystem.Instance.finishCountText.text = (count * barMoneyFactor).ToString();
+        if (count != 0)
+            ContractSystem.Instance.finishCountText.text = (count * barMoneyFactor).ToString();
         MoneySystem.Instance.MoneyTextRevork(count * barMoneyFactor);
-        isFinish = true;
     }
 
     public IEnumerator BarImageFillAmountIenum()
     {
+        isFinish = true;
         while (isFinish)
         {
             amount += Time.deltaTime / 2;

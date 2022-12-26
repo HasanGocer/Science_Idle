@@ -40,7 +40,7 @@ public class ContractSystem : MonoSingleton<ContractSystem>
         contractButton[2].onClick.AddListener(() => ContractSelect(2));
         contractButton[3].onClick.AddListener(() => ContractSelect(3));
         contractButton[4].onClick.AddListener(() => ContractSelect(4));
-        addFinishButton.onClick.AddListener(() => TouchBar(_finishMoneyFactor));
+        addFinishButton.onClick.AddListener(TouchBar);
         freeFinishButton.onClick.AddListener(FreeFinish);
         contractViewImage.sprite = contractImageTemplate[GameManager.Instance.contractType];
     }
@@ -90,7 +90,7 @@ public class ContractSystem : MonoSingleton<ContractSystem>
         return contract;
     }
 
-    public void TouchBar(int count)
+    public void TouchBar()
     {
         if (Application.internetReachability != NetworkReachability.NotReachable)
         {
@@ -102,11 +102,10 @@ public class ContractSystem : MonoSingleton<ContractSystem>
 
     public void FreeFinish()
     {
-        BarSystem.Instance.isFinish = false;
+        BarSystem.Instance.BarStopButton(GameManager.Instance.contractMaxCount * _budgetFactor);
         MoneySystem.Instance.MoneyTextRevork(GameManager.Instance.contractMaxCount * _budgetFactor);
         Buttons.Instance.StartButtonPrice();
         _finishContractPanel.SetActive(false);
-        BarSystem.Instance.isFinish = true;
     }
 
     public void NewContractView()
