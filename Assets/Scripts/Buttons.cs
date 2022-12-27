@@ -61,8 +61,10 @@ public class Buttons : MonoSingleton<Buttons>
     {
         ItemData.Field price = ItemData.Instance.fieldPrice;
         GameManager gameManager = GameManager.Instance;
+        ItemData ıtemData = ItemData.Instance;
+        MyDoPath myDoPath = MyDoPath.Instance;
 
-        if (price.tableCount > gameManager.researchPoint && AdManager.current.count <= AdManager.current.maxCount)
+        if (price.tableCount > gameManager.researchPoint && AdManager.current.count <= AdManager.current.maxCount && ıtemData.field.tableCount % 6 != 0)
         {
             tableAddedAdd.gameObject.SetActive(true);
             tableAddedText.gameObject.SetActive(false);
@@ -73,7 +75,7 @@ public class Buttons : MonoSingleton<Buttons>
             tableAddedText.gameObject.SetActive(true);
         }
 
-        if (price.runnerCount > gameManager.money && AdManager.current.count <= AdManager.current.maxCount)
+        if (price.runnerCount > gameManager.money && AdManager.current.count <= AdManager.current.maxCount && ıtemData.field.tableCount % myDoPath.runnerCount != 0)
         {
             runnerAddedAdd.gameObject.SetActive(true);
             runnerAddedText.gameObject.SetActive(false);
@@ -84,7 +86,7 @@ public class Buttons : MonoSingleton<Buttons>
             runnerAddedText.gameObject.SetActive(true);
         }
 
-        if (price.bobinCount > gameManager.money && AdManager.current.count <= AdManager.current.maxCount)
+        if (price.bobinCount > gameManager.money && AdManager.current.count <= AdManager.current.maxCount && ıtemData.field.tableCount % myDoPath.runnerCount != 0)
         {
             bobinCountAdd.gameObject.SetActive(true);
             bobinCountText.gameObject.SetActive(false);
