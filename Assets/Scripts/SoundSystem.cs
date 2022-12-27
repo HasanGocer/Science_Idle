@@ -11,11 +11,13 @@ public class SoundSystem : MonoSingleton<SoundSystem>
     {
         mainSource.clip = mainMusic;
         mainSource.Play();
+        mainSource.enabled = true;
     }
 
     public void MainMusicStop()
     {
         mainSource.Stop();
+        mainSource.enabled = false;
     }
 
     public void CallMissionCompletedEffect()

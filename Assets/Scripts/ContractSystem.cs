@@ -94,9 +94,14 @@ public class ContractSystem : MonoSingleton<ContractSystem>
     {
         if (Application.internetReachability != NetworkReachability.NotReachable)
         {
-            BarSystem.Instance.BarStopButton(GameManager.Instance.contractMaxCount * _budgetFactor);
-            Buttons.Instance.StartButtonPrice();
-            _finishContractPanel.SetActive(false);
+            if (AdManager.current.IsReadyInterstitialAd() && AdManager.current.count <= AdManager.current.maxCount)
+            {
+                AdManager.current.count++;
+                AdManager.current.interstitial.Show();
+                BarSystem.Instance.BarStopButton(GameManager.Instance.contractMaxCount * _budgetFactor);
+                Buttons.Instance.StartButtonPrice();
+                _finishContractPanel.SetActive(false);
+            }
         }
     }
 
