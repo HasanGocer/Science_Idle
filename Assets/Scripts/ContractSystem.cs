@@ -98,7 +98,7 @@ public class ContractSystem : MonoSingleton<ContractSystem>
             {
                 AdManager.current.count++;
                 AdManager.current.interstitial.Show();
-                BarSystem.Instance.BarStopButton(GameManager.Instance.contractMaxCount);
+                BarSystem.Instance.BarStopButton(GameManager.Instance.contractMaxCount * _budgetFactor);
                 Buttons.Instance.StartButtonPrice();
                 _finishContractPanel.SetActive(false);
             }
@@ -108,7 +108,7 @@ public class ContractSystem : MonoSingleton<ContractSystem>
     public void FreeFinish()
     {
         BarSystem.Instance.BarStopButton(0);
-        MoneySystem.Instance.MoneyTextRevork(GameManager.Instance.contractMaxCount);
+        MoneySystem.Instance.MoneyTextRevork(GameManager.Instance.contractMaxCount * _budgetFactor);
         Buttons.Instance.StartButtonPrice();
         _finishContractPanel.SetActive(false);
     }
