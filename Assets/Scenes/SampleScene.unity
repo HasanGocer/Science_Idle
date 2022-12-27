@@ -10326,7 +10326,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1988349470
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13179,7 +13179,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainSource: {fileID: 1687258588}
   mainMusic: {fileID: 8300000, guid: f902e25e150a89d49bb5d873cd3dc158, type: 3}
-  missionCompletedEffect: {fileID: 8300000, guid: 245815cdc41f8a941967584318452061, type: 3}
+  missionCompletedEffect: {fileID: 8300000, guid: 31e30a080c5aa1f49aca3b903e98c770, type: 3}
   newMoneyPlaneBuyEffect: {fileID: 8300000, guid: 47d6f46712ba8e643b8d8b4f33cbc77c, type: 3}
   newResearchPlaneBuyEffect: {fileID: 8300000, guid: ebbf75c08d148cf4fa9e3853deaa385b, type: 3}
-  buyFieldEffect: {fileID: 8300000, guid: 3c9611cb2b5dee84882cba64d3adad47, type: 3}
+  buyFieldEffect: {fileID: 8300000, guid: 245815cdc41f8a941967584318452061, type: 3}
