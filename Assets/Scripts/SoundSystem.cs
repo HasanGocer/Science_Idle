@@ -12,12 +12,14 @@ public class SoundSystem : MonoSingleton<SoundSystem>
         mainSource.clip = mainMusic;
         mainSource.Play();
         mainSource.volume = 70;
+        mainSource.mute = false;
     }
 
     public void MainMusicStop()
     {
         mainSource.Stop();
         mainSource.volume = 0;
+        mainSource.mute = true;
     }
 
     public void CallMissionCompletedEffect()
