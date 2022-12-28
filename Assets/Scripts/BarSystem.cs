@@ -27,7 +27,7 @@ public class BarSystem : MonoSingleton<BarSystem>
         isFinish = true;
         while (isFinish)
         {
-            amount += Time.deltaTime / 3;
+            amount += Time.deltaTime / 4;
             if (_goRight)
             {
                 _bar.transform.position = Vector2.Lerp(startPos.transform.position, finishPos.transform.position, amount);
