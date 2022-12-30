@@ -10,16 +10,16 @@ public class BarSystem : MonoSingleton<BarSystem>
     [SerializeField] private bool _goRight = true;
     public int barMoneyFactor;
     [SerializeField] private GameObject startPos, finishPos;
-    float amount = 0;
+    public float amount = 0;
 
     public void BarStopButton(int count)
     {
         isFinish = false;
-        amount = 0;
         BarFactorPlacement(amount);
         if (count != 0)
             ContractSystem.Instance.finishCountText.text = (count * barMoneyFactor).ToString();
         MoneySystem.Instance.MoneyTextRevork(count * barMoneyFactor);
+        amount = 0;
     }
 
     public IEnumerator BarImageFillAmountIenum()
