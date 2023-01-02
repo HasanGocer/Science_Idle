@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2138677392}
-  m_IndirectSpecularColor: {r: 0.30599368, g: 0.10385017, b: 0.2505514, a: 1}
+  m_IndirectSpecularColor: {r: 0.3059937, g: 0.10385017, b: 0.25055143, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -318,7 +318,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Calm
+  m_Text: 'Claim
+
+'
 --- !u!222 &52450376
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -13070,6 +13072,7 @@ MonoBehaviour:
   barMoneyFactor: 0
   startPos: {fileID: 4462256456216742207}
   finishPos: {fileID: 4462256456583552864}
+  amount: 0
 --- !u!114 &7627590490061665297
 MonoBehaviour:
   m_ObjectHideFlags: 0
